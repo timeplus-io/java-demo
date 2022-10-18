@@ -1,4 +1,4 @@
-package timeplus.io;
+package samples;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -7,6 +7,9 @@ import io.swagger.client.*;
 import io.swagger.client.api.ApiKeysApi;
 import io.swagger.client.api.QueriesApi;
 import io.swagger.client.model.*;
+import timeplus.io.Observer;
+import timeplus.io.QueryResultWatcher;
+import timeplus.io.TimeplusClient;
 
 class MyQueryResultHandler implements Observer {
     public MyQueryResultHandler() {
@@ -17,7 +20,7 @@ class MyQueryResultHandler implements Observer {
     }
 }
 
-public class Sample {
+public class ApplicationSample {
     public static void main(String[] args) {
         System.out.println("Hello Timeplus!");
 
