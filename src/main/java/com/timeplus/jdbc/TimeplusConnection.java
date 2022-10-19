@@ -1,4 +1,4 @@
-package timeplus.io.jdbc;
+package com.timeplus.jdbc;
 
 import java.sql.*;
 import java.util.*;
@@ -11,11 +11,12 @@ import java.net.URLDecoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.timeplus.TimeplusClient;
+
 import io.swagger.client.ApiException;
 import io.swagger.client.model.Column;
 import io.swagger.client.model.CreateQueryRequest;
 import io.swagger.client.model.Query;
-import timeplus.io.TimeplusClient;
 
 public class TimeplusConnection implements Connection {
     static Logger logg = LoggerFactory.getLogger(TimeplusConnection.class);

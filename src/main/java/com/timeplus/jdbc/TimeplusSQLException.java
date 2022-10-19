@@ -1,4 +1,4 @@
-package timeplus.io.jdbc;
+package com.timeplus.jdbc;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

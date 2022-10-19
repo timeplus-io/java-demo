@@ -1,4 +1,4 @@
-package timeplus.io.jdbc;
+package com.timeplus.jdbc;
 
 import java.sql.*;
 import java.util.List;
@@ -6,7 +6,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import timeplus.io.TimeplusClient;
+import com.timeplus.TimeplusClient;
+
 import io.swagger.client.ApiException;
 import io.swagger.client.model.Column;
 import io.swagger.client.model.CreateQueryRequest;

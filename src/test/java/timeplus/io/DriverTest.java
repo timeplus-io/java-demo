@@ -20,7 +20,7 @@ public class DriverTest {
     public void shouldConnect() {
 
         try {
-            Class.forName("timeplus.io.jdbc.TimeplusDriver");
+            Class.forName("com.timeplus.jdbc.TimeplusDriver");
             final String jdbcUrl = "jdbc:timeplus:api@//dev.timeplus.cloud:443/tenant";
             final Connection con = DriverManager.getConnection(jdbcUrl);
             assertNotNull(con);

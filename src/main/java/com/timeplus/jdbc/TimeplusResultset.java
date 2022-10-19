@@ -1,4 +1,4 @@
-package timeplus.io.jdbc;
+package com.timeplus.jdbc;
 
 import java.io.InputStream;
 import java.io.Reader;
@@ -30,12 +30,13 @@ import org.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.timeplus.Observer;
+import com.timeplus.QueryResultWatcher;
+import com.timeplus.TimeplusClient;
+
 import io.swagger.client.ApiException;
 import io.swagger.client.model.Column;
 import io.swagger.client.model.QueryWithMetrics;
-import timeplus.io.TimeplusClient;
-import timeplus.io.Observer;
-import timeplus.io.QueryResultWatcher;
 
 class ResultsetQueryHandler implements Observer {
     static Logger logg = LoggerFactory.getLogger(ResultsetQueryHandler.class);

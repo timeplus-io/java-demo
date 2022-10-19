@@ -9,7 +9,7 @@ public class JDBCSample {
             String tenant = System.getenv("TIMEPLUS_TENANT");
             String host = "dev.timeplus.cloud";
 
-            Class.forName("timeplus.io.jdbc.TimeplusDriver");
+            Class.forName("com.timeplus.jdbc.TimeplusDriver");
             // jdbc:timeplus:[apikey]@//<host>[:<port>]/<tenant>
             String jdbcUrl = String.format("jdbc:timeplus:%s@//%s/%s", apiKey, host, tenant);
 

@@ -1,4 +1,4 @@
-package timeplus.io;
+package com.timeplus;
 
 import java.net.URI;
 import java.util.HashMap;

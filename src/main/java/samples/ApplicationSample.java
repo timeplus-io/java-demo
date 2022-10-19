@@ -3,13 +3,14 @@ package samples;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+import com.timeplus.Observer;
+import com.timeplus.QueryResultWatcher;
+import com.timeplus.TimeplusClient;
+
 import io.swagger.client.*;
 import io.swagger.client.api.ApiKeysApi;
 import io.swagger.client.api.QueriesApi;
 import io.swagger.client.model.*;
-import timeplus.io.Observer;
-import timeplus.io.QueryResultWatcher;
-import timeplus.io.TimeplusClient;
 
 class MyQueryResultHandler implements Observer {
     public MyQueryResultHandler() {

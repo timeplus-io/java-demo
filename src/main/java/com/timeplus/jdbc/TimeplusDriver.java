@@ -1,4 +1,4 @@
-package timeplus.io.jdbc;
+package com.timeplus.jdbc;
 
 import java.sql.*;
 import java.util.Properties;
