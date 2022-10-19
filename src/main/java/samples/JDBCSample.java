@@ -10,12 +10,14 @@ public class JDBCSample {
             String host = "dev.timeplus.cloud";
 
             Class.forName("timeplus.io.jdbc.TimeplusDriver");
+            // jdbc:timeplus:[apikey]@//<host>[:<port>]/<tenant>
             String jdbcUrl = String.format("jdbc:timeplus:%s@//%s/%s", apiKey, host, tenant);
 
             final Connection conn = DriverManager.getConnection(jdbcUrl);
             System.out.println("Connected to Timeplus!");
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT time, speed_kmh, cid FROM table(car_live_data) limit 3");
+            ResultSet rs = stmt.executeQuery("SELECT time, speed_kmh, cid FROM car_live_data");
+            int count = 0;
             while (rs.next()) {
                 String cid = rs.getString("cid");
                 String time = rs.getString("time");
@@ -23,7 +25,12 @@ public class JDBCSample {
                 System.out.println("cid is " + cid);
                 System.out.println("time is " + time);
                 System.out.println("speed is " + speed);
+                count += 1;
+                if (count > 10) {
+                    break;
+                }
             }
+            rs.close();
             System.out.println("query completed! ");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

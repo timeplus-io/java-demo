@@ -140,14 +140,6 @@ class Watcher extends Thread {
         }
         watcher.stop(); // query is still running but not been consumed
         logg.info("watcher stopped!");
-
-        // // cancel query using id
-        // try {
-        // client.queryAPI().queriesIdCancelPost(queryId);
-        // // client.queryAPI().queriesIdDelete(queryId);
-        // } catch (ApiException e) {
-        // e.printStackTrace();
-        // }
     }
 }
 
@@ -193,8 +185,13 @@ public class TimeplusResultset implements java.sql.ResultSet {
 
     @Override
     public void close() throws SQLException {
-        throw new SQLFeatureNotSupportedException("Not implemented.");
-
+        // cancel query using id
+        try {
+            client.queryAPI().queriesIdCancelPost(queryId);
+            // client.queryAPI().queriesIdDelete(queryId);
+        } catch (ApiException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
