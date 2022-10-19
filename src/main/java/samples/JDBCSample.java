@@ -16,15 +16,19 @@ public class JDBCSample {
             final Connection conn = DriverManager.getConnection(jdbcUrl);
             System.out.println("Connected to Timeplus!");
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT time, speed_kmh, cid FROM car_live_data");
+            ResultSet rs = stmt.executeQuery("SELECT in_use, time, speed_kmh, cid , total_km FROM car_live_data");
             int count = 0;
             while (rs.next()) {
                 String cid = rs.getString("cid");
                 String time = rs.getString("time");
-                float speed = rs.getFloat("speed_kmh");
+                int speed = rs.getInt("speed_kmh");
+                boolean inUse = rs.getBoolean("in_use");
+                float totalKM = rs.getFloat("total_km");
                 System.out.println("cid is " + cid);
                 System.out.println("time is " + time);
                 System.out.println("speed is " + speed);
+                System.out.println("inUse is " + inUse);
+                System.out.println("totalKM is " + totalKM);
                 count += 1;
                 if (count > 10) {
                     break;

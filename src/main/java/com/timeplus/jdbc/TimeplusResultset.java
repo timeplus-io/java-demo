@@ -160,15 +160,6 @@ public class TimeplusResultset implements java.sql.ResultSet {
         this.watcher.start();
     }
 
-    private int getColumnIndex(String column) {
-        for (int i = 0; i < this.header.size(); i++) {
-            if (this.header.get(i).getName().equals(column)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
     @Override
     public <T> T unwrap(Class<T> iface) throws SQLException {
         throw new SQLFeatureNotSupportedException("Not implemented.");
@@ -209,7 +200,9 @@ public class TimeplusResultset implements java.sql.ResultSet {
 
     @Override
     public boolean getBoolean(int columnIndex) throws SQLException {
-        throw new SQLFeatureNotSupportedException("Not implemented.");
+        String message = this.watcher.value();
+        JSONArray mJsonArray = new JSONArray(message);
+        return mJsonArray.getBoolean(columnIndex);
     }
 
     @Override
@@ -224,7 +217,8 @@ public class TimeplusResultset implements java.sql.ResultSet {
 
     @Override
     public int getInt(int columnIndex) throws SQLException {
-        throw new SQLFeatureNotSupportedException("Not implemented.");
+        float value = this.getFloat(columnIndex);
+        return Math.round(value);
     }
 
     @Override
@@ -286,13 +280,14 @@ public class TimeplusResultset implements java.sql.ResultSet {
 
     @Override
     public String getString(String columnLabel) throws SQLException {
-        int index = getColumnIndex(columnLabel);
+        int index = findColumn(columnLabel);
         return this.getString(index);
     }
 
     @Override
     public boolean getBoolean(String columnLabel) throws SQLException {
-        throw new SQLFeatureNotSupportedException("Not implemented.");
+        int index = findColumn(columnLabel);
+        return this.getBoolean(index);
     }
 
     @Override
@@ -307,7 +302,8 @@ public class TimeplusResultset implements java.sql.ResultSet {
 
     @Override
     public int getInt(String columnLabel) throws SQLException {
-        throw new SQLFeatureNotSupportedException("Not implemented.");
+        int index = findColumn(columnLabel);
+        return this.getInt(index);
     }
 
     @Override
@@ -317,7 +313,7 @@ public class TimeplusResultset implements java.sql.ResultSet {
 
     @Override
     public float getFloat(String columnLabel) throws SQLException {
-        int index = getColumnIndex(columnLabel);
+        int index = findColumn(columnLabel);
         return this.getFloat(index);
     }
 
@@ -398,7 +394,12 @@ public class TimeplusResultset implements java.sql.ResultSet {
 
     @Override
     public int findColumn(String columnLabel) throws SQLException {
-        throw new SQLFeatureNotSupportedException("Not implemented.");
+        for (int i = 0; i < this.header.size(); i++) {
+            if (this.header.get(i).getName().equals(columnLabel)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override

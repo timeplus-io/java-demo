@@ -13,22 +13,22 @@ import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft;
 import org.java_websocket.handshake.ServerHandshake;
 
-class MyWSClient extends WebSocketClient {
-    static Logger logg = LoggerFactory.getLogger(MyWSClient.class);
+class WSClient extends WebSocketClient {
+    static Logger logg = LoggerFactory.getLogger(WSClient.class);
 
     private List<Observer> observers;
 
-    public MyWSClient(URI serverUri, Draft draft) {
+    public WSClient(URI serverUri, Draft draft) {
         super(serverUri, draft);
         this.observers = new LinkedList<Observer>();
     }
 
-    public MyWSClient(URI serverURI) {
+    public WSClient(URI serverURI) {
         super(serverURI);
         this.observers = new LinkedList<Observer>();
     }
 
-    public MyWSClient(URI serverUri, Map<String, String> httpHeaders) {
+    public WSClient(URI serverUri, Map<String, String> httpHeaders) {
         super(serverUri, httpHeaders);
         this.observers = new LinkedList<Observer>();
     }
@@ -63,7 +63,7 @@ class MyWSClient extends WebSocketClient {
 
 public class QueryResultWatcher {
     static Logger logg = LoggerFactory.getLogger(QueryResultWatcher.class);
-    private MyWSClient wsClient;
+    private WSClient wsClient;
 
     public QueryResultWatcher(TimeplusClient client, String queryId, Observer messageHandler) {
         String baseUrl = client.baseUrl()
@@ -76,7 +76,7 @@ public class QueryResultWatcher {
 
         Map<String, String> httpHeaders = new HashMap<String, String>();
         httpHeaders.put("x-api-key", client.apiKey());
-        this.wsClient = new MyWSClient(wsURI, httpHeaders);
+        this.wsClient = new WSClient(wsURI, httpHeaders);
         this.wsClient.addObserver(messageHandler);
     }
 
