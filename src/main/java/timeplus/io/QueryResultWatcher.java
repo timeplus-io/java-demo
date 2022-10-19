@@ -5,11 +5,17 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft;
 import org.java_websocket.handshake.ServerHandshake;
 
 class MyWSClient extends WebSocketClient {
+    static Logger logg = LoggerFactory.getLogger(MyWSClient.class);
+
     private List<Observer> observers;
 
     public MyWSClient(URI serverUri, Draft draft) {
@@ -33,7 +39,6 @@ class MyWSClient extends WebSocketClient {
 
     @Override
     public void onMessage(String message) {
-        // System.out.println("wsclient received query result : " + message);
         for (Observer observer : this.observers) {
             observer.handleMessage(message);
         }
@@ -41,7 +46,7 @@ class MyWSClient extends WebSocketClient {
 
     @Override
     public void onClose(int code, String reason, boolean remote) {
-        System.out.println(
+        logg.debug(
                 "Connection closed by " + (remote ? "remote peer" : "us") + " Code: " + code + " Reason: "
                         + reason);
     }
@@ -57,6 +62,7 @@ class MyWSClient extends WebSocketClient {
 }
 
 public class QueryResultWatcher {
+    static Logger logg = LoggerFactory.getLogger(QueryResultWatcher.class);
     private MyWSClient wsClient;
 
     public QueryResultWatcher(TimeplusClient client, String queryId, Observer messageHandler) {
@@ -66,7 +72,7 @@ public class QueryResultWatcher {
         String wsUrl = baseUrl + "ws/queries/" + queryId;
         URI wsURI = URI.create(wsUrl);
 
-        System.out.println("WS URI is " + wsURI);
+        logg.debug("WS URI is " + wsURI);
 
         Map<String, String> httpHeaders = new HashMap<String, String>();
         httpHeaders.put("x-api-key", client.apiKey());

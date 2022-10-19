@@ -1,5 +1,8 @@
 package timeplus.io;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import io.swagger.client.ApiClient;
 import io.swagger.client.Configuration;
 import io.swagger.client.auth.ApiKeyAuth;
@@ -8,6 +11,8 @@ import io.swagger.client.api.QueriesApi;
 import io.swagger.client.api.ApiKeysApi;
 
 public class TimeplusClient {
+    static Logger logg = LoggerFactory.getLogger(TimeplusClient.class);
+
     private String address;
     private String tenant;
     private String apiKey;
@@ -18,8 +23,8 @@ public class TimeplusClient {
         this.address = address;
         this.tenant = tenant;
         this.apiKey = apiKey;
-        System.out.println("address " + this.address);
-        System.out.println("tenant " + this.tenant);
+        logg.debug("address " + this.address);
+        logg.debug("tenant " + this.tenant);
 
         client = Configuration.getDefaultApiClient();
         client.setBasePath(this.baseUrl() + "api/v1beta1");

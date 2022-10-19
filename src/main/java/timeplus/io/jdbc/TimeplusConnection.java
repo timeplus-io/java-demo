@@ -74,10 +74,10 @@ public class TimeplusConnection implements Connection {
             String queryId = result.getId();
             List<Column> header = result.getResult().getHeader();
 
-            System.out.println("Query created with id " + queryId);
-            System.out.println("Query header is " + header);
+            logg.debug("Query created with id " + queryId);
+            logg.debug("Query header is " + header);
         } catch (ApiException e) {
-            System.err.println("Exception when calling QueriesApi#queriesPost");
+            logg.error("Exception when calling QueriesApi#queriesPost");
             e.printStackTrace();
             throw new TimeplusSQLException("failed to run query");
         }

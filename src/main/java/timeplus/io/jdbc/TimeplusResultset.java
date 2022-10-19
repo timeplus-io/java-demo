@@ -139,7 +139,7 @@ class Watcher extends Thread {
             e1.printStackTrace();
         }
         watcher.stop(); // query is still running but not been consumed
-        logg.info("watcher stopped!");
+        logg.debug("watcher stopped!");
     }
 }
 

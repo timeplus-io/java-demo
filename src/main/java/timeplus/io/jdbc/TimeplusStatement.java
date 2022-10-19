@@ -3,14 +3,18 @@ package timeplus.io.jdbc;
 import java.sql.*;
 import java.util.List;
 
-import timeplus.io.TimeplusClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import timeplus.io.TimeplusClient;
 import io.swagger.client.ApiException;
 import io.swagger.client.model.Column;
 import io.swagger.client.model.CreateQueryRequest;
 import io.swagger.client.model.Query;
 
 public class TimeplusStatement implements java.sql.Statement {
+    static Logger logg = LoggerFactory.getLogger(TimeplusConnection.class);
+
     private TimeplusClient client = null;
 
     public TimeplusStatement(TimeplusClient client) {
@@ -37,11 +41,11 @@ public class TimeplusStatement implements java.sql.Statement {
             String queryId = result.getId();
             List<Column> header = result.getResult().getHeader();
 
-            System.out.println("Query created with id " + queryId);
-            System.out.println("Query header is " + header);
+            logg.debug("Query created with id " + queryId);
+            logg.debug("Query header is " + header);
             return new TimeplusResultset(client, queryId, header);
         } catch (ApiException e) {
-            System.err.println("Exception when calling QueriesApi#queriesPost");
+            logg.error("Exception when calling QueriesApi#queriesPost");
             e.printStackTrace();
             throw new TimeplusSQLException("failed to run query");
         }
@@ -54,7 +58,6 @@ public class TimeplusStatement implements java.sql.Statement {
 
     @Override
     public void close() throws SQLException {
-        throw new SQLFeatureNotSupportedException("Not implemented.");
     }
 
     @Override
@@ -97,7 +100,6 @@ public class TimeplusStatement implements java.sql.Statement {
     @Override
     public void cancel() throws SQLException {
         throw new SQLFeatureNotSupportedException("Not implemented.");
-
     }
 
     @Override
