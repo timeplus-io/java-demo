@@ -33,7 +33,7 @@ class MyWSClient extends WebSocketClient {
 
     @Override
     public void onMessage(String message) {
-        System.out.println("wsclient received query result : " + message);
+        // System.out.println("wsclient received query result : " + message);
         for (Observer observer : this.observers) {
             observer.handleMessage(message);
         }
@@ -54,7 +54,6 @@ class MyWSClient extends WebSocketClient {
     public void addObserver(Observer ob) {
         this.observers.add(ob);
     }
-
 }
 
 public class QueryResultWatcher {

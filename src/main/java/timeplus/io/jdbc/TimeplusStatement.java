@@ -1,8 +1,22 @@
 package timeplus.io.jdbc;
 
 import java.sql.*;
+import java.util.List;
+
+import timeplus.io.TimeplusClient;
+
+import io.swagger.client.ApiException;
+import io.swagger.client.model.Column;
+import io.swagger.client.model.CreateQueryRequest;
+import io.swagger.client.model.Query;
 
 public class TimeplusStatement implements java.sql.Statement {
+    private TimeplusClient client = null;
+
+    public TimeplusStatement(TimeplusClient client) {
+        super();
+        this.client = client;
+    }
 
     @Override
     public <T> T unwrap(Class<T> iface) throws SQLException {
@@ -16,7 +30,21 @@ public class TimeplusStatement implements java.sql.Statement {
 
     @Override
     public ResultSet executeQuery(String sql) throws SQLException {
-        throw new SQLFeatureNotSupportedException("Not implemented.");
+        try {
+            CreateQueryRequest request = new CreateQueryRequest()
+                    .sql(sql);
+            Query result = client.queryAPI().queriesPost(request);
+            String queryId = result.getId();
+            List<Column> header = result.getResult().getHeader();
+
+            System.out.println("Query created with id " + queryId);
+            System.out.println("Query header is " + header);
+            return new TimeplusResultset(client, queryId, header);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling QueriesApi#queriesPost");
+            e.printStackTrace();
+            throw new TimeplusSQLException("failed to run query");
+        }
     }
 
     @Override

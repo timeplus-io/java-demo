@@ -9,7 +9,7 @@ public class TimeplusDriver implements java.sql.Driver {
     /** Instance log4j.Logger */
     static Logger logg = LoggerFactory.getLogger(TimeplusDriver.class);
     /** Url_Prefix for using this driver */
-    private static final String URL_PREFIX = "jdbc:TimeplusDriver:";
+    private static final String URL_PREFIX = "jdbc:timeplus:";
     /** MAJOR Version of the driver */
     private static final int MAJOR_VERSION = 1;
     /** Minor Version of the driver */

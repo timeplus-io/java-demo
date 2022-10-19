@@ -21,7 +21,7 @@ public class DriverTest {
 
         try {
             Class.forName("timeplus.io.jdbc.TimeplusDriver");
-            final String jdbcUrl = "jdbc:TimeplusDriver:test";
+            final String jdbcUrl = "jdbc:timeplus:api@//dev.timeplus.cloud:443/tenant";
             final Connection con = DriverManager.getConnection(jdbcUrl);
             assertNotNull(con);
         } catch (ClassNotFoundException e) {

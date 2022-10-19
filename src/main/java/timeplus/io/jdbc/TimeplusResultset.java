@@ -20,9 +20,161 @@ import java.sql.Statement;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
+
+import org.json.JSONArray;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import io.swagger.client.ApiException;
+import io.swagger.client.model.Column;
+import io.swagger.client.model.QueryWithMetrics;
+import timeplus.io.TimeplusClient;
+import timeplus.io.Observer;
+import timeplus.io.QueryResultWatcher;
+
+class ResultsetQueryHandler implements Observer {
+    static Logger logg = LoggerFactory.getLogger(ResultsetQueryHandler.class);
+    private BlockingQueue<String> messageQueue = new LinkedBlockingQueue<String>();
+
+    public ResultsetQueryHandler() {
+    }
+
+    public void handleMessage(String message) {
+        try {
+            this.messageQueue.put(message);
+            logg.debug("put message into queur " + message);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public int size() {
+        return this.messageQueue.size();
+    }
+
+    public String get() {
+        try {
+            String result = this.messageQueue.poll(1, TimeUnit.SECONDS);
+            return result;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+}
+
+class Watcher extends Thread {
+    static Logger logg = LoggerFactory.getLogger(Watcher.class);
+
+    private QueryResultWatcher watcher;
+    private TimeplusClient client;
+    private String queryId;
+    private ResultsetQueryHandler handler;
+
+    private String current = null;
+
+    public Watcher(TimeplusClient client, String queryId) {
+        this.handler = new ResultsetQueryHandler();
+        this.watcher = new QueryResultWatcher(client, queryId, this.handler);
+        this.queryId = queryId;
+        this.client = client;
+    }
+
+    public boolean next() throws TimeplusSQLException {
+        String status = this.status();
+        int size = this.handler.size();
+        if (status.equals("running") || size > 0) {
+            this.current = this.handler.get();
+            if (this.current != null) {
+                return true;
+            }
+
+            while (this.status().equals("running")) {
+                this.current = this.handler.get();
+                if (this.current != null) {
+                    return true;
+                }
+                try {
+                    TimeUnit.SECONDS.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            return false;
+        } else {
+            return false;
+        }
+    }
+
+    public String value() {
+        return this.current;
+    }
+
+    public String status() throws TimeplusSQLException {
+        try {
+            QueryWithMetrics metrics = this.client.queryAPI().queriesIdGet(queryId);
+            return metrics.getStatus();
+        } catch (ApiException e) {
+            e.printStackTrace();
+            throw new TimeplusSQLException(e.getMessage());
+        }
+    }
+
+    public void run() {
+        watcher.watch();
+        try {
+            while (this.status().equals("running")) {
+                try {
+                    TimeUnit.SECONDS.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (TimeplusSQLException e1) {
+            e1.printStackTrace();
+        }
+        watcher.stop(); // query is still running but not been consumed
+        logg.info("watcher stopped!");
+
+        // // cancel query using id
+        // try {
+        // client.queryAPI().queriesIdCancelPost(queryId);
+        // // client.queryAPI().queriesIdDelete(queryId);
+        // } catch (ApiException e) {
+        // e.printStackTrace();
+        // }
+    }
+}
 
 public class TimeplusResultset implements java.sql.ResultSet {
+    private TimeplusClient client;
+    private List<Column> header;
+    private String queryId;
+
+    private Watcher watcher;
+
+    public TimeplusResultset(TimeplusClient client, String queryId, List<Column> header) {
+        this.client = client;
+        this.header = header;
+        this.queryId = queryId;
+
+        this.watcher = new Watcher(client, queryId);
+        this.watcher.start();
+    }
+
+    private int getColumnIndex(String column) {
+        for (int i = 0; i < this.header.size(); i++) {
+            if (this.header.get(i).getName().equals(column)) {
+                return i;
+            }
+        }
+        return -1;
+    }
 
     @Override
     public <T> T unwrap(Class<T> iface) throws SQLException {
@@ -36,7 +188,7 @@ public class TimeplusResultset implements java.sql.ResultSet {
 
     @Override
     public boolean next() throws SQLException {
-        throw new SQLFeatureNotSupportedException("Not implemented.");
+        return this.watcher.next();
     }
 
     @Override
@@ -52,7 +204,9 @@ public class TimeplusResultset implements java.sql.ResultSet {
 
     @Override
     public String getString(int columnIndex) throws SQLException {
-        throw new SQLFeatureNotSupportedException("Not implemented.");
+        String message = this.watcher.value();
+        JSONArray mJsonArray = new JSONArray(message);
+        return mJsonArray.getString(columnIndex);
     }
 
     @Override
@@ -82,7 +236,9 @@ public class TimeplusResultset implements java.sql.ResultSet {
 
     @Override
     public float getFloat(int columnIndex) throws SQLException {
-        throw new SQLFeatureNotSupportedException("Not implemented.");
+        String message = this.watcher.value();
+        JSONArray mJsonArray = new JSONArray(message);
+        return mJsonArray.getFloat(columnIndex);
     }
 
     @Override
@@ -132,7 +288,8 @@ public class TimeplusResultset implements java.sql.ResultSet {
 
     @Override
     public String getString(String columnLabel) throws SQLException {
-        throw new SQLFeatureNotSupportedException("Not implemented.");
+        int index = getColumnIndex(columnLabel);
+        return this.getString(index);
     }
 
     @Override
@@ -162,7 +319,8 @@ public class TimeplusResultset implements java.sql.ResultSet {
 
     @Override
     public float getFloat(String columnLabel) throws SQLException {
-        throw new SQLFeatureNotSupportedException("Not implemented.");
+        int index = getColumnIndex(columnLabel);
+        return this.getFloat(index);
     }
 
     @Override

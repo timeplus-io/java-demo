@@ -31,18 +31,18 @@ public class ApplicationSample {
         TimeplusClient client = new TimeplusClient(address, tenant, apiKey);
 
         // sample 1: list existing api keys
-        listApiKeys();
+        listApiKeys(client);
 
         // sample 2: list all queries
-        listQueries();
+        listQueries(client);
 
         // sample 3: run a query and handle query result
         runQuery(client);
     }
 
-    public static void listApiKeys() {
+    public static void listApiKeys(TimeplusClient client) {
         // List current API Key
-        ApiKeysApi apiInstance = new ApiKeysApi();
+        ApiKeysApi apiInstance = client.apikeysAPI();
         try {
             List<APIKey> result = apiInstance.authApiKeysGet();
             System.out.println(result);
@@ -52,8 +52,8 @@ public class ApplicationSample {
         }
     }
 
-    public static void listQueries() {
-        QueriesApi queryApiInstance = new QueriesApi();
+    public static void listQueries(TimeplusClient client) {
+        QueriesApi queryApiInstance = client.queryAPI();
         // List all current queries
         try {
             List<QueryWithMetrics> result = queryApiInstance.queriesGet();
@@ -65,7 +65,7 @@ public class ApplicationSample {
     }
 
     public static void runQuery(TimeplusClient client) {
-        QueriesApi queryApiInstance = new QueriesApi();
+        QueriesApi queryApiInstance = client.queryAPI();
         // Create a new query
         try {
             CreateQueryRequest request = new CreateQueryRequest()

@@ -3,17 +3,84 @@ package timeplus.io.jdbc;
 import java.sql.*;
 import java.util.*;
 import java.util.concurrent.Executor;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import io.swagger.client.ApiException;
+import io.swagger.client.model.Column;
+import io.swagger.client.model.CreateQueryRequest;
+import io.swagger.client.model.Query;
+import timeplus.io.TimeplusClient;
+
 public class TimeplusConnection implements Connection {
-    /** Instance log4j.Logger */
     static Logger logg = LoggerFactory.getLogger(TimeplusConnection.class);
+
+    private String host;
+    private String port;
+    private String tenant;
+    private String apikey;
+
+    private TimeplusClient client = null;
 
     public TimeplusConnection(String url, Properties loginProp) throws SQLException {
         logg.debug("the url is " + url);
         logg.debug("the loginProp is " + loginProp.toString());
+        buildConnection(url, loginProp);
+    }
+
+    private void buildConnection(String url, Properties loginProp) throws SQLException {
+        // jdbc:timeplus:[apikey]@//<host>[:<port>]/<tenant>
+        Pattern pathParamsMatcher = Pattern.compile("^jdbc:timeplus:(.*)@\\/\\/([.\\w\\d]*):?(\\d*)\\/(.*)",
+                Pattern.CASE_INSENSITIVE);
+        Matcher pathParamsMatchData;
+        try {
+            pathParamsMatchData = pathParamsMatcher.matcher(URLDecoder.decode(url, "UTF-8"));
+            if (pathParamsMatchData.find()) {
+                this.apikey = pathParamsMatchData.group(1);
+                this.host = pathParamsMatchData.group(2);
+                this.port = pathParamsMatchData.group(3);
+                this.tenant = pathParamsMatchData.group(4);
+                buildClient();
+            } else {
+                throw new TimeplusSQLException("invalude jdbc url");
+            }
+        } catch (UnsupportedEncodingException e) {
+            throw new SQLException(e);
+        }
+    }
+
+    private void buildClient() throws TimeplusSQLException {
+        String address;
+        if (this.port.length() > 0) {
+            address = String.format("https://%s:%s/", this.host, this.port);
+        } else {
+            address = String.format("https://%s/", this.host);
+        }
+        this.client = new TimeplusClient(address, this.tenant, this.apikey);
+        check();
+    }
+
+    private void check() throws TimeplusSQLException {
+        try {
+            CreateQueryRequest request = new CreateQueryRequest()
+                    .description("connection check query")
+                    .sql("select 1");
+            Query result = client.queryAPI().queriesPost(request);
+            String queryId = result.getId();
+            List<Column> header = result.getResult().getHeader();
+
+            System.out.println("Query created with id " + queryId);
+            System.out.println("Query header is " + header);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling QueriesApi#queriesPost");
+            e.printStackTrace();
+            throw new TimeplusSQLException("failed to run query");
+        }
     }
 
     @Override
@@ -28,7 +95,7 @@ public class TimeplusConnection implements Connection {
 
     @Override
     public Statement createStatement() throws SQLException {
-        throw new SQLFeatureNotSupportedException("Not implemented.");
+        return new TimeplusStatement(this.client);
     }
 
     @Override
