@@ -137,8 +137,7 @@ public class TimeplusConnection implements Connection {
 
     @Override
     public void close() throws SQLException {
-        throw new SQLFeatureNotSupportedException("Not implemented.");
-
+        // TODO: resource clean up here
     }
 
     @Override
