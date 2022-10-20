@@ -59,17 +59,17 @@ public class TimeplusResultsetMetadata implements ResultSetMetaData {
 
     @Override
     public int getColumnDisplaySize(int column) throws SQLException {
-        throw new SQLFeatureNotSupportedException("Not implemented.");
+        return 10;
     }
 
     @Override
     public String getColumnLabel(int column) throws SQLException {
-        return this.columns.get(column).getName();
+        return this.columns.get(column - 1).getName();
     }
 
     @Override
     public String getColumnName(int column) throws SQLException {
-        return this.columns.get(column).getName();
+        return this.columns.get(column - 1).getName();
     }
 
     @Override
@@ -129,12 +129,12 @@ public class TimeplusResultsetMetadata implements ResultSetMetaData {
 
     @Override
     public int getColumnType(int column) throws SQLException {
-        return toType(this.columns.get(column).getType());
+        return toType(this.columns.get(column - 1).getType());
     }
 
     @Override
     public String getColumnTypeName(int column) throws SQLException {
-        return this.columns.get(column).getType();
+        return this.columns.get(column - 1).getType();
     }
 
     @Override

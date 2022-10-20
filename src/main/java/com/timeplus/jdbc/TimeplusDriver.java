@@ -118,7 +118,7 @@ public class TimeplusDriver implements java.sql.Driver {
 
     @Override
     public java.util.logging.Logger getParentLogger() throws SQLFeatureNotSupportedException {
-        throw new SQLFeatureNotSupportedException("Not implemented.");
+        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
     }
 
 }
