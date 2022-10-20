@@ -379,7 +379,7 @@ public class TimeplusResultset implements java.sql.ResultSet {
 
     @Override
     public ResultSetMetaData getMetaData() throws SQLException {
-        throw new SQLFeatureNotSupportedException("Not implemented.");
+        return new TimeplusResultsetMetadata(this.header);
     }
 
     @Override
