@@ -148,7 +148,7 @@ public class TimeplusConnection implements Connection {
 
     @Override
     public DatabaseMetaData getMetaData() throws SQLException {
-        return new TimeplusDatabaseMetadata();
+        return new TimeplusDatabaseMetadata(this.client);
     }
 
     @Override
@@ -163,12 +163,12 @@ public class TimeplusConnection implements Connection {
 
     @Override
     public void setCatalog(String catalog) throws SQLException {
-        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
+        // cannot set catalog
     }
 
     @Override
     public String getCatalog() throws SQLException {
-        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
+        return "default";
     }
 
     @Override
@@ -337,12 +337,12 @@ public class TimeplusConnection implements Connection {
 
     @Override
     public void setSchema(String schema) throws SQLException {
-        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
+
     }
 
     @Override
     public String getSchema() throws SQLException {
-        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
+        return "default";
     }
 
     @Override

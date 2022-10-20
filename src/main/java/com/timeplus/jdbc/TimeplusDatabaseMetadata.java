@@ -5,210 +5,193 @@ import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.RowIdLifetime;
 import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
+
+import com.timeplus.TimeplusClient;
 
 public class TimeplusDatabaseMetadata implements DatabaseMetaData {
 
+    private static final String DATABASE_NAME = "Timeplus";
+    private static final String DRIVER_NAME = DATABASE_NAME + " JDBC Driver";
+
+    private static final String[] TABLE_TYPES = new String[] { "STREAM TABLE" };
+
+    private TimeplusClient client = null;
+
+    public TimeplusDatabaseMetadata(TimeplusClient client) {
+        this.client = client;
+    }
+
     @Override
     public <T> T unwrap(Class<T> iface) throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
     }
 
     @Override
     public boolean isWrapperFor(Class<?> iface) throws SQLException {
-        // TODO Auto-generated method stub
-        return false;
+        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
     }
 
     @Override
     public boolean allProceduresAreCallable() throws SQLException {
-        // TODO Auto-generated method stub
-        return false;
+        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
     }
 
     @Override
     public boolean allTablesAreSelectable() throws SQLException {
-        // TODO Auto-generated method stub
-        return false;
+        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
     }
 
     @Override
     public String getURL() throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
     }
 
     @Override
     public String getUserName() throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
     }
 
     @Override
     public boolean isReadOnly() throws SQLException {
-        // TODO Auto-generated method stub
-        return false;
+        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
     }
 
     @Override
     public boolean nullsAreSortedHigh() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean nullsAreSortedLow() throws SQLException {
-        // TODO Auto-generated method stub
-        return false;
+        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
     }
 
     @Override
     public boolean nullsAreSortedAtStart() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean nullsAreSortedAtEnd() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public String getDatabaseProductName() throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        return DATABASE_NAME;
     }
 
     @Override
     public String getDatabaseProductVersion() throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        return "0.0";
     }
 
     @Override
     public String getDriverName() throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        return DRIVER_NAME;
     }
 
     @Override
     public String getDriverVersion() throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        return "0.0";
     }
 
     @Override
     public int getDriverMajorVersion() {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public int getDriverMinorVersion() {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public boolean usesLocalFiles() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean usesLocalFilePerTable() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsMixedCaseIdentifiers() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean storesUpperCaseIdentifiers() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean storesLowerCaseIdentifiers() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean storesMixedCaseIdentifiers() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsMixedCaseQuotedIdentifiers() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean storesUpperCaseQuotedIdentifiers() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean storesLowerCaseQuotedIdentifiers() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean storesMixedCaseQuotedIdentifiers() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public String getIdentifierQuoteString() throws SQLException {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public String getSQLKeywords() throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        return "APPLY,ASOF,ATTACH,CLUSTER,DATABASE,DATABASES,DETACH,"
+                + "DICTIONARY,DICTIONARIES,ILIKE,INF,LIMIT,LIVE,KILL,MATERIALIZED,"
+                + "NAN,OFFSET,OPTIMIZE,OUTFILE,POLICY,PREWHERE,PROFILE,QUARTER,QUOTA,"
+                + "RENAME,REPLACE,SAMPLE,SETTINGS,SHOW,TABLES,TIES,TOP,TOTALS,TRUNCATE,USE,WATCH,WEEK";
     }
 
     @Override
     public String getNumericFunctions() throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        return "abs,acos,acosh,asin,asinh,atan,atan2,atanh,cbrt,cos,cosh,divide,e,erf,erfc,exp,exp10,exp2,gcd,hypot,intDiv,intDivOrZero,intExp10,intExp2,lcm,lgamma,ln,log,log10,log1p,log2,minus,modulo,moduloOrZero,multiply,negate,pi,plus,pow,power,sign,sin,sinh,sqrt,tan,tgamma";
     }
 
     @Override
     public String getStringFunctions() throws SQLException {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public String getSystemFunctions() throws SQLException {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public String getTimeDateFunctions() throws SQLException {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public String getSearchStringEscape() throws SQLException {
-        // TODO Auto-generated method stub
         return null;
     }
 
@@ -745,98 +728,98 @@ public class TimeplusDatabaseMetadata implements DatabaseMetaData {
     @Override
     public ResultSet getTables(String catalog, String schemaPattern, String tableNamePattern, String[] types)
             throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        String query = " SELECT NULL AS TABLE_CAT, t.database AS TABLE_SCHEM, t.name AS TABLE_NAME, 'Stream' AS TABLE_TYPE "
+                +
+                " FROM system.tables AS t INNER JOIN system.databases AS d ON t.database = d.name " +
+                " WHERE t.engine = 'Stream' and not t.name like '.inner%' ";
+
+        TimeplusStatement s = new TimeplusStatement(this.client);
+        ResultSet result = s
+                .executeQuery(query);
+        return result;
     }
 
     @Override
     public ResultSet getSchemas() throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        TimeplusStatement s = new TimeplusStatement(this.client);
+        ResultSet result = s
+                .executeQuery("select name as TABLE_SCHEM, null as TABLE_CATALOG from system.databases  order by name");
+        return result;
     }
 
     @Override
     public ResultSet getCatalogs() throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        TimeplusStatement s = new TimeplusStatement(this.client);
+        ResultSet result = s.executeQuery("select 'default' as TABLE_CAT");
+        return result;
     }
 
     @Override
     public ResultSet getTableTypes() throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        TimeplusStatement s = new TimeplusStatement(this.client);
+        ResultSet result = s.executeQuery("select 'Stream' as TABLE_TYPE");
+        return result;
     }
 
     @Override
     public ResultSet getColumns(String catalog, String schemaPattern, String tableNamePattern, String columnNamePattern)
             throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
     }
 
     @Override
     public ResultSet getColumnPrivileges(String catalog, String schema, String table, String columnNamePattern)
             throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
     }
 
     @Override
     public ResultSet getTablePrivileges(String catalog, String schemaPattern, String tableNamePattern)
             throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
     }
 
     @Override
     public ResultSet getBestRowIdentifier(String catalog, String schema, String table, int scope, boolean nullable)
             throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
     }
 
     @Override
     public ResultSet getVersionColumns(String catalog, String schema, String table) throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
     }
 
     @Override
     public ResultSet getPrimaryKeys(String catalog, String schema, String table) throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
     }
 
     @Override
     public ResultSet getImportedKeys(String catalog, String schema, String table) throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
     }
 
     @Override
     public ResultSet getExportedKeys(String catalog, String schema, String table) throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
     }
 
     @Override
     public ResultSet getCrossReference(String parentCatalog, String parentSchema, String parentTable,
             String foreignCatalog, String foreignSchema, String foreignTable) throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
     }
 
     @Override
     public ResultSet getTypeInfo() throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
     }
 
     @Override
     public ResultSet getIndexInfo(String catalog, String schema, String table, boolean unique, boolean approximate)
             throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
     }
 
     @Override
@@ -963,8 +946,7 @@ public class TimeplusDatabaseMetadata implements DatabaseMetaData {
     @Override
     public ResultSet getAttributes(String catalog, String schemaPattern, String typeNamePattern,
             String attributeNamePattern) throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
     }
 
     @Override
@@ -981,13 +963,11 @@ public class TimeplusDatabaseMetadata implements DatabaseMetaData {
 
     @Override
     public int getDatabaseMajorVersion() throws SQLException {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public int getDatabaseMinorVersion() throws SQLException {
-        // TODO Auto-generated method stub
         return 0;
     }
 
@@ -1029,8 +1009,10 @@ public class TimeplusDatabaseMetadata implements DatabaseMetaData {
 
     @Override
     public ResultSet getSchemas(String catalog, String schemaPattern) throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        TimeplusStatement s = new TimeplusStatement(this.client);
+        ResultSet result = s
+                .executeQuery("select name as TABLE_SCHEM, null as TABLE_CATALOG from system.databases  order by name");
+        return result;
     }
 
     @Override
@@ -1047,29 +1029,25 @@ public class TimeplusDatabaseMetadata implements DatabaseMetaData {
 
     @Override
     public ResultSet getClientInfoProperties() throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
     }
 
     @Override
     public ResultSet getFunctions(String catalog, String schemaPattern, String functionNamePattern)
             throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
     }
 
     @Override
     public ResultSet getFunctionColumns(String catalog, String schemaPattern, String functionNamePattern,
             String columnNamePattern) throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
     }
 
     @Override
     public ResultSet getPseudoColumns(String catalog, String schemaPattern, String tableNamePattern,
             String columnNamePattern) throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
     }
 
     @Override
