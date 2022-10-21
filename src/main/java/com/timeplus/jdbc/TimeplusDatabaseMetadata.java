@@ -677,6 +677,7 @@ public class TimeplusDatabaseMetadata implements DatabaseMetaData {
     @Override
     public ResultSet getColumns(String catalog, String schemaPattern, String tableNamePattern, String columnNamePattern)
             throws SQLException {
+        // TODO: filter by patterns
         String query = "select null as TABLE_CAT, database as TABLE_SCHEM, table as TABLE_NAME, " +
                 "name as COLUMN_NAME , to_int32(0) as DATA_TYPE, type as TYPE_NAME, to_int32(0) as COLUMN_SIZE " +
                 "from system.columns ";
