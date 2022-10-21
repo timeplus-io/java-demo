@@ -34,7 +34,7 @@ public class TimeplusDatabaseMetadata implements DatabaseMetaData {
 
     @Override
     public boolean allProceduresAreCallable() throws SQLException {
-        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
+        return false;
     }
 
     @Override
@@ -159,7 +159,7 @@ public class TimeplusDatabaseMetadata implements DatabaseMetaData {
 
     @Override
     public String getIdentifierQuoteString() throws SQLException {
-        return null;
+        return "`";
     }
 
     @Override
@@ -197,524 +197,437 @@ public class TimeplusDatabaseMetadata implements DatabaseMetaData {
 
     @Override
     public String getExtraNameCharacters() throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        return "";
     }
 
     @Override
     public boolean supportsAlterTableWithAddColumn() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsAlterTableWithDropColumn() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsColumnAliasing() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean nullPlusNonNullIsNull() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsConvert() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsConvert(int fromType, int toType) throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsTableCorrelationNames() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsDifferentTableCorrelationNames() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsExpressionsInOrderBy() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsOrderByUnrelated() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsGroupBy() throws SQLException {
-        // TODO Auto-generated method stub
-        return false;
+        return true;
     }
 
     @Override
     public boolean supportsGroupByUnrelated() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsGroupByBeyondSelect() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsLikeEscapeClause() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsMultipleResultSets() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsMultipleTransactions() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsNonNullableColumns() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsMinimumSQLGrammar() throws SQLException {
-        // TODO Auto-generated method stub
-        return false;
+        return true;
     }
 
     @Override
     public boolean supportsCoreSQLGrammar() throws SQLException {
-        // TODO Auto-generated method stub
-        return false;
+        return true;
     }
 
     @Override
     public boolean supportsExtendedSQLGrammar() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsANSI92EntryLevelSQL() throws SQLException {
-        // TODO Auto-generated method stub
-        return false;
+        return true;
     }
 
     @Override
     public boolean supportsANSI92IntermediateSQL() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsANSI92FullSQL() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsIntegrityEnhancementFacility() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsOuterJoins() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsFullOuterJoins() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsLimitedOuterJoins() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public String getSchemaTerm() throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        return "database";
     }
 
     @Override
     public String getProcedureTerm() throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        return "procedure";
     }
 
     @Override
     public String getCatalogTerm() throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        return "catalog";
     }
 
     @Override
     public boolean isCatalogAtStart() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public String getCatalogSeparator() throws SQLException {
-        // TODO Auto-generated method stub
-        return null;
+        return ".";
     }
 
     @Override
     public boolean supportsSchemasInDataManipulation() throws SQLException {
-        // TODO Auto-generated method stub
-        return false;
+        return true;
     }
 
     @Override
     public boolean supportsSchemasInProcedureCalls() throws SQLException {
-        // TODO Auto-generated method stub
-        return false;
+        return true;
     }
 
     @Override
     public boolean supportsSchemasInTableDefinitions() throws SQLException {
-        // TODO Auto-generated method stub
-        return false;
+        return true;
     }
 
     @Override
     public boolean supportsSchemasInIndexDefinitions() throws SQLException {
-        // TODO Auto-generated method stub
-        return false;
+        return true;
     }
 
     @Override
     public boolean supportsSchemasInPrivilegeDefinitions() throws SQLException {
-        // TODO Auto-generated method stub
-        return false;
+        return true;
     }
 
     @Override
     public boolean supportsCatalogsInDataManipulation() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsCatalogsInProcedureCalls() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsCatalogsInTableDefinitions() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsCatalogsInIndexDefinitions() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsCatalogsInPrivilegeDefinitions() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsPositionedDelete() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsPositionedUpdate() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsSelectForUpdate() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsStoredProcedures() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsSubqueriesInComparisons() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsSubqueriesInExists() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsSubqueriesInIns() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsSubqueriesInQuantifieds() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsCorrelatedSubqueries() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsUnion() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsUnionAll() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsOpenCursorsAcrossCommit() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsOpenCursorsAcrossRollback() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsOpenStatementsAcrossCommit() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsOpenStatementsAcrossRollback() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public int getMaxBinaryLiteralLength() throws SQLException {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public int getMaxCharLiteralLength() throws SQLException {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public int getMaxColumnNameLength() throws SQLException {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public int getMaxColumnsInGroupBy() throws SQLException {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public int getMaxColumnsInIndex() throws SQLException {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public int getMaxColumnsInOrderBy() throws SQLException {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public int getMaxColumnsInSelect() throws SQLException {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public int getMaxColumnsInTable() throws SQLException {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public int getMaxConnections() throws SQLException {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public int getMaxCursorNameLength() throws SQLException {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public int getMaxIndexLength() throws SQLException {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public int getMaxSchemaNameLength() throws SQLException {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public int getMaxProcedureNameLength() throws SQLException {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public int getMaxCatalogNameLength() throws SQLException {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public int getMaxRowSize() throws SQLException {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public boolean doesMaxRowSizeIncludeBlobs() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public int getMaxStatementLength() throws SQLException {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public int getMaxStatements() throws SQLException {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public int getMaxTableNameLength() throws SQLException {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public int getMaxTablesInSelect() throws SQLException {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public int getMaxUserNameLength() throws SQLException {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public int getDefaultTransactionIsolation() throws SQLException {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public boolean supportsTransactions() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsTransactionIsolationLevel(int level) throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsDataDefinitionAndDataManipulationTransactions() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean supportsDataManipulationTransactionsOnly() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean dataDefinitionCausesTransactionCommit() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean dataDefinitionIgnoredInTransactions() throws SQLException {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public ResultSet getProcedures(String catalog, String schemaPattern, String procedureNamePattern)
             throws SQLException {
-        // TODO Auto-generated method stub
         return null;
     }
 
@@ -743,7 +656,7 @@ public class TimeplusDatabaseMetadata implements DatabaseMetaData {
     public ResultSet getSchemas() throws SQLException {
         TimeplusStatement s = new TimeplusStatement(this.client);
         ResultSet result = s
-                .executeQuery("select name as TABLE_SCHEM, null as TABLE_CATALOG from system.databases  order by name");
+                .executeQuery("select null as TABLE_SCHEM, null as TABLE_CATALOG from system.databases  order by name");
         return result;
     }
 
@@ -764,7 +677,12 @@ public class TimeplusDatabaseMetadata implements DatabaseMetaData {
     @Override
     public ResultSet getColumns(String catalog, String schemaPattern, String tableNamePattern, String columnNamePattern)
             throws SQLException {
-        throw new SQLFeatureNotSupportedException("Not implemented." + TimeplusUtilities.getMethodName());
+        String query = "select null as TABLE_CAT, database as TABLE_SCHEM, table as TABLE_NAME, " +
+                "name as COLUMN_NAME , to_int32(0) as DATA_TYPE, type as TYPE_NAME, to_int32(0) as COLUMN_SIZE " +
+                "from system.columns ";
+        TimeplusStatement s = new TimeplusStatement(this.client);
+        ResultSet result = s.executeQuery(query);
+        return result;
     }
 
     @Override
@@ -824,8 +742,7 @@ public class TimeplusDatabaseMetadata implements DatabaseMetaData {
 
     @Override
     public boolean supportsResultSetType(int type) throws SQLException {
-        // TODO Auto-generated method stub
-        return false;
+        return true;
     }
 
     @Override
