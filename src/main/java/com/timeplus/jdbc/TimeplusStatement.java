@@ -78,6 +78,15 @@ public class TimeplusStatement implements java.sql.Statement {
         if (queryType.equals("SHOW_TABLE")) {
             String query = " SELECT name AS STREAM_NAME , engine AS ENGINE FROM system.tables WHERE not name like '.inner%' ";
             return executeTimeplusQuery(query);
+        } else if (queryType.equals("DESCRIBE")) {
+            String[] sqlSegments = sql.split(" ", 3);
+            if (sqlSegments.length <= 1) {
+                throw new TimeplusSQLException("invalide describe :" + sql);
+            }
+            String streamName = sqlSegments.length == 2 ? sqlSegments[1] : sqlSegments[2];
+            String query = "select name, type , default_kind as default " +
+                    " from system.columns where table='" + streamName + "' ";
+            return executeTimeplusQuery(query);
         }
 
         return executeTimeplusQuery(sql);
