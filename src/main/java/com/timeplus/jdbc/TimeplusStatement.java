@@ -1,6 +1,7 @@
 package com.timeplus.jdbc;
 
 import java.sql.*;
+import java.sql.Connection;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -9,9 +10,7 @@ import org.slf4j.LoggerFactory;
 import com.timeplus.TimeplusClient;
 
 import io.swagger.client.ApiException;
-import io.swagger.client.model.Column;
-import io.swagger.client.model.CreateQueryRequest;
-import io.swagger.client.model.Query;
+import io.swagger.client.model.*;
 
 public class TimeplusStatement implements java.sql.Statement {
     static Logger logg = LoggerFactory.getLogger(TimeplusConnection.class);
@@ -40,8 +39,7 @@ public class TimeplusStatement implements java.sql.Statement {
         throw new SQLFeatureNotSupportedException("Not implemented.");
     }
 
-    @Override
-    public ResultSet executeQuery(String sql) throws SQLException {
+    private ResultSet executeTimeplusQuery(String sql) throws SQLException {
         try {
             CreateQueryRequest request = new CreateQueryRequest()
                     .sql(sql);
@@ -57,8 +55,32 @@ public class TimeplusStatement implements java.sql.Statement {
         } catch (ApiException e) {
             logg.error("Exception when calling QueriesApi#queriesPost");
             e.printStackTrace();
-            throw new TimeplusSQLException("failed to run query");
+            throw new TimeplusSQLException("failed to run query " + sql + " : " + e.getMessage());
         }
+    }
+
+    private String getQueryType(String sql) throws SQLException {
+        try {
+            AnalyzeSQLRequest request = new AnalyzeSQLRequest().sql(sql);
+            SQLAnalyzeResult result = client.queryAPI().sqlanalyzePost(request);
+            return result.getQueryType();
+        } catch (ApiException e) {
+            logg.error("Exception when calling QueriesApi#queriesPost");
+            e.printStackTrace();
+            throw new TimeplusSQLException("failed to run AnalyzeSQLRequest " + e.getMessage());
+        }
+    }
+
+    @Override
+    public ResultSet executeQuery(String sql) throws SQLException {
+        String queryType = this.getQueryType(sql);
+
+        if (queryType.equals("SHOW_TABLE")) {
+            String query = " SELECT name AS STREAM_NAME , engine AS ENGINE FROM system.tables WHERE not name like '.inner%' ";
+            return executeTimeplusQuery(query);
+        }
+
+        return executeTimeplusQuery(sql);
     }
 
     @Override

@@ -37,6 +37,8 @@ public class ApplicationSample {
         // sample 2: list all queries
         listQueries(client);
 
+        AnalyzeSQL(client);
+
         // sample 3: run a query and handle query result
         runQuery(client);
     }
@@ -61,6 +63,17 @@ public class ApplicationSample {
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling QueriesApi#queriesGet");
+            e.printStackTrace();
+        }
+    }
+
+    public static void AnalyzeSQL(TimeplusClient client) {
+        try {
+            AnalyzeSQLRequest request = new AnalyzeSQLRequest().sql("show streams");
+            SQLAnalyzeResult result = client.queryAPI().sqlanalyzePost(request);
+            System.out.println(result.getQueryType());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyzeSQL");
             e.printStackTrace();
         }
     }
