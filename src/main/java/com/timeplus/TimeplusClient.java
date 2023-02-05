@@ -7,8 +7,8 @@ import io.swagger.client.ApiClient;
 import io.swagger.client.Configuration;
 import io.swagger.client.auth.ApiKeyAuth;
 
-import io.swagger.client.api.QueriesApi;
-import io.swagger.client.api.ApiKeysApi;
+import io.swagger.client.api.QueriesV1beta1Api;
+import io.swagger.client.api.ApiKeysV1beta1Api;
 
 public class TimeplusClient {
     static Logger logg = LoggerFactory.getLogger(TimeplusClient.class);
@@ -27,7 +27,7 @@ public class TimeplusClient {
         logg.debug("tenant " + this.tenant);
 
         client = Configuration.getDefaultApiClient();
-        client.setBasePath(this.baseUrl() + "api/v1beta1");
+        client.setBasePath(this.baseUrl() + "api");
 
         // Configure API key authorization: ApiKeyAuth
         ApiKeyAuth ApiKeyAuth = (ApiKeyAuth) client.getAuthentication("ApiKeyAuth");
@@ -46,12 +46,12 @@ public class TimeplusClient {
         return this.tenant;
     }
 
-    public QueriesApi queryAPI() {
-        return new QueriesApi();
+    public QueriesV1beta1Api queryAPI() {
+        return new QueriesV1beta1Api();
     }
 
-    public ApiKeysApi apikeysAPI() {
-        return new ApiKeysApi();
+    public ApiKeysV1beta1Api apikeysAPI() {
+        return new ApiKeysV1beta1Api();
     }
 
     public String baseUrl() {

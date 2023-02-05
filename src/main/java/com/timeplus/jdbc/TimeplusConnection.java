@@ -15,8 +15,9 @@ import com.timeplus.TimeplusClient;
 
 import io.swagger.client.ApiException;
 import io.swagger.client.model.Column;
-import io.swagger.client.model.CreateQueryRequest;
+import io.swagger.client.model.CreateQueryRequestV1Beta1;
 import io.swagger.client.model.Query;
+import io.swagger.client.model.CreateQueryResponse;
 
 public class TimeplusConnection implements Connection {
     static Logger logg = LoggerFactory.getLogger(TimeplusConnection.class);
@@ -70,10 +71,10 @@ public class TimeplusConnection implements Connection {
 
     private void check() throws TimeplusSQLException {
         try {
-            CreateQueryRequest request = new CreateQueryRequest()
+            CreateQueryRequestV1Beta1 request = new CreateQueryRequestV1Beta1()
                     .description("connection check query")
                     .sql("select 1");
-            Query result = client.queryAPI().queriesPost(request);
+            CreateQueryResponse result = client.queryAPI().v1beta1QueriesPost(request);
             String queryId = result.getId();
             List<Column> header = result.getResult().getHeader();
 

@@ -8,8 +8,8 @@ import com.timeplus.QueryResultWatcher;
 import com.timeplus.TimeplusClient;
 
 import io.swagger.client.*;
-import io.swagger.client.api.ApiKeysApi;
-import io.swagger.client.api.QueriesApi;
+import io.swagger.client.api.ApiKeysV1beta1Api;
+import io.swagger.client.api.QueriesV1beta1Api;
 import io.swagger.client.model.*;
 
 class MyQueryResultHandler implements Observer {
@@ -45,9 +45,9 @@ public class ApplicationSample {
 
     public static void listApiKeys(TimeplusClient client) {
         // List current API Key
-        ApiKeysApi apiInstance = client.apikeysAPI();
+        ApiKeysV1beta1Api apiInstance = client.apikeysAPI();
         try {
-            List<APIKey> result = apiInstance.authApiKeysGet();
+            List<APIKey> result = apiInstance.v1beta1AuthApiKeysGet();
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ApiKeysApi#authApiKeysGet");
@@ -56,10 +56,10 @@ public class ApplicationSample {
     }
 
     public static void listQueries(TimeplusClient client) {
-        QueriesApi queryApiInstance = client.queryAPI();
+        QueriesV1beta1Api queryApiInstance = client.queryAPI();
         // List all current queries
         try {
-            List<QueryWithMetrics> result = queryApiInstance.queriesGet();
+            List<Query> result = queryApiInstance.v1beta1QueriesGet();
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling QueriesApi#queriesGet");
@@ -70,7 +70,7 @@ public class ApplicationSample {
     public static void AnalyzeSQL(TimeplusClient client) {
         try {
             AnalyzeSQLRequest request = new AnalyzeSQLRequest().sql("show streams");
-            SQLAnalyzeResult result = client.queryAPI().sqlanalyzePost(request);
+            SQLAnalyzeResult result = client.queryAPI().v1beta1SqlanalyzePost(request);
             System.out.println(result.getQueryType());
         } catch (ApiException e) {
             System.err.println("Exception when calling AnalyzeSQL");
@@ -79,13 +79,13 @@ public class ApplicationSample {
     }
 
     public static void runQuery(TimeplusClient client) {
-        QueriesApi queryApiInstance = client.queryAPI();
+        QueriesV1beta1Api queryApiInstance = client.queryAPI();
         // Create a new query
         try {
-            CreateQueryRequest request = new CreateQueryRequest()
+            CreateQueryRequestV1Beta1 request = new CreateQueryRequestV1Beta1()
                     .description("sample query")
                     .sql("select * from iot");
-            Query result = queryApiInstance.queriesPost(request);
+            CreateQueryResponse result = queryApiInstance.v1beta1QueriesPost(request);
             String queryId = result.getId();
             List<Column> header = result.getResult().getHeader();
 
@@ -104,7 +104,7 @@ public class ApplicationSample {
             watcher.stop(); // query is still running but not been consumed
 
             // cancel query using id
-            queryApiInstance.queriesIdCancelPost(queryId);
+            queryApiInstance.v1beta1QueriesIdCancelPost(queryId);
             System.out.println("Query cancelled " + queryId);
         } catch (ApiException e) {
             System.err.println("Exception when calling QueriesApi#queriesPost");
