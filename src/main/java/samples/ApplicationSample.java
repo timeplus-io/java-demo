@@ -1,15 +1,19 @@
 package samples;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 import com.timeplus.Observer;
 import com.timeplus.QueryResultWatcher;
 import com.timeplus.TimeplusClient;
+import com.timeplus.Query;
 
 import io.swagger.client.*;
 import io.swagger.client.api.ApiKeysV1beta1Api;
 import io.swagger.client.api.QueriesV1beta1Api;
+import io.swagger.client.api.QueriesV1beta2Api;
 import io.swagger.client.model.*;
 
 class MyQueryResultHandler implements Observer {
@@ -31,16 +35,22 @@ public class ApplicationSample {
         String tenant = System.getenv("TIMEPLUS_TENANT");
         TimeplusClient client = new TimeplusClient(address, tenant, apiKey);
 
-        // sample 1: list existing api keys
-        listApiKeys(client);
+        // // sample 1: list existing api keys
+        // listApiKeys(client);
 
-        // sample 2: list all queries
-        listQueries(client);
+        // // sample 2: list all queries
+        // listQueries(client);
 
-        AnalyzeSQL(client);
+        // AnalyzeSQL(client);
 
         // sample 3: run a query and handle query result
-        runQuery(client);
+        // runQuery(client);
+        try {
+            Query query = new Query(client, "select * from car_live_data", "", "");
+            query.run();
+        } catch (IOException e) {
+            System.out.println("failed to run query " + e.getMessage());
+        }
     }
 
     public static void listApiKeys(TimeplusClient client) {
@@ -59,7 +69,7 @@ public class ApplicationSample {
         QueriesV1beta1Api queryApiInstance = client.queryAPI();
         // List all current queries
         try {
-            List<Query> result = queryApiInstance.v1beta1QueriesGet();
+            List<io.swagger.client.model.Query> result = queryApiInstance.v1beta1QueriesGet();
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling QueriesApi#queriesGet");
