@@ -210,8 +210,8 @@ To handle stream query result, implement `com.timeplus.QueryObserver` , there ar
       ]
    },
    "created_by":{
-      "name":"Gang Tao",
-      "id":"google-oauth2|112510942135182208745"
+      "name":"Mike",
+      "id":"google-oauth2|112510942135182208123"
    },
    "sql":"select * from car_live_data",
    "tags":null,
