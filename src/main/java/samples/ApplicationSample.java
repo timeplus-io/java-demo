@@ -1,27 +1,42 @@
 package samples;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
-import com.timeplus.Observer;
-import com.timeplus.QueryResultWatcher;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import com.timeplus.QueryObserver;
 import com.timeplus.TimeplusClient;
 import com.timeplus.Query;
 
 import io.swagger.client.*;
 import io.swagger.client.api.ApiKeysV1beta1Api;
 import io.swagger.client.api.QueriesV1beta1Api;
-import io.swagger.client.api.QueriesV1beta2Api;
 import io.swagger.client.model.*;
 
-class MyQueryResultHandler implements Observer {
+class MyQueryResultHandler implements QueryObserver {
+    private JSONArray header = null;
+
     public MyQueryResultHandler() {
     }
 
-    public void handleMessage(String message) {
-        System.out.println("In MyQueryResultHandler , handle message" + message);
+    @Override
+    public void handleQuery(JSONObject query) {
+        JSONObject result = (JSONObject) query.get("result");
+        JSONArray header = (JSONArray) result.get("header");
+        System.out.println("In MyQueryResultHandler , query result header : " + header);
+        this.header = header;
+    }
+
+    @Override
+    public void handleData(JSONArray event) {
+        System.out.println("In MyQueryResultHandler , handle data : " + event);
+    }
+
+    @Override
+    public void handleMetric(JSONObject metric) {
+        System.out.println("In MyQueryResultHandler , handle metric : " + metric);
     }
 }
 
@@ -35,22 +50,16 @@ public class ApplicationSample {
         String tenant = System.getenv("TIMEPLUS_TENANT");
         TimeplusClient client = new TimeplusClient(address, tenant, apiKey);
 
-        // // sample 1: list existing api keys
-        // listApiKeys(client);
+        // sample 1: list existing api keys
+        listApiKeys(client);
 
-        // // sample 2: list all queries
-        // listQueries(client);
+        // sample 2: list all queries
+        listQueries(client);
 
-        // AnalyzeSQL(client);
+        AnalyzeSQL(client);
 
         // sample 3: run a query and handle query result
-        // runQuery(client);
-        try {
-            Query query = new Query(client, "select * from car_live_data", "", "");
-            query.run();
-        } catch (IOException e) {
-            System.out.println("failed to run query " + e.getMessage());
-        }
+        runQuery(client);
     }
 
     public static void listApiKeys(TimeplusClient client) {
@@ -89,36 +98,12 @@ public class ApplicationSample {
     }
 
     public static void runQuery(TimeplusClient client) {
-        QueriesV1beta1Api queryApiInstance = client.queryAPI();
-        // Create a new query
         try {
-            CreateQueryRequestV1Beta1 request = new CreateQueryRequestV1Beta1()
-                    .description("sample query")
-                    .sql("select * from iot");
-            CreateQueryResponse result = queryApiInstance.v1beta1QueriesPost(request);
-            String queryId = result.getId();
-            List<Column> header = result.getResult().getHeader();
-
-            System.out.println("Query created with id " + queryId);
-            System.out.println("Query header is " + header);
-
-            // monitor query result for 10 second and stop watch
-            MyQueryResultHandler queryResultHandler = new MyQueryResultHandler();
-            QueryResultWatcher watcher = new QueryResultWatcher(client, queryId, queryResultHandler);
-            watcher.watch();
-            try {
-                TimeUnit.SECONDS.sleep(10);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            watcher.stop(); // query is still running but not been consumed
-
-            // cancel query using id
-            queryApiInstance.v1beta1QueriesIdCancelPost(queryId);
-            System.out.println("Query cancelled " + queryId);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling QueriesApi#queriesPost");
-            e.printStackTrace();
+            MyQueryResultHandler ob = new MyQueryResultHandler();
+            Query query = new Query(client, "select * from car_live_data", "", "", ob);
+            query.run();
+        } catch (IOException e) {
+            System.out.println("failed to run query " + e.getMessage());
         }
     }
 }

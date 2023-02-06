@@ -1,6 +1,5 @@
 package com.timeplus;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -24,7 +23,10 @@ public class Query {
     private String name = null;
     private String desciption = null;
 
-    public Query(TimeplusClient client, String sql, String name, String desciption) throws MalformedURLException {
+    private QueryObserver ob = null;
+
+    public Query(TimeplusClient client, String sql, String name, String desciption, QueryObserver ob)
+            throws MalformedURLException {
         this.client = client;
         URL url = new URL(this.client.address());
         this.host = url.getHost();
@@ -33,6 +35,8 @@ public class Query {
         this.sql = sql;
         this.name = name;
         this.desciption = desciption;
+
+        this.ob = ob;
     }
 
     public void run() throws IOException {
@@ -58,7 +62,7 @@ public class Query {
 
         Response response = client.newCall(request).execute();
 
-        SSEHandler handler = new SSEHandler(response);
+        SSEHandler handler = new SSEHandler(response, this.ob);
         handler.handle();
     }
 
