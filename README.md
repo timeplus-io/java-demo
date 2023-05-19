@@ -1,14 +1,14 @@
-# java-demo
+# Java-demo
 
-timeplus java API demo
+Timeplus Java API demo
 
-initialize Timeplus Client using address (for example `https://dev.timeplus.cloud/` ) , tenant, apikeys
+initialize Timeplus Client using address (for example `https://us.timeplus.cloud/` ) , workspace, apikeys
 
 ```java
 String apiKey = System.getenv("TIMEPLUS_API_KEY");
 String address = System.getenv("TIMEPLUS_ADDRESS");
-String tenant = System.getenv("TIMEPLUS_TENANT");
-TimeplusClient client = new TimeplusClient(address, tenant, apiKey);
+String workspace = System.getenv("TIMEPLUS_WORKSPACE");
+TimeplusClient client = new TimeplusClient(address, workspace, apiKey);
 ```
 
 and then call API from packages `io.swagger.client.api`
