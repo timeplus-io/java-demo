@@ -41,9 +41,9 @@ public class TimeplusStatement implements java.sql.Statement {
 
     private ResultSet executeTimeplusQuery(String sql) throws SQLException {
         try {
-            CreateQueryRequest request = new CreateQueryRequest()
+            CreateQueryRequestV1Beta1 request = new CreateQueryRequestV1Beta1()
                     .sql(sql);
-            Query result = client.queryAPI().queriesPost(request);
+            CreateQueryResponse result = client.queryAPI().v1beta1QueriesPost(request);
             String queryId = result.getId();
             List<Column> header = result.getResult().getHeader();
 
@@ -62,7 +62,7 @@ public class TimeplusStatement implements java.sql.Statement {
     private String getQueryType(String sql) throws SQLException {
         try {
             AnalyzeSQLRequest request = new AnalyzeSQLRequest().sql(sql);
-            SQLAnalyzeResult result = client.queryAPI().sqlanalyzePost(request);
+            SQLAnalyzeResult result = client.queryAPI().v1beta1SqlanalyzePost(request);
             return result.getQueryType();
         } catch (ApiException e) {
             logg.error("Exception when calling QueriesApi#queriesPost");

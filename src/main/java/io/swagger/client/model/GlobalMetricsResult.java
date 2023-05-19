@@ -22,45 +22,24 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.client.model.ColumnDef;
-import io.swagger.client.model.StreamSetting;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.math.BigDecimal;
 
 /**
- * ExternalStreamDef
+ * GlobalMetricsResult
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-02-05T18:48:55.783Z")
-public class ExternalStreamDef {
-  @SerializedName("column")
-  private ColumnDef column = null;
-
+public class GlobalMetricsResult {
   @SerializedName("name")
   private String name = null;
 
-  @SerializedName("settings")
-  private List<StreamSetting> settings = null;
+  @SerializedName("time")
+  private String time = null;
 
-  public ExternalStreamDef column(ColumnDef column) {
-    this.column = column;
-    return this;
-  }
+  @SerializedName("value")
+  private BigDecimal value = null;
 
-   /**
-   * Get column
-   * @return column
-  **/
-  @ApiModelProperty(value = "")
-  public ColumnDef getColumn() {
-    return column;
-  }
-
-  public void setColumn(ColumnDef column) {
-    this.column = column;
-  }
-
-  public ExternalStreamDef name(String name) {
+  public GlobalMetricsResult name(String name) {
     this.name = name;
     return this;
   }
@@ -78,30 +57,40 @@ public class ExternalStreamDef {
     this.name = name;
   }
 
-  public ExternalStreamDef settings(List<StreamSetting> settings) {
-    this.settings = settings;
-    return this;
-  }
-
-  public ExternalStreamDef addSettingsItem(StreamSetting settingsItem) {
-    if (this.settings == null) {
-      this.settings = new ArrayList<StreamSetting>();
-    }
-    this.settings.add(settingsItem);
+  public GlobalMetricsResult time(String time) {
+    this.time = time;
     return this;
   }
 
    /**
-   * Get settings
-   * @return settings
+   * Get time
+   * @return time
   **/
   @ApiModelProperty(value = "")
-  public List<StreamSetting> getSettings() {
-    return settings;
+  public String getTime() {
+    return time;
   }
 
-  public void setSettings(List<StreamSetting> settings) {
-    this.settings = settings;
+  public void setTime(String time) {
+    this.time = time;
+  }
+
+  public GlobalMetricsResult value(BigDecimal value) {
+    this.value = value;
+    return this;
+  }
+
+   /**
+   * Get value
+   * @return value
+  **/
+  @ApiModelProperty(value = "")
+  public BigDecimal getValue() {
+    return value;
+  }
+
+  public void setValue(BigDecimal value) {
+    this.value = value;
   }
 
 
@@ -113,26 +102,26 @@ public class ExternalStreamDef {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ExternalStreamDef externalStreamDef = (ExternalStreamDef) o;
-    return Objects.equals(this.column, externalStreamDef.column) &&
-        Objects.equals(this.name, externalStreamDef.name) &&
-        Objects.equals(this.settings, externalStreamDef.settings);
+    GlobalMetricsResult globalMetricsResult = (GlobalMetricsResult) o;
+    return Objects.equals(this.name, globalMetricsResult.name) &&
+        Objects.equals(this.time, globalMetricsResult.time) &&
+        Objects.equals(this.value, globalMetricsResult.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(column, name, settings);
+    return Objects.hash(name, time, value);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ExternalStreamDef {\n");
+    sb.append("class GlobalMetricsResult {\n");
     
-    sb.append("    column: ").append(toIndentedString(column)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    settings: ").append(toIndentedString(settings)).append("\n");
+    sb.append("    time: ").append(toIndentedString(time)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -1,23 +1,42 @@
 package samples;
 
+import java.io.IOException;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
-import com.timeplus.Observer;
-import com.timeplus.QueryResultWatcher;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import com.timeplus.QueryObserver;
 import com.timeplus.TimeplusClient;
+import com.timeplus.Query;
 
 import io.swagger.client.*;
-import io.swagger.client.api.ApiKeysApi;
-import io.swagger.client.api.QueriesApi;
+import io.swagger.client.api.ApiKeysV1beta1Api;
+import io.swagger.client.api.QueriesV1beta1Api;
 import io.swagger.client.model.*;
 
-class MyQueryResultHandler implements Observer {
+class MyQueryResultHandler implements QueryObserver {
+    private JSONArray header = null;
+
     public MyQueryResultHandler() {
     }
 
-    public void handleMessage(String message) {
-        System.out.println("In MyQueryResultHandler , handle message" + message);
+    @Override
+    public void handleQuery(JSONObject query) {
+        JSONObject result = (JSONObject) query.get("result");
+        JSONArray header = (JSONArray) result.get("header");
+        System.out.println("In MyQueryResultHandler , query result header : " + header);
+        this.header = header;
+    }
+
+    @Override
+    public void handleData(JSONArray event) {
+        System.out.println("In MyQueryResultHandler , handle data : " + event);
+    }
+
+    @Override
+    public void handleMetric(JSONObject metric) {
+        System.out.println("In MyQueryResultHandler , handle metric : " + metric);
     }
 }
 
@@ -45,9 +64,9 @@ public class ApplicationSample {
 
     public static void listApiKeys(TimeplusClient client) {
         // List current API Key
-        ApiKeysApi apiInstance = client.apikeysAPI();
+        ApiKeysV1beta1Api apiInstance = client.apikeysAPI();
         try {
-            List<APIKey> result = apiInstance.authApiKeysGet();
+            List<APIKey> result = apiInstance.v1beta1AuthApiKeysGet();
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ApiKeysApi#authApiKeysGet");
@@ -56,10 +75,10 @@ public class ApplicationSample {
     }
 
     public static void listQueries(TimeplusClient client) {
-        QueriesApi queryApiInstance = client.queryAPI();
+        QueriesV1beta1Api queryApiInstance = client.queryAPI();
         // List all current queries
         try {
-            List<QueryWithMetrics> result = queryApiInstance.queriesGet();
+            List<io.swagger.client.model.Query> result = queryApiInstance.v1beta1QueriesGet();
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling QueriesApi#queriesGet");
@@ -70,7 +89,7 @@ public class ApplicationSample {
     public static void AnalyzeSQL(TimeplusClient client) {
         try {
             AnalyzeSQLRequest request = new AnalyzeSQLRequest().sql("show streams");
-            SQLAnalyzeResult result = client.queryAPI().sqlanalyzePost(request);
+            SQLAnalyzeResult result = client.queryAPI().v1beta1SqlanalyzePost(request);
             System.out.println(result.getQueryType());
         } catch (ApiException e) {
             System.err.println("Exception when calling AnalyzeSQL");
@@ -79,36 +98,12 @@ public class ApplicationSample {
     }
 
     public static void runQuery(TimeplusClient client) {
-        QueriesApi queryApiInstance = client.queryAPI();
-        // Create a new query
         try {
-            CreateQueryRequest request = new CreateQueryRequest()
-                    .description("sample query")
-                    .sql("select * from iot");
-            Query result = queryApiInstance.queriesPost(request);
-            String queryId = result.getId();
-            List<Column> header = result.getResult().getHeader();
-
-            System.out.println("Query created with id " + queryId);
-            System.out.println("Query header is " + header);
-
-            // monitor query result for 10 second and stop watch
-            MyQueryResultHandler queryResultHandler = new MyQueryResultHandler();
-            QueryResultWatcher watcher = new QueryResultWatcher(client, queryId, queryResultHandler);
-            watcher.watch();
-            try {
-                TimeUnit.SECONDS.sleep(10);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            watcher.stop(); // query is still running but not been consumed
-
-            // cancel query using id
-            queryApiInstance.queriesIdCancelPost(queryId);
-            System.out.println("Query cancelled " + queryId);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling QueriesApi#queriesPost");
-            e.printStackTrace();
+            MyQueryResultHandler ob = new MyQueryResultHandler();
+            Query query = new Query(client, "select * from car_live_data", "", "", ob);
+            query.run();
+        } catch (IOException e) {
+            System.out.println("failed to run query " + e.getMessage());
         }
     }
 }

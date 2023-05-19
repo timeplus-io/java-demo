@@ -22,45 +22,44 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.client.model.ColumnDef;
-import io.swagger.client.model.StreamSetting;
+import io.swagger.client.model.DashboardPanel;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * ExternalStreamDef
+ * UpdateDashboardRequest
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-02-05T18:48:55.783Z")
-public class ExternalStreamDef {
-  @SerializedName("column")
-  private ColumnDef column = null;
+public class UpdateDashboardRequest {
+  @SerializedName("description")
+  private String description = null;
 
   @SerializedName("name")
   private String name = null;
 
-  @SerializedName("settings")
-  private List<StreamSetting> settings = null;
+  @SerializedName("panels")
+  private List<DashboardPanel> panels = null;
 
-  public ExternalStreamDef column(ColumnDef column) {
-    this.column = column;
+  public UpdateDashboardRequest description(String description) {
+    this.description = description;
     return this;
   }
 
    /**
-   * Get column
-   * @return column
+   * Get description
+   * @return description
   **/
   @ApiModelProperty(value = "")
-  public ColumnDef getColumn() {
-    return column;
+  public String getDescription() {
+    return description;
   }
 
-  public void setColumn(ColumnDef column) {
-    this.column = column;
+  public void setDescription(String description) {
+    this.description = description;
   }
 
-  public ExternalStreamDef name(String name) {
+  public UpdateDashboardRequest name(String name) {
     this.name = name;
     return this;
   }
@@ -69,7 +68,7 @@ public class ExternalStreamDef {
    * Get name
    * @return name
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public String getName() {
     return name;
   }
@@ -78,30 +77,30 @@ public class ExternalStreamDef {
     this.name = name;
   }
 
-  public ExternalStreamDef settings(List<StreamSetting> settings) {
-    this.settings = settings;
+  public UpdateDashboardRequest panels(List<DashboardPanel> panels) {
+    this.panels = panels;
     return this;
   }
 
-  public ExternalStreamDef addSettingsItem(StreamSetting settingsItem) {
-    if (this.settings == null) {
-      this.settings = new ArrayList<StreamSetting>();
+  public UpdateDashboardRequest addPanelsItem(DashboardPanel panelsItem) {
+    if (this.panels == null) {
+      this.panels = new ArrayList<DashboardPanel>();
     }
-    this.settings.add(settingsItem);
+    this.panels.add(panelsItem);
     return this;
   }
 
    /**
-   * Get settings
-   * @return settings
+   * Get panels
+   * @return panels
   **/
   @ApiModelProperty(value = "")
-  public List<StreamSetting> getSettings() {
-    return settings;
+  public List<DashboardPanel> getPanels() {
+    return panels;
   }
 
-  public void setSettings(List<StreamSetting> settings) {
-    this.settings = settings;
+  public void setPanels(List<DashboardPanel> panels) {
+    this.panels = panels;
   }
 
 
@@ -113,26 +112,26 @@ public class ExternalStreamDef {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ExternalStreamDef externalStreamDef = (ExternalStreamDef) o;
-    return Objects.equals(this.column, externalStreamDef.column) &&
-        Objects.equals(this.name, externalStreamDef.name) &&
-        Objects.equals(this.settings, externalStreamDef.settings);
+    UpdateDashboardRequest updateDashboardRequest = (UpdateDashboardRequest) o;
+    return Objects.equals(this.description, updateDashboardRequest.description) &&
+        Objects.equals(this.name, updateDashboardRequest.name) &&
+        Objects.equals(this.panels, updateDashboardRequest.panels);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(column, name, settings);
+    return Objects.hash(description, name, panels);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ExternalStreamDef {\n");
+    sb.append("class UpdateDashboardRequest {\n");
     
-    sb.append("    column: ").append(toIndentedString(column)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    settings: ").append(toIndentedString(settings)).append("\n");
+    sb.append("    panels: ").append(toIndentedString(panels)).append("\n");
     sb.append("}");
     return sb.toString();
   }

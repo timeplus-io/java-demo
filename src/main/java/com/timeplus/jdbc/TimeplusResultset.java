@@ -37,7 +37,7 @@ import com.timeplus.TimeplusClient;
 
 import io.swagger.client.ApiException;
 import io.swagger.client.model.Column;
-import io.swagger.client.model.QueryWithMetrics;
+import io.swagger.client.model.Query;
 
 class ResultsetQueryHandler implements Observer {
     static Logger logg = LoggerFactory.getLogger(ResultsetQueryHandler.class);
@@ -113,8 +113,9 @@ class Watcher extends Thread {
 
     public String status() throws TimeplusSQLException {
         try {
-            QueryWithMetrics metrics = this.client.queryAPI().queriesIdGet(queryId);
-            return metrics.getStatus();
+            // QueryWithMetrics metrics = this.client.queryAPI().queriesIdGet(queryId);
+            Query query = this.client.queryAPI().v1beta1QueriesIdGet(queryId);
+            return query.getStatus();
         } catch (ApiException e) {
             e.printStackTrace();
             throw new TimeplusSQLException(e.getMessage());
@@ -174,7 +175,7 @@ public class TimeplusResultset implements java.sql.ResultSet {
     public void close() throws SQLException {
         // cancel query using id
         try {
-            client.queryAPI().queriesIdCancelPost(queryId);
+            client.queryAPI().v1beta1QueriesIdCancelPost(queryId);
             // client.queryAPI().queriesIdDelete(queryId);
         } catch (ApiException e) {
             e.printStackTrace();

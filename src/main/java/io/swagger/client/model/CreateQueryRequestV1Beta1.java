@@ -22,45 +22,46 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.client.model.ColumnDef;
-import io.swagger.client.model.StreamSetting;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * ExternalStreamDef
+ * CreateQueryRequestV1Beta1
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-02-05T18:48:55.783Z")
-public class ExternalStreamDef {
-  @SerializedName("column")
-  private ColumnDef column = null;
+public class CreateQueryRequestV1Beta1 {
+  @SerializedName("description")
+  private String description = null;
 
   @SerializedName("name")
   private String name = null;
 
-  @SerializedName("settings")
-  private List<StreamSetting> settings = null;
+  @SerializedName("sql")
+  private String sql = null;
 
-  public ExternalStreamDef column(ColumnDef column) {
-    this.column = column;
+  @SerializedName("tags")
+  private List<String> tags = null;
+
+  public CreateQueryRequestV1Beta1 description(String description) {
+    this.description = description;
     return this;
   }
 
    /**
-   * Get column
-   * @return column
+   * Get description
+   * @return description
   **/
   @ApiModelProperty(value = "")
-  public ColumnDef getColumn() {
-    return column;
+  public String getDescription() {
+    return description;
   }
 
-  public void setColumn(ColumnDef column) {
-    this.column = column;
+  public void setDescription(String description) {
+    this.description = description;
   }
 
-  public ExternalStreamDef name(String name) {
+  public CreateQueryRequestV1Beta1 name(String name) {
     this.name = name;
     return this;
   }
@@ -78,30 +79,48 @@ public class ExternalStreamDef {
     this.name = name;
   }
 
-  public ExternalStreamDef settings(List<StreamSetting> settings) {
-    this.settings = settings;
-    return this;
-  }
-
-  public ExternalStreamDef addSettingsItem(StreamSetting settingsItem) {
-    if (this.settings == null) {
-      this.settings = new ArrayList<StreamSetting>();
-    }
-    this.settings.add(settingsItem);
+  public CreateQueryRequestV1Beta1 sql(String sql) {
+    this.sql = sql;
     return this;
   }
 
    /**
-   * Get settings
-   * @return settings
+   * Get sql
+   * @return sql
   **/
   @ApiModelProperty(value = "")
-  public List<StreamSetting> getSettings() {
-    return settings;
+  public String getSql() {
+    return sql;
   }
 
-  public void setSettings(List<StreamSetting> settings) {
-    this.settings = settings;
+  public void setSql(String sql) {
+    this.sql = sql;
+  }
+
+  public CreateQueryRequestV1Beta1 tags(List<String> tags) {
+    this.tags = tags;
+    return this;
+  }
+
+  public CreateQueryRequestV1Beta1 addTagsItem(String tagsItem) {
+    if (this.tags == null) {
+      this.tags = new ArrayList<String>();
+    }
+    this.tags.add(tagsItem);
+    return this;
+  }
+
+   /**
+   * Get tags
+   * @return tags
+  **/
+  @ApiModelProperty(value = "")
+  public List<String> getTags() {
+    return tags;
+  }
+
+  public void setTags(List<String> tags) {
+    this.tags = tags;
   }
 
 
@@ -113,26 +132,28 @@ public class ExternalStreamDef {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ExternalStreamDef externalStreamDef = (ExternalStreamDef) o;
-    return Objects.equals(this.column, externalStreamDef.column) &&
-        Objects.equals(this.name, externalStreamDef.name) &&
-        Objects.equals(this.settings, externalStreamDef.settings);
+    CreateQueryRequestV1Beta1 createQueryRequestV1Beta1 = (CreateQueryRequestV1Beta1) o;
+    return Objects.equals(this.description, createQueryRequestV1Beta1.description) &&
+        Objects.equals(this.name, createQueryRequestV1Beta1.name) &&
+        Objects.equals(this.sql, createQueryRequestV1Beta1.sql) &&
+        Objects.equals(this.tags, createQueryRequestV1Beta1.tags);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(column, name, settings);
+    return Objects.hash(description, name, sql, tags);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ExternalStreamDef {\n");
+    sb.append("class CreateQueryRequestV1Beta1 {\n");
     
-    sb.append("    column: ").append(toIndentedString(column)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    settings: ").append(toIndentedString(settings)).append("\n");
+    sb.append("    sql: ").append(toIndentedString(sql)).append("\n");
+    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("}");
     return sb.toString();
   }
