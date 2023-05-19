@@ -267,8 +267,8 @@ To handle stream query result, implement `com.timeplus.QueryObserver` , there ar
    },
    "start_time":1675664946,
    "last_updated_by":{
-      "name":"Gang Tao",
-      "id":"google-oauth2|112510942135182208745"
+      "name":"Mike",
+      "id":"google-oauth2|112510942135182208123"
    },
    "last_updated_at":"2023-02-06 06:29:06",
    "name":"",
