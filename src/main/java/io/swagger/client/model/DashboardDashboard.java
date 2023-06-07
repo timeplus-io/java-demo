@@ -31,7 +31,7 @@ import java.util.List;
 /**
  * DashboardDashboard
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-02-05T18:48:55.783Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-06-06T23:45:14.171Z")
 public class DashboardDashboard {
   @SerializedName("created_at")
   private String createdAt = null;
@@ -66,7 +66,7 @@ public class DashboardDashboard {
    * Get createdAt
    * @return createdAt
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "2023-02-01 23:22:59", value = "")
   public String getCreatedAt() {
     return createdAt;
   }
@@ -138,7 +138,7 @@ public class DashboardDashboard {
    * Get lastUpdatedAt
    * @return lastUpdatedAt
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "2023-02-05 11:12:13", value = "")
   public String getLastUpdatedAt() {
     return lastUpdatedAt;
   }

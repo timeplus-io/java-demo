@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * ColumnDef
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-02-05T18:48:55.783Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-06-06T23:45:14.171Z")
 public class ColumnDef {
   @SerializedName("compression_codec")
   private String compressionCodec = null;
@@ -92,7 +92,7 @@ public class ColumnDef {
    * Get name
    * @return name
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "name", required = true, value = "")
   public String getName() {
     return name;
   }
@@ -146,7 +146,7 @@ public class ColumnDef {
    * Get type
    * @return type
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "string", required = true, value = "")
   public String getType() {
     return type;
   }

@@ -23,7 +23,6 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.client.model.Owner;
-import io.swagger.client.model.QueryMetrics;
 import io.swagger.client.model.QueryResult;
 import io.swagger.client.model.SQLAnalyzeResult;
 import io.swagger.client.model.SinkStat;
@@ -37,7 +36,7 @@ import java.util.Map;
 /**
  * Query
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-02-05T18:48:55.783Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-06-06T23:45:14.171Z")
 public class Query {
   @SerializedName("analysis")
   private SQLAnalyzeResult analysis = null;
@@ -68,9 +67,6 @@ public class Query {
 
   @SerializedName("message")
   private String message = null;
-
-  @SerializedName("metrics")
-  private QueryMetrics metrics = null;
 
   @SerializedName("name")
   private String name = null;
@@ -126,7 +122,7 @@ public class Query {
    * Get createdAt
    * @return createdAt
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "2023-02-01 23:22:59", value = "")
   public String getCreatedAt() {
     return createdAt;
   }
@@ -234,7 +230,7 @@ public class Query {
    * Get lastUpdatedAt
    * @return lastUpdatedAt
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "2023-02-05 11:12:13", value = "")
   public String getLastUpdatedAt() {
     return lastUpdatedAt;
   }
@@ -277,24 +273,6 @@ public class Query {
 
   public void setMessage(String message) {
     this.message = message;
-  }
-
-  public Query metrics(QueryMetrics metrics) {
-    this.metrics = metrics;
-    return this;
-  }
-
-   /**
-   * Get metrics
-   * @return metrics
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public QueryMetrics getMetrics() {
-    return metrics;
-  }
-
-  public void setMetrics(QueryMetrics metrics) {
-    this.metrics = metrics;
   }
 
   public Query name(String name) {
@@ -492,7 +470,6 @@ public class Query {
         Objects.equals(this.lastUpdatedAt, query.lastUpdatedAt) &&
         Objects.equals(this.lastUpdatedBy, query.lastUpdatedBy) &&
         Objects.equals(this.message, query.message) &&
-        Objects.equals(this.metrics, query.metrics) &&
         Objects.equals(this.name, query.name) &&
         Objects.equals(this.responseTime, query.responseTime) &&
         Objects.equals(this.result, query.result) &&
@@ -506,7 +483,7 @@ public class Query {
 
   @Override
   public int hashCode() {
-    return Objects.hash(analysis, createdAt, createdBy, description, duration, endTime, id, lastUpdatedAt, lastUpdatedBy, message, metrics, name, responseTime, result, sinks, sql, startTime, status, tags, timeColumns);
+    return Objects.hash(analysis, createdAt, createdBy, description, duration, endTime, id, lastUpdatedAt, lastUpdatedBy, message, name, responseTime, result, sinks, sql, startTime, status, tags, timeColumns);
   }
 
 
@@ -525,7 +502,6 @@ public class Query {
     sb.append("    lastUpdatedAt: ").append(toIndentedString(lastUpdatedAt)).append("\n");
     sb.append("    lastUpdatedBy: ").append(toIndentedString(lastUpdatedBy)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
-    sb.append("    metrics: ").append(toIndentedString(metrics)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    responseTime: ").append(toIndentedString(responseTime)).append("\n");
     sb.append("    result: ").append(toIndentedString(result)).append("\n");

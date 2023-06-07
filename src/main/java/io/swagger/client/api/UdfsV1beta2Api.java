@@ -36,14 +36,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class UdfsV1beta1Api {
+public class UdfsV1beta2Api {
     private ApiClient apiClient;
 
-    public UdfsV1beta1Api() {
+    public UdfsV1beta2Api() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public UdfsV1beta1Api(ApiClient apiClient) {
+    public UdfsV1beta2Api(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -56,17 +56,17 @@ public class UdfsV1beta1Api {
     }
 
     /**
-     * Build call for v1beta1UdfsGet
+     * Build call for v1beta2UdfsGet
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call v1beta1UdfsGetCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2UdfsGetCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v1beta1/udfs";
+        String localVarPath = "/v1beta2/udfs";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -104,10 +104,10 @@ public class UdfsV1beta1Api {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call v1beta1UdfsGetValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call v1beta2UdfsGetValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = v1beta1UdfsGetCall(progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2UdfsGetCall(progressListener, progressRequestListener);
         return call;
 
     }
@@ -118,8 +118,8 @@ public class UdfsV1beta1Api {
      * @return List&lt;UDF&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<UDF> v1beta1UdfsGet() throws ApiException {
-        ApiResponse<List<UDF>> resp = v1beta1UdfsGetWithHttpInfo();
+    public List<UDF> v1beta2UdfsGet() throws ApiException {
+        ApiResponse<List<UDF>> resp = v1beta2UdfsGetWithHttpInfo();
         return resp.getData();
     }
 
@@ -129,8 +129,8 @@ public class UdfsV1beta1Api {
      * @return ApiResponse&lt;List&lt;UDF&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<UDF>> v1beta1UdfsGetWithHttpInfo() throws ApiException {
-        com.squareup.okhttp.Call call = v1beta1UdfsGetValidateBeforeCall(null, null);
+    public ApiResponse<List<UDF>> v1beta2UdfsGetWithHttpInfo() throws ApiException {
+        com.squareup.okhttp.Call call = v1beta2UdfsGetValidateBeforeCall(null, null);
         Type localVarReturnType = new TypeToken<List<UDF>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -142,7 +142,7 @@ public class UdfsV1beta1Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call v1beta1UdfsGetAsync(final ApiCallback<List<UDF>> callback) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2UdfsGetAsync(final ApiCallback<List<UDF>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -163,24 +163,24 @@ public class UdfsV1beta1Api {
             };
         }
 
-        com.squareup.okhttp.Call call = v1beta1UdfsGetValidateBeforeCall(progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2UdfsGetValidateBeforeCall(progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<UDF>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for v1beta1UdfsNameDelete
+     * Build call for v1beta2UdfsNameDelete
      * @param name udf name (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call v1beta1UdfsNameDeleteCall(String name, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2UdfsNameDeleteCall(String name, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v1beta1/udfs/{name}"
+        String localVarPath = "/v1beta2/udfs/{name}"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -219,15 +219,15 @@ public class UdfsV1beta1Api {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call v1beta1UdfsNameDeleteValidateBeforeCall(String name, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call v1beta2UdfsNameDeleteValidateBeforeCall(String name, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException("Missing the required parameter 'name' when calling v1beta1UdfsNameDelete(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling v1beta2UdfsNameDelete(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = v1beta1UdfsNameDeleteCall(name, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2UdfsNameDeleteCall(name, progressListener, progressRequestListener);
         return call;
 
     }
@@ -238,8 +238,8 @@ public class UdfsV1beta1Api {
      * @param name udf name (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void v1beta1UdfsNameDelete(String name) throws ApiException {
-        v1beta1UdfsNameDeleteWithHttpInfo(name);
+    public void v1beta2UdfsNameDelete(String name) throws ApiException {
+        v1beta2UdfsNameDeleteWithHttpInfo(name);
     }
 
     /**
@@ -249,8 +249,8 @@ public class UdfsV1beta1Api {
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> v1beta1UdfsNameDeleteWithHttpInfo(String name) throws ApiException {
-        com.squareup.okhttp.Call call = v1beta1UdfsNameDeleteValidateBeforeCall(name, null, null);
+    public ApiResponse<Void> v1beta2UdfsNameDeleteWithHttpInfo(String name) throws ApiException {
+        com.squareup.okhttp.Call call = v1beta2UdfsNameDeleteValidateBeforeCall(name, null, null);
         return apiClient.execute(call);
     }
 
@@ -262,7 +262,7 @@ public class UdfsV1beta1Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call v1beta1UdfsNameDeleteAsync(String name, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2UdfsNameDeleteAsync(String name, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -283,23 +283,23 @@ public class UdfsV1beta1Api {
             };
         }
 
-        com.squareup.okhttp.Call call = v1beta1UdfsNameDeleteValidateBeforeCall(name, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2UdfsNameDeleteValidateBeforeCall(name, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }
     /**
-     * Build call for v1beta1UdfsNameGet
+     * Build call for v1beta2UdfsNameGet
      * @param name udf name (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call v1beta1UdfsNameGetCall(String name, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2UdfsNameGetCall(String name, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v1beta1/udfs/{name}"
+        String localVarPath = "/v1beta2/udfs/{name}"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -338,15 +338,15 @@ public class UdfsV1beta1Api {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call v1beta1UdfsNameGetValidateBeforeCall(String name, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call v1beta2UdfsNameGetValidateBeforeCall(String name, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException("Missing the required parameter 'name' when calling v1beta1UdfsNameGet(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling v1beta2UdfsNameGet(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = v1beta1UdfsNameGetCall(name, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2UdfsNameGetCall(name, progressListener, progressRequestListener);
         return call;
 
     }
@@ -358,8 +358,8 @@ public class UdfsV1beta1Api {
      * @return UDF
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public UDF v1beta1UdfsNameGet(String name) throws ApiException {
-        ApiResponse<UDF> resp = v1beta1UdfsNameGetWithHttpInfo(name);
+    public UDF v1beta2UdfsNameGet(String name) throws ApiException {
+        ApiResponse<UDF> resp = v1beta2UdfsNameGetWithHttpInfo(name);
         return resp.getData();
     }
 
@@ -370,8 +370,8 @@ public class UdfsV1beta1Api {
      * @return ApiResponse&lt;UDF&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<UDF> v1beta1UdfsNameGetWithHttpInfo(String name) throws ApiException {
-        com.squareup.okhttp.Call call = v1beta1UdfsNameGetValidateBeforeCall(name, null, null);
+    public ApiResponse<UDF> v1beta2UdfsNameGetWithHttpInfo(String name) throws ApiException {
+        com.squareup.okhttp.Call call = v1beta2UdfsNameGetValidateBeforeCall(name, null, null);
         Type localVarReturnType = new TypeToken<UDF>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -384,7 +384,7 @@ public class UdfsV1beta1Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call v1beta1UdfsNameGetAsync(String name, final ApiCallback<UDF> callback) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2UdfsNameGetAsync(String name, final ApiCallback<UDF> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -405,24 +405,146 @@ public class UdfsV1beta1Api {
             };
         }
 
-        com.squareup.okhttp.Call call = v1beta1UdfsNameGetValidateBeforeCall(name, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2UdfsNameGetValidateBeforeCall(name, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<UDF>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for v1beta1UdfsPost
+     * Build call for v1beta2UdfsNamePut
+     * @param udf update udf request parameters (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call v1beta2UdfsNamePutCall(UDF udf, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = udf;
+
+        // create path and map variables
+        String localVarPath = "/v1beta2/udfs/{name}";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKeyAuth" };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call v1beta2UdfsNamePutValidateBeforeCall(UDF udf, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'udf' is set
+        if (udf == null) {
+            throw new ApiException("Missing the required parameter 'udf' when calling v1beta2UdfsNamePut(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = v1beta2UdfsNamePutCall(udf, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * update a udf.
+     * Update a udf.
+     * @param udf update udf request parameters (required)
+     * @return UDF
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public UDF v1beta2UdfsNamePut(UDF udf) throws ApiException {
+        ApiResponse<UDF> resp = v1beta2UdfsNamePutWithHttpInfo(udf);
+        return resp.getData();
+    }
+
+    /**
+     * update a udf.
+     * Update a udf.
+     * @param udf update udf request parameters (required)
+     * @return ApiResponse&lt;UDF&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<UDF> v1beta2UdfsNamePutWithHttpInfo(UDF udf) throws ApiException {
+        com.squareup.okhttp.Call call = v1beta2UdfsNamePutValidateBeforeCall(udf, null, null);
+        Type localVarReturnType = new TypeToken<UDF>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * update a udf. (asynchronously)
+     * Update a udf.
+     * @param udf update udf request parameters (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call v1beta2UdfsNamePutAsync(UDF udf, final ApiCallback<UDF> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = v1beta2UdfsNamePutValidateBeforeCall(udf, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<UDF>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for v1beta2UdfsPost
      * @param udf create udf request parameters (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call v1beta1UdfsPostCall(UDF udf, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2UdfsPostCall(UDF udf, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = udf;
 
         // create path and map variables
-        String localVarPath = "/v1beta1/udfs";
+        String localVarPath = "/v1beta2/udfs";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -460,15 +582,15 @@ public class UdfsV1beta1Api {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call v1beta1UdfsPostValidateBeforeCall(UDF udf, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call v1beta2UdfsPostValidateBeforeCall(UDF udf, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'udf' is set
         if (udf == null) {
-            throw new ApiException("Missing the required parameter 'udf' when calling v1beta1UdfsPost(Async)");
+            throw new ApiException("Missing the required parameter 'udf' when calling v1beta2UdfsPost(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = v1beta1UdfsPostCall(udf, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2UdfsPostCall(udf, progressListener, progressRequestListener);
         return call;
 
     }
@@ -480,8 +602,8 @@ public class UdfsV1beta1Api {
      * @return UDF
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public UDF v1beta1UdfsPost(UDF udf) throws ApiException {
-        ApiResponse<UDF> resp = v1beta1UdfsPostWithHttpInfo(udf);
+    public UDF v1beta2UdfsPost(UDF udf) throws ApiException {
+        ApiResponse<UDF> resp = v1beta2UdfsPostWithHttpInfo(udf);
         return resp.getData();
     }
 
@@ -492,8 +614,8 @@ public class UdfsV1beta1Api {
      * @return ApiResponse&lt;UDF&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<UDF> v1beta1UdfsPostWithHttpInfo(UDF udf) throws ApiException {
-        com.squareup.okhttp.Call call = v1beta1UdfsPostValidateBeforeCall(udf, null, null);
+    public ApiResponse<UDF> v1beta2UdfsPostWithHttpInfo(UDF udf) throws ApiException {
+        com.squareup.okhttp.Call call = v1beta2UdfsPostValidateBeforeCall(udf, null, null);
         Type localVarReturnType = new TypeToken<UDF>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -506,7 +628,7 @@ public class UdfsV1beta1Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call v1beta1UdfsPostAsync(UDF udf, final ApiCallback<UDF> callback) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2UdfsPostAsync(UDF udf, final ApiCallback<UDF> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -527,7 +649,7 @@ public class UdfsV1beta1Api {
             };
         }
 
-        com.squareup.okhttp.Call call = v1beta1UdfsPostValidateBeforeCall(udf, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2UdfsPostValidateBeforeCall(udf, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<UDF>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

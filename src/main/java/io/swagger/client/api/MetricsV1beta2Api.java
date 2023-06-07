@@ -29,7 +29,6 @@ import java.io.IOException;
 
 import io.swagger.client.model.ErrorResponse;
 import io.swagger.client.model.GlobalMetricsResult;
-import io.swagger.client.model.InternalHttpHandlerV1beta2GlobalMetricsRequest;
 import io.swagger.client.model.ResourceMetricsResult;
 
 import java.lang.reflect.Type;
@@ -58,18 +57,17 @@ public class MetricsV1beta2Api {
     }
 
     /**
-     * Build call for v1beta2GlobalMetricsPost
-     * @param request metrics query request parameters (required)
+     * Build call for v1beta2GlobalMetricsGet
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call v1beta2GlobalMetricsPostCall(InternalHttpHandlerV1beta2GlobalMetricsRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = request;
+    public com.squareup.okhttp.Call v1beta2GlobalMetricsGetCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v1beta2/global_metrics";
+        String localVarPath = "/v1beta2/global-metrics";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -103,19 +101,14 @@ public class MetricsV1beta2Api {
         }
 
         String[] localVarAuthNames = new String[] { "ApiKeyAuth" };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call v1beta2GlobalMetricsPostValidateBeforeCall(InternalHttpHandlerV1beta2GlobalMetricsRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-        // verify the required parameter 'request' is set
-        if (request == null) {
-            throw new ApiException("Missing the required parameter 'request' when calling v1beta2GlobalMetricsPost(Async)");
-        }
+    private com.squareup.okhttp.Call v1beta2GlobalMetricsGetValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = v1beta2GlobalMetricsPostCall(request, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2GlobalMetricsGetCall(progressListener, progressRequestListener);
         return call;
 
     }
@@ -123,24 +116,22 @@ public class MetricsV1beta2Api {
     /**
      * query global metrics.
      * query global metrics..
-     * @param request metrics query request parameters (required)
      * @return GlobalMetricsResult
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public GlobalMetricsResult v1beta2GlobalMetricsPost(InternalHttpHandlerV1beta2GlobalMetricsRequest request) throws ApiException {
-        ApiResponse<GlobalMetricsResult> resp = v1beta2GlobalMetricsPostWithHttpInfo(request);
+    public GlobalMetricsResult v1beta2GlobalMetricsGet() throws ApiException {
+        ApiResponse<GlobalMetricsResult> resp = v1beta2GlobalMetricsGetWithHttpInfo();
         return resp.getData();
     }
 
     /**
      * query global metrics.
      * query global metrics..
-     * @param request metrics query request parameters (required)
      * @return ApiResponse&lt;GlobalMetricsResult&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GlobalMetricsResult> v1beta2GlobalMetricsPostWithHttpInfo(InternalHttpHandlerV1beta2GlobalMetricsRequest request) throws ApiException {
-        com.squareup.okhttp.Call call = v1beta2GlobalMetricsPostValidateBeforeCall(request, null, null);
+    public ApiResponse<GlobalMetricsResult> v1beta2GlobalMetricsGetWithHttpInfo() throws ApiException {
+        com.squareup.okhttp.Call call = v1beta2GlobalMetricsGetValidateBeforeCall(null, null);
         Type localVarReturnType = new TypeToken<GlobalMetricsResult>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -148,12 +139,11 @@ public class MetricsV1beta2Api {
     /**
      * query global metrics. (asynchronously)
      * query global metrics..
-     * @param request metrics query request parameters (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call v1beta2GlobalMetricsPostAsync(InternalHttpHandlerV1beta2GlobalMetricsRequest request, final ApiCallback<GlobalMetricsResult> callback) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2GlobalMetricsGetAsync(final ApiCallback<GlobalMetricsResult> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -174,27 +164,35 @@ public class MetricsV1beta2Api {
             };
         }
 
-        com.squareup.okhttp.Call call = v1beta2GlobalMetricsPostValidateBeforeCall(request, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2GlobalMetricsGetValidateBeforeCall(progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<GlobalMetricsResult>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for v1beta2ResourceMetricsPost
-     * @param request metrics query request parameters (required)
+     * Build call for v1beta2ResourceMetricsGet
+     * @param metricsType  (required)
+     * @param resourceIds  (required)
+     * @param timeRange  (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call v1beta2ResourceMetricsPostCall(InternalHttpHandlerV1beta2GlobalMetricsRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = request;
+    public com.squareup.okhttp.Call v1beta2ResourceMetricsGetCall(String metricsType, List<String> resourceIds, Integer timeRange, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v1beta2/resource_metrics";
+        String localVarPath = "/v1beta2/resource-metrics";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (metricsType != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("metrics_type", metricsType));
+        if (resourceIds != null)
+        localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("multi", "resource_ids[]", resourceIds));
+        if (timeRange != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("time_range", timeRange));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -225,19 +223,29 @@ public class MetricsV1beta2Api {
         }
 
         String[] localVarAuthNames = new String[] { "ApiKeyAuth" };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call v1beta2ResourceMetricsPostValidateBeforeCall(InternalHttpHandlerV1beta2GlobalMetricsRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call v1beta2ResourceMetricsGetValidateBeforeCall(String metricsType, List<String> resourceIds, Integer timeRange, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        // verify the required parameter 'request' is set
-        if (request == null) {
-            throw new ApiException("Missing the required parameter 'request' when calling v1beta2ResourceMetricsPost(Async)");
+        // verify the required parameter 'metricsType' is set
+        if (metricsType == null) {
+            throw new ApiException("Missing the required parameter 'metricsType' when calling v1beta2ResourceMetricsGet(Async)");
+        }
+        
+        // verify the required parameter 'resourceIds' is set
+        if (resourceIds == null) {
+            throw new ApiException("Missing the required parameter 'resourceIds' when calling v1beta2ResourceMetricsGet(Async)");
+        }
+        
+        // verify the required parameter 'timeRange' is set
+        if (timeRange == null) {
+            throw new ApiException("Missing the required parameter 'timeRange' when calling v1beta2ResourceMetricsGet(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = v1beta2ResourceMetricsPostCall(request, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2ResourceMetricsGetCall(metricsType, resourceIds, timeRange, progressListener, progressRequestListener);
         return call;
 
     }
@@ -245,24 +253,28 @@ public class MetricsV1beta2Api {
     /**
      * query resource metrics.
      * query resource metrics..
-     * @param request metrics query request parameters (required)
+     * @param metricsType  (required)
+     * @param resourceIds  (required)
+     * @param timeRange  (required)
      * @return ResourceMetricsResult
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ResourceMetricsResult v1beta2ResourceMetricsPost(InternalHttpHandlerV1beta2GlobalMetricsRequest request) throws ApiException {
-        ApiResponse<ResourceMetricsResult> resp = v1beta2ResourceMetricsPostWithHttpInfo(request);
+    public ResourceMetricsResult v1beta2ResourceMetricsGet(String metricsType, List<String> resourceIds, Integer timeRange) throws ApiException {
+        ApiResponse<ResourceMetricsResult> resp = v1beta2ResourceMetricsGetWithHttpInfo(metricsType, resourceIds, timeRange);
         return resp.getData();
     }
 
     /**
      * query resource metrics.
      * query resource metrics..
-     * @param request metrics query request parameters (required)
+     * @param metricsType  (required)
+     * @param resourceIds  (required)
+     * @param timeRange  (required)
      * @return ApiResponse&lt;ResourceMetricsResult&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ResourceMetricsResult> v1beta2ResourceMetricsPostWithHttpInfo(InternalHttpHandlerV1beta2GlobalMetricsRequest request) throws ApiException {
-        com.squareup.okhttp.Call call = v1beta2ResourceMetricsPostValidateBeforeCall(request, null, null);
+    public ApiResponse<ResourceMetricsResult> v1beta2ResourceMetricsGetWithHttpInfo(String metricsType, List<String> resourceIds, Integer timeRange) throws ApiException {
+        com.squareup.okhttp.Call call = v1beta2ResourceMetricsGetValidateBeforeCall(metricsType, resourceIds, timeRange, null, null);
         Type localVarReturnType = new TypeToken<ResourceMetricsResult>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -270,12 +282,14 @@ public class MetricsV1beta2Api {
     /**
      * query resource metrics. (asynchronously)
      * query resource metrics..
-     * @param request metrics query request parameters (required)
+     * @param metricsType  (required)
+     * @param resourceIds  (required)
+     * @param timeRange  (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call v1beta2ResourceMetricsPostAsync(InternalHttpHandlerV1beta2GlobalMetricsRequest request, final ApiCallback<ResourceMetricsResult> callback) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2ResourceMetricsGetAsync(String metricsType, List<String> resourceIds, Integer timeRange, final ApiCallback<ResourceMetricsResult> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -296,7 +310,7 @@ public class MetricsV1beta2Api {
             };
         }
 
-        com.squareup.okhttp.Call call = v1beta2ResourceMetricsPostValidateBeforeCall(request, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2ResourceMetricsGetValidateBeforeCall(metricsType, resourceIds, timeRange, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<ResourceMetricsResult>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

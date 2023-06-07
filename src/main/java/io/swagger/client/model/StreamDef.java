@@ -30,10 +30,13 @@ import java.util.List;
 /**
  * StreamDef
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-02-05T18:48:55.783Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-06-06T23:45:14.171Z")
 public class StreamDef {
   @SerializedName("columns")
   private List<ColumnDef> columns = null;
+
+  @SerializedName("description")
+  private String description = null;
 
   @SerializedName("event_time_column")
   private String eventTimeColumn = null;
@@ -47,6 +50,9 @@ public class StreamDef {
   @SerializedName("logstore_retention_ms")
   private Integer logstoreRetentionMs = null;
 
+  @SerializedName("mode")
+  private String mode = null;
+
   @SerializedName("name")
   private String name = null;
 
@@ -58,6 +64,9 @@ public class StreamDef {
 
   @SerializedName("partition_by_granularity")
   private String partitionByGranularity = null;
+
+  @SerializedName("primary_key")
+  private String primaryKey = null;
 
   @SerializedName("replication_factor")
   private Integer replicationFactor = null;
@@ -94,16 +103,34 @@ public class StreamDef {
     this.columns = columns;
   }
 
+  public StreamDef description(String description) {
+    this.description = description;
+    return this;
+  }
+
+   /**
+   * Get description
+   * @return description
+  **/
+  @ApiModelProperty(example = "my first stream", value = "")
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
   public StreamDef eventTimeColumn(String eventTimeColumn) {
     this.eventTimeColumn = eventTimeColumn;
     return this;
   }
 
    /**
-   * Get eventTimeColumn
+   * This column will be used as the event time if specified
    * @return eventTimeColumn
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "time", value = "This column will be used as the event time if specified")
   public String getEventTimeColumn() {
     return eventTimeColumn;
   }
@@ -118,10 +145,10 @@ public class StreamDef {
   }
 
    /**
-   * Get eventTimeTimezone
+   * The timezone of the &#x60;TimestampColumn&#x60;
    * @return eventTimeTimezone
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "UTC", value = "The timezone of the `TimestampColumn`")
   public String getEventTimeTimezone() {
     return eventTimeTimezone;
   }
@@ -136,10 +163,10 @@ public class StreamDef {
   }
 
    /**
-   * Get logstoreRetentionBytes
+   * The max size a stream can grow. Defaulted to 10 GiB
    * @return logstoreRetentionBytes
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "10737418240", value = "The max size a stream can grow. Defaulted to 10 GiB")
   public Integer getLogstoreRetentionBytes() {
     return logstoreRetentionBytes;
   }
@@ -154,10 +181,10 @@ public class StreamDef {
   }
 
    /**
-   * Get logstoreRetentionMs
+   * The max time the data can be retained in the stream. Defaulted to 7 days
    * @return logstoreRetentionMs
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "604800000", value = "The max time the data can be retained in the stream. Defaulted to 7 days")
   public Integer getLogstoreRetentionMs() {
     return logstoreRetentionMs;
   }
@@ -166,16 +193,34 @@ public class StreamDef {
     this.logstoreRetentionMs = logstoreRetentionMs;
   }
 
+  public StreamDef mode(String mode) {
+    this.mode = mode;
+    return this;
+  }
+
+   /**
+   * Storage mode of stream. Possible values: &#x60;append&#x60;, &#x60;changelog&#x60;, &#x60;changelog_kv&#x60;, &#x60;versioned_kv&#x60;
+   * @return mode
+  **/
+  @ApiModelProperty(example = "append", value = "Storage mode of stream. Possible values: `append`, `changelog`, `changelog_kv`, `versioned_kv`")
+  public String getMode() {
+    return mode;
+  }
+
+  public void setMode(String mode) {
+    this.mode = mode;
+  }
+
   public StreamDef name(String name) {
     this.name = name;
     return this;
   }
 
    /**
-   * Get name
+   * Stream name should only contain a maximum of 64 letters, numbers, or _, and start with a letter
    * @return name
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "test_stream", required = true, value = "Stream name should only contain a maximum of 64 letters, numbers, or _, and start with a letter")
   public String getName() {
     return name;
   }
@@ -236,6 +281,24 @@ public class StreamDef {
 
   public void setPartitionByGranularity(String partitionByGranularity) {
     this.partitionByGranularity = partitionByGranularity;
+  }
+
+  public StreamDef primaryKey(String primaryKey) {
+    this.primaryKey = primaryKey;
+    return this;
+  }
+
+   /**
+   * Expression of primary key, required in &#x60;changelog_kv&#x60;&#x60; and &#x60;versioned_kv&#x60;&#x60; mode
+   * @return primaryKey
+  **/
+  @ApiModelProperty(value = "Expression of primary key, required in `changelog_kv`` and `versioned_kv`` mode")
+  public String getPrimaryKey() {
+    return primaryKey;
+  }
+
+  public void setPrimaryKey(String primaryKey) {
+    this.primaryKey = primaryKey;
   }
 
   public StreamDef replicationFactor(Integer replicationFactor) {
@@ -303,14 +366,17 @@ public class StreamDef {
     }
     StreamDef streamDef = (StreamDef) o;
     return Objects.equals(this.columns, streamDef.columns) &&
+        Objects.equals(this.description, streamDef.description) &&
         Objects.equals(this.eventTimeColumn, streamDef.eventTimeColumn) &&
         Objects.equals(this.eventTimeTimezone, streamDef.eventTimeTimezone) &&
         Objects.equals(this.logstoreRetentionBytes, streamDef.logstoreRetentionBytes) &&
         Objects.equals(this.logstoreRetentionMs, streamDef.logstoreRetentionMs) &&
+        Objects.equals(this.mode, streamDef.mode) &&
         Objects.equals(this.name, streamDef.name) &&
         Objects.equals(this.orderByExpression, streamDef.orderByExpression) &&
         Objects.equals(this.orderByGranularity, streamDef.orderByGranularity) &&
         Objects.equals(this.partitionByGranularity, streamDef.partitionByGranularity) &&
+        Objects.equals(this.primaryKey, streamDef.primaryKey) &&
         Objects.equals(this.replicationFactor, streamDef.replicationFactor) &&
         Objects.equals(this.shards, streamDef.shards) &&
         Objects.equals(this.ttlExpression, streamDef.ttlExpression);
@@ -318,7 +384,7 @@ public class StreamDef {
 
   @Override
   public int hashCode() {
-    return Objects.hash(columns, eventTimeColumn, eventTimeTimezone, logstoreRetentionBytes, logstoreRetentionMs, name, orderByExpression, orderByGranularity, partitionByGranularity, replicationFactor, shards, ttlExpression);
+    return Objects.hash(columns, description, eventTimeColumn, eventTimeTimezone, logstoreRetentionBytes, logstoreRetentionMs, mode, name, orderByExpression, orderByGranularity, partitionByGranularity, primaryKey, replicationFactor, shards, ttlExpression);
   }
 
 
@@ -328,14 +394,17 @@ public class StreamDef {
     sb.append("class StreamDef {\n");
     
     sb.append("    columns: ").append(toIndentedString(columns)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    eventTimeColumn: ").append(toIndentedString(eventTimeColumn)).append("\n");
     sb.append("    eventTimeTimezone: ").append(toIndentedString(eventTimeTimezone)).append("\n");
     sb.append("    logstoreRetentionBytes: ").append(toIndentedString(logstoreRetentionBytes)).append("\n");
     sb.append("    logstoreRetentionMs: ").append(toIndentedString(logstoreRetentionMs)).append("\n");
+    sb.append("    mode: ").append(toIndentedString(mode)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    orderByExpression: ").append(toIndentedString(orderByExpression)).append("\n");
     sb.append("    orderByGranularity: ").append(toIndentedString(orderByGranularity)).append("\n");
     sb.append("    partitionByGranularity: ").append(toIndentedString(partitionByGranularity)).append("\n");
+    sb.append("    primaryKey: ").append(toIndentedString(primaryKey)).append("\n");
     sb.append("    replicationFactor: ").append(toIndentedString(replicationFactor)).append("\n");
     sb.append("    shards: ").append(toIndentedString(shards)).append("\n");
     sb.append("    ttlExpression: ").append(toIndentedString(ttlExpression)).append("\n");

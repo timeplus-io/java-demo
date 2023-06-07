@@ -23,10 +23,7 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.client.model.Owner;
-import io.swagger.client.model.Query;
-import io.swagger.client.model.SinkMetrics;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,7 +31,7 @@ import java.util.Map;
 /**
  * Sink
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-02-05T18:48:55.783Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-06-06T23:45:14.171Z")
 public class Sink {
   @SerializedName("created_at")
   private String createdAt = null;
@@ -54,8 +51,8 @@ public class Sink {
   @SerializedName("last_updated_by")
   private Owner lastUpdatedBy = null;
 
-  @SerializedName("metrics")
-  private SinkMetrics metrics = null;
+  @SerializedName("message")
+  private String message = null;
 
   @SerializedName("name")
   private String name = null;
@@ -63,11 +60,11 @@ public class Sink {
   @SerializedName("properties")
   private Map<String, Object> properties = new HashMap<String, Object>();
 
-  @SerializedName("queries")
-  private List<String> queries = new ArrayList<String>();
-
   @SerializedName("query")
-  private Query query = null;
+  private String query = null;
+
+  @SerializedName("status")
+  private String status = null;
 
   @SerializedName("type")
   private String type = null;
@@ -81,7 +78,7 @@ public class Sink {
    * Get createdAt
    * @return createdAt
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "2023-02-01 23:22:59", value = "")
   public String getCreatedAt() {
     return createdAt;
   }
@@ -153,7 +150,7 @@ public class Sink {
    * Get lastUpdatedAt
    * @return lastUpdatedAt
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "2023-02-05 11:12:13", value = "")
   public String getLastUpdatedAt() {
     return lastUpdatedAt;
   }
@@ -180,22 +177,22 @@ public class Sink {
     this.lastUpdatedBy = lastUpdatedBy;
   }
 
-  public Sink metrics(SinkMetrics metrics) {
-    this.metrics = metrics;
+  public Sink message(String message) {
+    this.message = message;
     return this;
   }
 
    /**
-   * Get metrics
-   * @return metrics
+   * Get message
+   * @return message
   **/
   @ApiModelProperty(required = true, value = "")
-  public SinkMetrics getMetrics() {
-    return metrics;
+  public String getMessage() {
+    return message;
   }
 
-  public void setMetrics(SinkMetrics metrics) {
-    this.metrics = metrics;
+  public void setMessage(String message) {
+    this.message = message;
   }
 
   public Sink name(String name) {
@@ -239,30 +236,7 @@ public class Sink {
     this.properties = properties;
   }
 
-  public Sink queries(List<String> queries) {
-    this.queries = queries;
-    return this;
-  }
-
-  public Sink addQueriesItem(String queriesItem) {
-    this.queries.add(queriesItem);
-    return this;
-  }
-
-   /**
-   * Get queries
-   * @return queries
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public List<String> getQueries() {
-    return queries;
-  }
-
-  public void setQueries(List<String> queries) {
-    this.queries = queries;
-  }
-
-  public Sink query(Query query) {
+  public Sink query(String query) {
     this.query = query;
     return this;
   }
@@ -271,13 +245,31 @@ public class Sink {
    * Get query
    * @return query
   **/
-  @ApiModelProperty(value = "")
-  public Query getQuery() {
+  @ApiModelProperty(required = true, value = "")
+  public String getQuery() {
     return query;
   }
 
-  public void setQuery(Query query) {
+  public void setQuery(String query) {
     this.query = query;
+  }
+
+  public Sink status(String status) {
+    this.status = status;
+    return this;
+  }
+
+   /**
+   * Get status
+   * @return status
+  **/
+  @ApiModelProperty(example = "running", required = true, value = "")
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
   }
 
   public Sink type(String type) {
@@ -314,17 +306,17 @@ public class Sink {
         Objects.equals(this.id, sink.id) &&
         Objects.equals(this.lastUpdatedAt, sink.lastUpdatedAt) &&
         Objects.equals(this.lastUpdatedBy, sink.lastUpdatedBy) &&
-        Objects.equals(this.metrics, sink.metrics) &&
+        Objects.equals(this.message, sink.message) &&
         Objects.equals(this.name, sink.name) &&
         Objects.equals(this.properties, sink.properties) &&
-        Objects.equals(this.queries, sink.queries) &&
         Objects.equals(this.query, sink.query) &&
+        Objects.equals(this.status, sink.status) &&
         Objects.equals(this.type, sink.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(createdAt, createdBy, description, id, lastUpdatedAt, lastUpdatedBy, metrics, name, properties, queries, query, type);
+    return Objects.hash(createdAt, createdBy, description, id, lastUpdatedAt, lastUpdatedBy, message, name, properties, query, status, type);
   }
 
 
@@ -339,11 +331,11 @@ public class Sink {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    lastUpdatedAt: ").append(toIndentedString(lastUpdatedAt)).append("\n");
     sb.append("    lastUpdatedBy: ").append(toIndentedString(lastUpdatedBy)).append("\n");
-    sb.append("    metrics: ").append(toIndentedString(metrics)).append("\n");
+    sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    properties: ").append(toIndentedString(properties)).append("\n");
-    sb.append("    queries: ").append(toIndentedString(queries)).append("\n");
     sb.append("    query: ").append(toIndentedString(query)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();

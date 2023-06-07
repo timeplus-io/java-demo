@@ -32,7 +32,7 @@ import java.util.List;
 /**
  * UDF
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-02-05T18:48:55.783Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-06-06T23:45:14.171Z")
 public class UDF {
   @SerializedName("arguments")
   private List<UDFArgument> arguments = null;
@@ -49,6 +49,12 @@ public class UDF {
   @SerializedName("created_by")
   private Owner createdBy = null;
 
+  @SerializedName("description")
+  private String description = null;
+
+  @SerializedName("is_aggregation")
+  private Boolean isAggregation = null;
+
   @SerializedName("last_updated_at")
   private String lastUpdatedAt = null;
 
@@ -60,6 +66,9 @@ public class UDF {
 
   @SerializedName("return_type")
   private String returnType = null;
+
+  @SerializedName("source")
+  private String source = null;
 
   @SerializedName("type")
   private String type = null;
@@ -81,10 +90,10 @@ public class UDF {
   }
 
    /**
-   * Get arguments
+   * The input argument of the UDF   * For UDA: the number and type of arguments should be consistent with the main function of UDA.     the type should be the data types of proton not javascript types. It only supports int8/16/32/64, uint8/16/32/64,
    * @return arguments
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The input argument of the UDF   * For UDA: the number and type of arguments should be consistent with the main function of UDA.     the type should be the data types of proton not javascript types. It only supports int8/16/32/64, uint8/16/32/64,")
   public List<UDFArgument> getArguments() {
     return arguments;
   }
@@ -138,7 +147,7 @@ public class UDF {
    * Get createdAt
    * @return createdAt
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "2023-02-01 23:22:59", value = "")
   public String getCreatedAt() {
     return createdAt;
   }
@@ -165,6 +174,42 @@ public class UDF {
     this.createdBy = createdBy;
   }
 
+  public UDF description(String description) {
+    this.description = description;
+    return this;
+  }
+
+   /**
+   * Get description
+   * @return description
+  **/
+  @ApiModelProperty(value = "")
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public UDF isAggregation(Boolean isAggregation) {
+    this.isAggregation = isAggregation;
+    return this;
+  }
+
+   /**
+   * Whether it is an aggregation function. Only valid when type is &#39;javascript&#39;
+   * @return isAggregation
+  **/
+  @ApiModelProperty(value = "Whether it is an aggregation function. Only valid when type is 'javascript'")
+  public Boolean isIsAggregation() {
+    return isAggregation;
+  }
+
+  public void setIsAggregation(Boolean isAggregation) {
+    this.isAggregation = isAggregation;
+  }
+
   public UDF lastUpdatedAt(String lastUpdatedAt) {
     this.lastUpdatedAt = lastUpdatedAt;
     return this;
@@ -174,7 +219,7 @@ public class UDF {
    * Get lastUpdatedAt
    * @return lastUpdatedAt
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "2023-02-05 11:12:13", value = "")
   public String getLastUpdatedAt() {
     return lastUpdatedAt;
   }
@@ -225,10 +270,10 @@ public class UDF {
   }
 
    /**
-   * Get returnType
+   * The erturn type of the UDF   * For UDA: if it returns a single value, the return type is the corresponding data type of Timeplus.     It supports the same types of input arguments, except for datetime, it only supports DateTime64(3).
    * @return returnType
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The erturn type of the UDF   * For UDA: if it returns a single value, the return type is the corresponding data type of Timeplus.     It supports the same types of input arguments, except for datetime, it only supports DateTime64(3).")
   public String getReturnType() {
     return returnType;
   }
@@ -237,16 +282,34 @@ public class UDF {
     this.returnType = returnType;
   }
 
+  public UDF source(String source) {
+    this.source = source;
+    return this;
+  }
+
+   /**
+   * The source code of the UDA. There are functions to be defined:  * main function: with the same name as UDA. Timeplus calls this function for each input row. The main function can return two types of result: object or simple data type    - If it returns an object, the object is like {“emit”: true, “result”: …}. ‘Emit’ (boolean) property tells Timeplus whether or not the result should emit. ‘result’ is the current aggregate result, if ‘emit’ is false, the result will be ignored by Timeplus. Timeplus will convert the ‘result’ property of v8 to the data types defined when creating UDA.    - If it returns a simple data type, Timeplus considers the return data as the result to be emitted immediately. It converts the return data to the corresponding data type and Timeplus emits the aggregating result.    - Once UDA tells Timeplus to emit the data, UDA takes the full responsibility to clear the internal state, prepare and restart a new aggregating window, et al.  * state function: which returns the serialized state of all internal states of UDA in string. The UDA takes the responsibility therefore Timeplus can choose to persist the internal state of UDA for query recovery.  * init function: the input of this function is the string of serialized state of the internal states UDA. Timeplus calls this function when it wants to recover the aggregation function with the persisted internal state.
+   * @return source
+  **/
+  @ApiModelProperty(value = "The source code of the UDA. There are functions to be defined:  * main function: with the same name as UDA. Timeplus calls this function for each input row. The main function can return two types of result: object or simple data type    - If it returns an object, the object is like {“emit”: true, “result”: …}. ‘Emit’ (boolean) property tells Timeplus whether or not the result should emit. ‘result’ is the current aggregate result, if ‘emit’ is false, the result will be ignored by Timeplus. Timeplus will convert the ‘result’ property of v8 to the data types defined when creating UDA.    - If it returns a simple data type, Timeplus considers the return data as the result to be emitted immediately. It converts the return data to the corresponding data type and Timeplus emits the aggregating result.    - Once UDA tells Timeplus to emit the data, UDA takes the full responsibility to clear the internal state, prepare and restart a new aggregating window, et al.  * state function: which returns the serialized state of all internal states of UDA in string. The UDA takes the responsibility therefore Timeplus can choose to persist the internal state of UDA for query recovery.  * init function: the input of this function is the string of serialized state of the internal states UDA. Timeplus calls this function when it wants to recover the aggregation function with the persisted internal state.")
+  public String getSource() {
+    return source;
+  }
+
+  public void setSource(String source) {
+    this.source = source;
+  }
+
   public UDF type(String type) {
     this.type = type;
     return this;
   }
 
    /**
-   * Get type
+   * Either &#x60;javascript&#x60; or &#x60;remote&#x60;
    * @return type
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Either `javascript` or `remote`")
   public String getType() {
     return type;
   }
@@ -288,17 +351,20 @@ public class UDF {
         Objects.equals(this.authMethod, UDF.authMethod) &&
         Objects.equals(this.createdAt, UDF.createdAt) &&
         Objects.equals(this.createdBy, UDF.createdBy) &&
+        Objects.equals(this.description, UDF.description) &&
+        Objects.equals(this.isAggregation, UDF.isAggregation) &&
         Objects.equals(this.lastUpdatedAt, UDF.lastUpdatedAt) &&
         Objects.equals(this.lastUpdatedBy, UDF.lastUpdatedBy) &&
         Objects.equals(this.name, UDF.name) &&
         Objects.equals(this.returnType, UDF.returnType) &&
+        Objects.equals(this.source, UDF.source) &&
         Objects.equals(this.type, UDF.type) &&
         Objects.equals(this.url, UDF.url);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(arguments, authContext, authMethod, createdAt, createdBy, lastUpdatedAt, lastUpdatedBy, name, returnType, type, url);
+    return Objects.hash(arguments, authContext, authMethod, createdAt, createdBy, description, isAggregation, lastUpdatedAt, lastUpdatedBy, name, returnType, source, type, url);
   }
 
 
@@ -312,10 +378,13 @@ public class UDF {
     sb.append("    authMethod: ").append(toIndentedString(authMethod)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    createdBy: ").append(toIndentedString(createdBy)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    isAggregation: ").append(toIndentedString(isAggregation)).append("\n");
     sb.append("    lastUpdatedAt: ").append(toIndentedString(lastUpdatedAt)).append("\n");
     sb.append("    lastUpdatedBy: ").append(toIndentedString(lastUpdatedBy)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    returnType: ").append(toIndentedString(returnType)).append("\n");
+    sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("}");

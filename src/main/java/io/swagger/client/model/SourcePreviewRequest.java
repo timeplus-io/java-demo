@@ -30,13 +30,16 @@ import java.util.Map;
 /**
  * SourcePreviewRequest
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-02-05T18:48:55.783Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-06-06T23:45:14.171Z")
 public class SourcePreviewRequest {
   @SerializedName("properties")
   private Map<String, Object> properties = null;
 
   @SerializedName("size")
   private Integer size = null;
+
+  @SerializedName("timeout")
+  private String timeout = null;
 
   @SerializedName("type")
   private String type = null;
@@ -85,6 +88,24 @@ public class SourcePreviewRequest {
     this.size = size;
   }
 
+  public SourcePreviewRequest timeout(String timeout) {
+    this.timeout = timeout;
+    return this;
+  }
+
+   /**
+   * Indicates how long should preview last to fetch the desired amount of data indicated by &#x60;size&#x60; A duration string is a possibly signed sequence of decimal numbers, each with optional fraction and a unit suffix, such as \&quot;300ms\&quot;, \&quot;-1.5h\&quot; or \&quot;2h45m\&quot;. Valid time units are \&quot;ns\&quot;, \&quot;us\&quot; (or \&quot;µs\&quot;), \&quot;ms\&quot;, \&quot;s\&quot;, \&quot;m\&quot;, \&quot;h\&quot;.
+   * @return timeout
+  **/
+  @ApiModelProperty(value = "Indicates how long should preview last to fetch the desired amount of data indicated by `size` A duration string is a possibly signed sequence of decimal numbers, each with optional fraction and a unit suffix, such as \"300ms\", \"-1.5h\" or \"2h45m\". Valid time units are \"ns\", \"us\" (or \"µs\"), \"ms\", \"s\", \"m\", \"h\".")
+  public String getTimeout() {
+    return timeout;
+  }
+
+  public void setTimeout(String timeout) {
+    this.timeout = timeout;
+  }
+
   public SourcePreviewRequest type(String type) {
     this.type = type;
     return this;
@@ -115,12 +136,13 @@ public class SourcePreviewRequest {
     SourcePreviewRequest sourcePreviewRequest = (SourcePreviewRequest) o;
     return Objects.equals(this.properties, sourcePreviewRequest.properties) &&
         Objects.equals(this.size, sourcePreviewRequest.size) &&
+        Objects.equals(this.timeout, sourcePreviewRequest.timeout) &&
         Objects.equals(this.type, sourcePreviewRequest.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(properties, size, type);
+    return Objects.hash(properties, size, timeout, type);
   }
 
 
@@ -131,6 +153,7 @@ public class SourcePreviewRequest {
     
     sb.append("    properties: ").append(toIndentedString(properties)).append("\n");
     sb.append("    size: ").append(toIndentedString(size)).append("\n");
+    sb.append("    timeout: ").append(toIndentedString(timeout)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();

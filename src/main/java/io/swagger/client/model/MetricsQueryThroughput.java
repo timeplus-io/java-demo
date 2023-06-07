@@ -23,52 +23,53 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.math.BigDecimal;
 
 /**
- * ConnectionStat
+ * MetricsQueryThroughput
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-02-05T18:48:55.783Z")
-public class ConnectionStat {
-  @SerializedName("message")
-  private String message = null;
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-06-06T23:45:14.171Z")
+public class MetricsQueryThroughput {
+  @SerializedName("time")
+  private String time = null;
 
-  @SerializedName("status")
-  private String status = null;
+  @SerializedName("value")
+  private BigDecimal value = null;
 
-  public ConnectionStat message(String message) {
-    this.message = message;
+  public MetricsQueryThroughput time(String time) {
+    this.time = time;
     return this;
   }
 
    /**
-   * Get message
-   * @return message
+   * Get time
+   * @return time
   **/
   @ApiModelProperty(required = true, value = "")
-  public String getMessage() {
-    return message;
+  public String getTime() {
+    return time;
   }
 
-  public void setMessage(String message) {
-    this.message = message;
+  public void setTime(String time) {
+    this.time = time;
   }
 
-  public ConnectionStat status(String status) {
-    this.status = status;
+  public MetricsQueryThroughput value(BigDecimal value) {
+    this.value = value;
     return this;
   }
 
    /**
-   * Get status
-   * @return status
+   * Get value
+   * @return value
   **/
   @ApiModelProperty(required = true, value = "")
-  public String getStatus() {
-    return status;
+  public BigDecimal getValue() {
+    return value;
   }
 
-  public void setStatus(String status) {
-    this.status = status;
+  public void setValue(BigDecimal value) {
+    this.value = value;
   }
 
 
@@ -80,24 +81,24 @@ public class ConnectionStat {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ConnectionStat connectionStat = (ConnectionStat) o;
-    return Objects.equals(this.message, connectionStat.message) &&
-        Objects.equals(this.status, connectionStat.status);
+    MetricsQueryThroughput metricsQueryThroughput = (MetricsQueryThroughput) o;
+    return Objects.equals(this.time, metricsQueryThroughput.time) &&
+        Objects.equals(this.value, metricsQueryThroughput.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(message, status);
+    return Objects.hash(time, value);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ConnectionStat {\n");
+    sb.append("class MetricsQueryThroughput {\n");
     
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    time: ").append(toIndentedString(time)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }

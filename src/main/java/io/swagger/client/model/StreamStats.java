@@ -27,16 +27,40 @@ import java.io.IOException;
 /**
  * StreamStats
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-02-05T18:48:55.783Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-06-06T23:45:14.171Z")
 public class StreamStats {
+  @SerializedName("earliest_event")
+  private String earliestEvent = null;
+
   @SerializedName("historical_data_bytes")
   private Integer historicalDataBytes = null;
+
+  @SerializedName("latest_event")
+  private String latestEvent = null;
 
   @SerializedName("row_count")
   private Integer rowCount = null;
 
   @SerializedName("streaming_data_bytes")
   private Integer streamingDataBytes = null;
+
+  public StreamStats earliestEvent(String earliestEvent) {
+    this.earliestEvent = earliestEvent;
+    return this;
+  }
+
+   /**
+   * Get earliestEvent
+   * @return earliestEvent
+  **/
+  @ApiModelProperty(example = "2023-02-01T01:02:03.456Z", value = "")
+  public String getEarliestEvent() {
+    return earliestEvent;
+  }
+
+  public void setEarliestEvent(String earliestEvent) {
+    this.earliestEvent = earliestEvent;
+  }
 
   public StreamStats historicalDataBytes(Integer historicalDataBytes) {
     this.historicalDataBytes = historicalDataBytes;
@@ -47,13 +71,31 @@ public class StreamStats {
    * Get historicalDataBytes
    * @return historicalDataBytes
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "234567", value = "")
   public Integer getHistoricalDataBytes() {
     return historicalDataBytes;
   }
 
   public void setHistoricalDataBytes(Integer historicalDataBytes) {
     this.historicalDataBytes = historicalDataBytes;
+  }
+
+  public StreamStats latestEvent(String latestEvent) {
+    this.latestEvent = latestEvent;
+    return this;
+  }
+
+   /**
+   * Get latestEvent
+   * @return latestEvent
+  **/
+  @ApiModelProperty(example = "2023-02-13T07:08:09.012Z", value = "")
+  public String getLatestEvent() {
+    return latestEvent;
+  }
+
+  public void setLatestEvent(String latestEvent) {
+    this.latestEvent = latestEvent;
   }
 
   public StreamStats rowCount(Integer rowCount) {
@@ -65,7 +107,7 @@ public class StreamStats {
    * Get rowCount
    * @return rowCount
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "20", value = "")
   public Integer getRowCount() {
     return rowCount;
   }
@@ -83,7 +125,7 @@ public class StreamStats {
    * Get streamingDataBytes
    * @return streamingDataBytes
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "12345", value = "")
   public Integer getStreamingDataBytes() {
     return streamingDataBytes;
   }
@@ -102,14 +144,16 @@ public class StreamStats {
       return false;
     }
     StreamStats streamStats = (StreamStats) o;
-    return Objects.equals(this.historicalDataBytes, streamStats.historicalDataBytes) &&
+    return Objects.equals(this.earliestEvent, streamStats.earliestEvent) &&
+        Objects.equals(this.historicalDataBytes, streamStats.historicalDataBytes) &&
+        Objects.equals(this.latestEvent, streamStats.latestEvent) &&
         Objects.equals(this.rowCount, streamStats.rowCount) &&
         Objects.equals(this.streamingDataBytes, streamStats.streamingDataBytes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(historicalDataBytes, rowCount, streamingDataBytes);
+    return Objects.hash(earliestEvent, historicalDataBytes, latestEvent, rowCount, streamingDataBytes);
   }
 
 
@@ -118,7 +162,9 @@ public class StreamStats {
     StringBuilder sb = new StringBuilder();
     sb.append("class StreamStats {\n");
     
+    sb.append("    earliestEvent: ").append(toIndentedString(earliestEvent)).append("\n");
     sb.append("    historicalDataBytes: ").append(toIndentedString(historicalDataBytes)).append("\n");
+    sb.append("    latestEvent: ").append(toIndentedString(latestEvent)).append("\n");
     sb.append("    rowCount: ").append(toIndentedString(rowCount)).append("\n");
     sb.append("    streamingDataBytes: ").append(toIndentedString(streamingDataBytes)).append("\n");
     sb.append("}");

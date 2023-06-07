@@ -54,7 +54,7 @@ import io.swagger.client.auth.OAuth;
 
 public class ApiClient {
 
-    private String basePath = "https://dev.timeplus.cloud/latest/api";
+    private String basePath = "https://us.timeplus.cloud/{workspace-id}/api";
     private boolean debugging = false;
     private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
     private String tempFolderPath = null;
@@ -108,7 +108,7 @@ public class ApiClient {
     /**
      * Set base path
      *
-     * @param basePath Base path of the URL (e.g https://dev.timeplus.cloud/latest/api
+     * @param basePath Base path of the URL (e.g https://us.timeplus.cloud/{workspace-id}/api
      * @return An instance of OkHttpClient
      */
     public ApiClient setBasePath(String basePath) {

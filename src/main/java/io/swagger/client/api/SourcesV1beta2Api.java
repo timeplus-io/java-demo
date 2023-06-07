@@ -36,7 +36,6 @@ import java.io.File;
 import io.swagger.client.model.FileUploadResponse;
 import io.swagger.client.model.Source;
 import io.swagger.client.model.SourcePreviewRequest;
-import io.swagger.client.model.SourceWithMetrics;
 import io.swagger.client.model.StreamMatchRequest;
 import io.swagger.client.model.UpdateSourceRequest;
 
@@ -46,14 +45,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SourcesV1beta1Api {
+public class SourcesV1beta2Api {
     private ApiClient apiClient;
 
-    public SourcesV1beta1Api() {
+    public SourcesV1beta2Api() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public SourcesV1beta1Api(ApiClient apiClient) {
+    public SourcesV1beta2Api(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -66,18 +65,18 @@ public class SourcesV1beta1Api {
     }
 
     /**
-     * Build call for v1beta1SourceInferPost
+     * Build call for v1beta2SourceInferPost
      * @param request events used to infer schema (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call v1beta1SourceInferPostCall(EventInferRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2SourceInferPostCall(EventInferRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = request;
 
         // create path and map variables
-        String localVarPath = "/v1beta1/source/infer";
+        String localVarPath = "/v1beta2/source/infer";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -115,15 +114,15 @@ public class SourcesV1beta1Api {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call v1beta1SourceInferPostValidateBeforeCall(EventInferRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call v1beta2SourceInferPostValidateBeforeCall(EventInferRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'request' is set
         if (request == null) {
-            throw new ApiException("Missing the required parameter 'request' when calling v1beta1SourceInferPost(Async)");
+            throw new ApiException("Missing the required parameter 'request' when calling v1beta2SourceInferPost(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = v1beta1SourceInferPostCall(request, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2SourceInferPostCall(request, progressListener, progressRequestListener);
         return call;
 
     }
@@ -135,8 +134,8 @@ public class SourcesV1beta1Api {
      * @return List&lt;EventInferResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<EventInferResponse> v1beta1SourceInferPost(EventInferRequest request) throws ApiException {
-        ApiResponse<List<EventInferResponse>> resp = v1beta1SourceInferPostWithHttpInfo(request);
+    public List<EventInferResponse> v1beta2SourceInferPost(EventInferRequest request) throws ApiException {
+        ApiResponse<List<EventInferResponse>> resp = v1beta2SourceInferPostWithHttpInfo(request);
         return resp.getData();
     }
 
@@ -147,8 +146,8 @@ public class SourcesV1beta1Api {
      * @return ApiResponse&lt;List&lt;EventInferResponse&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<EventInferResponse>> v1beta1SourceInferPostWithHttpInfo(EventInferRequest request) throws ApiException {
-        com.squareup.okhttp.Call call = v1beta1SourceInferPostValidateBeforeCall(request, null, null);
+    public ApiResponse<List<EventInferResponse>> v1beta2SourceInferPostWithHttpInfo(EventInferRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = v1beta2SourceInferPostValidateBeforeCall(request, null, null);
         Type localVarReturnType = new TypeToken<List<EventInferResponse>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -161,7 +160,7 @@ public class SourcesV1beta1Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call v1beta1SourceInferPostAsync(EventInferRequest request, final ApiCallback<List<EventInferResponse>> callback) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2SourceInferPostAsync(EventInferRequest request, final ApiCallback<List<EventInferResponse>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -182,24 +181,24 @@ public class SourcesV1beta1Api {
             };
         }
 
-        com.squareup.okhttp.Call call = v1beta1SourceInferPostValidateBeforeCall(request, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2SourceInferPostValidateBeforeCall(request, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<EventInferResponse>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for v1beta1SourceMatchPost
+     * Build call for v1beta2SourceMatchPost
      * @param request events to match (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call v1beta1SourceMatchPostCall(StreamMatchRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2SourceMatchPostCall(StreamMatchRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = request;
 
         // create path and map variables
-        String localVarPath = "/v1beta1/source/match";
+        String localVarPath = "/v1beta2/source/match";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -237,15 +236,15 @@ public class SourcesV1beta1Api {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call v1beta1SourceMatchPostValidateBeforeCall(StreamMatchRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call v1beta2SourceMatchPostValidateBeforeCall(StreamMatchRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'request' is set
         if (request == null) {
-            throw new ApiException("Missing the required parameter 'request' when calling v1beta1SourceMatchPost(Async)");
+            throw new ApiException("Missing the required parameter 'request' when calling v1beta2SourceMatchPost(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = v1beta1SourceMatchPostCall(request, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2SourceMatchPostCall(request, progressListener, progressRequestListener);
         return call;
 
     }
@@ -257,8 +256,8 @@ public class SourcesV1beta1Api {
      * @return List&lt;String&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<String> v1beta1SourceMatchPost(StreamMatchRequest request) throws ApiException {
-        ApiResponse<List<String>> resp = v1beta1SourceMatchPostWithHttpInfo(request);
+    public List<String> v1beta2SourceMatchPost(StreamMatchRequest request) throws ApiException {
+        ApiResponse<List<String>> resp = v1beta2SourceMatchPostWithHttpInfo(request);
         return resp.getData();
     }
 
@@ -269,8 +268,8 @@ public class SourcesV1beta1Api {
      * @return ApiResponse&lt;List&lt;String&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<String>> v1beta1SourceMatchPostWithHttpInfo(StreamMatchRequest request) throws ApiException {
-        com.squareup.okhttp.Call call = v1beta1SourceMatchPostValidateBeforeCall(request, null, null);
+    public ApiResponse<List<String>> v1beta2SourceMatchPostWithHttpInfo(StreamMatchRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = v1beta2SourceMatchPostValidateBeforeCall(request, null, null);
         Type localVarReturnType = new TypeToken<List<String>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -283,7 +282,7 @@ public class SourcesV1beta1Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call v1beta1SourceMatchPostAsync(StreamMatchRequest request, final ApiCallback<List<String>> callback) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2SourceMatchPostAsync(StreamMatchRequest request, final ApiCallback<List<String>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -304,24 +303,24 @@ public class SourcesV1beta1Api {
             };
         }
 
-        com.squareup.okhttp.Call call = v1beta1SourceMatchPostValidateBeforeCall(request, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2SourceMatchPostValidateBeforeCall(request, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<String>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for v1beta1SourcePreviewPost
+     * Build call for v1beta2SourcePreviewPost
      * @param request source propeties for preview (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call v1beta1SourcePreviewPostCall(SourcePreviewRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2SourcePreviewPostCall(SourcePreviewRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = request;
 
         // create path and map variables
-        String localVarPath = "/v1beta1/source/preview";
+        String localVarPath = "/v1beta2/source/preview";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -359,15 +358,15 @@ public class SourcesV1beta1Api {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call v1beta1SourcePreviewPostValidateBeforeCall(SourcePreviewRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call v1beta2SourcePreviewPostValidateBeforeCall(SourcePreviewRequest request, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'request' is set
         if (request == null) {
-            throw new ApiException("Missing the required parameter 'request' when calling v1beta1SourcePreviewPost(Async)");
+            throw new ApiException("Missing the required parameter 'request' when calling v1beta2SourcePreviewPost(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = v1beta1SourcePreviewPostCall(request, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2SourcePreviewPostCall(request, progressListener, progressRequestListener);
         return call;
 
     }
@@ -379,8 +378,8 @@ public class SourcesV1beta1Api {
      * @return List&lt;Event&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Event> v1beta1SourcePreviewPost(SourcePreviewRequest request) throws ApiException {
-        ApiResponse<List<Event>> resp = v1beta1SourcePreviewPostWithHttpInfo(request);
+    public List<Event> v1beta2SourcePreviewPost(SourcePreviewRequest request) throws ApiException {
+        ApiResponse<List<Event>> resp = v1beta2SourcePreviewPostWithHttpInfo(request);
         return resp.getData();
     }
 
@@ -391,8 +390,8 @@ public class SourcesV1beta1Api {
      * @return ApiResponse&lt;List&lt;Event&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Event>> v1beta1SourcePreviewPostWithHttpInfo(SourcePreviewRequest request) throws ApiException {
-        com.squareup.okhttp.Call call = v1beta1SourcePreviewPostValidateBeforeCall(request, null, null);
+    public ApiResponse<List<Event>> v1beta2SourcePreviewPostWithHttpInfo(SourcePreviewRequest request) throws ApiException {
+        com.squareup.okhttp.Call call = v1beta2SourcePreviewPostValidateBeforeCall(request, null, null);
         Type localVarReturnType = new TypeToken<List<Event>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -405,7 +404,7 @@ public class SourcesV1beta1Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call v1beta1SourcePreviewPostAsync(SourcePreviewRequest request, final ApiCallback<List<Event>> callback) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2SourcePreviewPostAsync(SourcePreviewRequest request, final ApiCallback<List<Event>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -426,24 +425,24 @@ public class SourcesV1beta1Api {
             };
         }
 
-        com.squareup.okhttp.Call call = v1beta1SourcePreviewPostValidateBeforeCall(request, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2SourcePreviewPostValidateBeforeCall(request, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<Event>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for v1beta1SourceUploadPost
+     * Build call for v1beta2SourceUploadPost
      * @param file file to be uploaded (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call v1beta1SourceUploadPostCall(File file, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2SourceUploadPostCall(File file, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v1beta1/source/upload";
+        String localVarPath = "/v1beta2/source/upload";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -483,15 +482,15 @@ public class SourcesV1beta1Api {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call v1beta1SourceUploadPostValidateBeforeCall(File file, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call v1beta2SourceUploadPostValidateBeforeCall(File file, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'file' is set
         if (file == null) {
-            throw new ApiException("Missing the required parameter 'file' when calling v1beta1SourceUploadPost(Async)");
+            throw new ApiException("Missing the required parameter 'file' when calling v1beta2SourceUploadPost(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = v1beta1SourceUploadPostCall(file, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2SourceUploadPostCall(file, progressListener, progressRequestListener);
         return call;
 
     }
@@ -503,8 +502,8 @@ public class SourcesV1beta1Api {
      * @return FileUploadResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public FileUploadResponse v1beta1SourceUploadPost(File file) throws ApiException {
-        ApiResponse<FileUploadResponse> resp = v1beta1SourceUploadPostWithHttpInfo(file);
+    public FileUploadResponse v1beta2SourceUploadPost(File file) throws ApiException {
+        ApiResponse<FileUploadResponse> resp = v1beta2SourceUploadPostWithHttpInfo(file);
         return resp.getData();
     }
 
@@ -515,8 +514,8 @@ public class SourcesV1beta1Api {
      * @return ApiResponse&lt;FileUploadResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<FileUploadResponse> v1beta1SourceUploadPostWithHttpInfo(File file) throws ApiException {
-        com.squareup.okhttp.Call call = v1beta1SourceUploadPostValidateBeforeCall(file, null, null);
+    public ApiResponse<FileUploadResponse> v1beta2SourceUploadPostWithHttpInfo(File file) throws ApiException {
+        com.squareup.okhttp.Call call = v1beta2SourceUploadPostValidateBeforeCall(file, null, null);
         Type localVarReturnType = new TypeToken<FileUploadResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -529,7 +528,7 @@ public class SourcesV1beta1Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call v1beta1SourceUploadPostAsync(File file, final ApiCallback<FileUploadResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2SourceUploadPostAsync(File file, final ApiCallback<FileUploadResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -550,23 +549,23 @@ public class SourcesV1beta1Api {
             };
         }
 
-        com.squareup.okhttp.Call call = v1beta1SourceUploadPostValidateBeforeCall(file, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2SourceUploadPostValidateBeforeCall(file, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<FileUploadResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for v1beta1SourcesGet
+     * Build call for v1beta2SourcesGet
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call v1beta1SourcesGetCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2SourcesGetCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v1beta1/sources";
+        String localVarPath = "/v1beta2/sources";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -604,10 +603,10 @@ public class SourcesV1beta1Api {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call v1beta1SourcesGetValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call v1beta2SourcesGetValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = v1beta1SourcesGetCall(progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2SourcesGetCall(progressListener, progressRequestListener);
         return call;
 
     }
@@ -618,8 +617,8 @@ public class SourcesV1beta1Api {
      * @return List&lt;Source&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Source> v1beta1SourcesGet() throws ApiException {
-        ApiResponse<List<Source>> resp = v1beta1SourcesGetWithHttpInfo();
+    public List<Source> v1beta2SourcesGet() throws ApiException {
+        ApiResponse<List<Source>> resp = v1beta2SourcesGetWithHttpInfo();
         return resp.getData();
     }
 
@@ -629,8 +628,8 @@ public class SourcesV1beta1Api {
      * @return ApiResponse&lt;List&lt;Source&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Source>> v1beta1SourcesGetWithHttpInfo() throws ApiException {
-        com.squareup.okhttp.Call call = v1beta1SourcesGetValidateBeforeCall(null, null);
+    public ApiResponse<List<Source>> v1beta2SourcesGetWithHttpInfo() throws ApiException {
+        com.squareup.okhttp.Call call = v1beta2SourcesGetValidateBeforeCall(null, null);
         Type localVarReturnType = new TypeToken<List<Source>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -642,7 +641,7 @@ public class SourcesV1beta1Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call v1beta1SourcesGetAsync(final ApiCallback<List<Source>> callback) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2SourcesGetAsync(final ApiCallback<List<Source>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -663,24 +662,24 @@ public class SourcesV1beta1Api {
             };
         }
 
-        com.squareup.okhttp.Call call = v1beta1SourcesGetValidateBeforeCall(progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2SourcesGetValidateBeforeCall(progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<Source>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for v1beta1SourcesIdDelete
+     * Build call for v1beta2SourcesIdDelete
      * @param id source ID (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call v1beta1SourcesIdDeleteCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2SourcesIdDeleteCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v1beta1/sources/{id}"
+        String localVarPath = "/v1beta2/sources/{id}"
             .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -719,15 +718,15 @@ public class SourcesV1beta1Api {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call v1beta1SourcesIdDeleteValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call v1beta2SourcesIdDeleteValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling v1beta1SourcesIdDelete(Async)");
+            throw new ApiException("Missing the required parameter 'id' when calling v1beta2SourcesIdDelete(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = v1beta1SourcesIdDeleteCall(id, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2SourcesIdDeleteCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -738,8 +737,8 @@ public class SourcesV1beta1Api {
      * @param id source ID (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void v1beta1SourcesIdDelete(String id) throws ApiException {
-        v1beta1SourcesIdDeleteWithHttpInfo(id);
+    public void v1beta2SourcesIdDelete(String id) throws ApiException {
+        v1beta2SourcesIdDeleteWithHttpInfo(id);
     }
 
     /**
@@ -749,8 +748,8 @@ public class SourcesV1beta1Api {
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> v1beta1SourcesIdDeleteWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = v1beta1SourcesIdDeleteValidateBeforeCall(id, null, null);
+    public ApiResponse<Void> v1beta2SourcesIdDeleteWithHttpInfo(String id) throws ApiException {
+        com.squareup.okhttp.Call call = v1beta2SourcesIdDeleteValidateBeforeCall(id, null, null);
         return apiClient.execute(call);
     }
 
@@ -762,7 +761,7 @@ public class SourcesV1beta1Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call v1beta1SourcesIdDeleteAsync(String id, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2SourcesIdDeleteAsync(String id, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -783,23 +782,23 @@ public class SourcesV1beta1Api {
             };
         }
 
-        com.squareup.okhttp.Call call = v1beta1SourcesIdDeleteValidateBeforeCall(id, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2SourcesIdDeleteValidateBeforeCall(id, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }
     /**
-     * Build call for v1beta1SourcesIdGet
+     * Build call for v1beta2SourcesIdGet
      * @param id source ID (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call v1beta1SourcesIdGetCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2SourcesIdGetCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v1beta1/sources/{id}"
+        String localVarPath = "/v1beta2/sources/{id}"
             .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -838,15 +837,15 @@ public class SourcesV1beta1Api {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call v1beta1SourcesIdGetValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call v1beta2SourcesIdGetValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling v1beta1SourcesIdGet(Async)");
+            throw new ApiException("Missing the required parameter 'id' when calling v1beta2SourcesIdGet(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = v1beta1SourcesIdGetCall(id, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2SourcesIdGetCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -855,11 +854,11 @@ public class SourcesV1beta1Api {
      * get a source.
      * Get a source with the given ID.
      * @param id source ID (required)
-     * @return SourceWithMetrics
+     * @return Source
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public SourceWithMetrics v1beta1SourcesIdGet(String id) throws ApiException {
-        ApiResponse<SourceWithMetrics> resp = v1beta1SourcesIdGetWithHttpInfo(id);
+    public Source v1beta2SourcesIdGet(String id) throws ApiException {
+        ApiResponse<Source> resp = v1beta2SourcesIdGetWithHttpInfo(id);
         return resp.getData();
     }
 
@@ -867,12 +866,12 @@ public class SourcesV1beta1Api {
      * get a source.
      * Get a source with the given ID.
      * @param id source ID (required)
-     * @return ApiResponse&lt;SourceWithMetrics&gt;
+     * @return ApiResponse&lt;Source&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<SourceWithMetrics> v1beta1SourcesIdGetWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = v1beta1SourcesIdGetValidateBeforeCall(id, null, null);
-        Type localVarReturnType = new TypeToken<SourceWithMetrics>(){}.getType();
+    public ApiResponse<Source> v1beta2SourcesIdGetWithHttpInfo(String id) throws ApiException {
+        com.squareup.okhttp.Call call = v1beta2SourcesIdGetValidateBeforeCall(id, null, null);
+        Type localVarReturnType = new TypeToken<Source>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -884,7 +883,7 @@ public class SourcesV1beta1Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call v1beta1SourcesIdGetAsync(String id, final ApiCallback<SourceWithMetrics> callback) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2SourcesIdGetAsync(String id, final ApiCallback<Source> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -905,13 +904,13 @@ public class SourcesV1beta1Api {
             };
         }
 
-        com.squareup.okhttp.Call call = v1beta1SourcesIdGetValidateBeforeCall(id, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<SourceWithMetrics>(){}.getType();
+        com.squareup.okhttp.Call call = v1beta2SourcesIdGetValidateBeforeCall(id, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<Source>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for v1beta1SourcesIdPut
+     * Build call for v1beta2SourcesIdPut
      * @param id source ID (required)
      * @param source update source request parameters (required)
      * @param progressListener Progress listener
@@ -919,11 +918,11 @@ public class SourcesV1beta1Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call v1beta1SourcesIdPutCall(String id, UpdateSourceRequest source, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2SourcesIdPutCall(String id, UpdateSourceRequest source, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = source;
 
         // create path and map variables
-        String localVarPath = "/v1beta1/sources/{id}"
+        String localVarPath = "/v1beta2/sources/{id}"
             .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -962,20 +961,20 @@ public class SourcesV1beta1Api {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call v1beta1SourcesIdPutValidateBeforeCall(String id, UpdateSourceRequest source, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call v1beta2SourcesIdPutValidateBeforeCall(String id, UpdateSourceRequest source, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling v1beta1SourcesIdPut(Async)");
+            throw new ApiException("Missing the required parameter 'id' when calling v1beta2SourcesIdPut(Async)");
         }
         
         // verify the required parameter 'source' is set
         if (source == null) {
-            throw new ApiException("Missing the required parameter 'source' when calling v1beta1SourcesIdPut(Async)");
+            throw new ApiException("Missing the required parameter 'source' when calling v1beta2SourcesIdPut(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = v1beta1SourcesIdPutCall(id, source, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2SourcesIdPutCall(id, source, progressListener, progressRequestListener);
         return call;
 
     }
@@ -985,10 +984,12 @@ public class SourcesV1beta1Api {
      * Update the specific source with the given ID. Only stopped sources can be updated.
      * @param id source ID (required)
      * @param source update source request parameters (required)
+     * @return Source
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void v1beta1SourcesIdPut(String id, UpdateSourceRequest source) throws ApiException {
-        v1beta1SourcesIdPutWithHttpInfo(id, source);
+    public Source v1beta2SourcesIdPut(String id, UpdateSourceRequest source) throws ApiException {
+        ApiResponse<Source> resp = v1beta2SourcesIdPutWithHttpInfo(id, source);
+        return resp.getData();
     }
 
     /**
@@ -996,12 +997,13 @@ public class SourcesV1beta1Api {
      * Update the specific source with the given ID. Only stopped sources can be updated.
      * @param id source ID (required)
      * @param source update source request parameters (required)
-     * @return ApiResponse&lt;Void&gt;
+     * @return ApiResponse&lt;Source&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> v1beta1SourcesIdPutWithHttpInfo(String id, UpdateSourceRequest source) throws ApiException {
-        com.squareup.okhttp.Call call = v1beta1SourcesIdPutValidateBeforeCall(id, source, null, null);
-        return apiClient.execute(call);
+    public ApiResponse<Source> v1beta2SourcesIdPutWithHttpInfo(String id, UpdateSourceRequest source) throws ApiException {
+        com.squareup.okhttp.Call call = v1beta2SourcesIdPutValidateBeforeCall(id, source, null, null);
+        Type localVarReturnType = new TypeToken<Source>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
     }
 
     /**
@@ -1013,7 +1015,7 @@ public class SourcesV1beta1Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call v1beta1SourcesIdPutAsync(String id, UpdateSourceRequest source, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2SourcesIdPutAsync(String id, UpdateSourceRequest source, final ApiCallback<Source> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1034,23 +1036,24 @@ public class SourcesV1beta1Api {
             };
         }
 
-        com.squareup.okhttp.Call call = v1beta1SourcesIdPutValidateBeforeCall(id, source, progressListener, progressRequestListener);
-        apiClient.executeAsync(call, callback);
+        com.squareup.okhttp.Call call = v1beta2SourcesIdPutValidateBeforeCall(id, source, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<Source>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for v1beta1SourcesIdStartPost
+     * Build call for v1beta2SourcesIdStartPost
      * @param id source ID (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call v1beta1SourcesIdStartPostCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2SourcesIdStartPostCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v1beta1/sources/{id}/start"
+        String localVarPath = "/v1beta2/sources/{id}/start"
             .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -1089,15 +1092,15 @@ public class SourcesV1beta1Api {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call v1beta1SourcesIdStartPostValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call v1beta2SourcesIdStartPostValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling v1beta1SourcesIdStartPost(Async)");
+            throw new ApiException("Missing the required parameter 'id' when calling v1beta2SourcesIdStartPost(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = v1beta1SourcesIdStartPostCall(id, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2SourcesIdStartPostCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1108,8 +1111,8 @@ public class SourcesV1beta1Api {
      * @param id source ID (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void v1beta1SourcesIdStartPost(String id) throws ApiException {
-        v1beta1SourcesIdStartPostWithHttpInfo(id);
+    public void v1beta2SourcesIdStartPost(String id) throws ApiException {
+        v1beta2SourcesIdStartPostWithHttpInfo(id);
     }
 
     /**
@@ -1119,8 +1122,8 @@ public class SourcesV1beta1Api {
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> v1beta1SourcesIdStartPostWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = v1beta1SourcesIdStartPostValidateBeforeCall(id, null, null);
+    public ApiResponse<Void> v1beta2SourcesIdStartPostWithHttpInfo(String id) throws ApiException {
+        com.squareup.okhttp.Call call = v1beta2SourcesIdStartPostValidateBeforeCall(id, null, null);
         return apiClient.execute(call);
     }
 
@@ -1132,7 +1135,7 @@ public class SourcesV1beta1Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call v1beta1SourcesIdStartPostAsync(String id, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2SourcesIdStartPostAsync(String id, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1153,23 +1156,23 @@ public class SourcesV1beta1Api {
             };
         }
 
-        com.squareup.okhttp.Call call = v1beta1SourcesIdStartPostValidateBeforeCall(id, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2SourcesIdStartPostValidateBeforeCall(id, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }
     /**
-     * Build call for v1beta1SourcesIdStopPost
+     * Build call for v1beta2SourcesIdStopPost
      * @param id source ID (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call v1beta1SourcesIdStopPostCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2SourcesIdStopPostCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v1beta1/sources/{id}/stop"
+        String localVarPath = "/v1beta2/sources/{id}/stop"
             .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -1208,15 +1211,15 @@ public class SourcesV1beta1Api {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call v1beta1SourcesIdStopPostValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call v1beta2SourcesIdStopPostValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling v1beta1SourcesIdStopPost(Async)");
+            throw new ApiException("Missing the required parameter 'id' when calling v1beta2SourcesIdStopPost(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = v1beta1SourcesIdStopPostCall(id, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2SourcesIdStopPostCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1227,8 +1230,8 @@ public class SourcesV1beta1Api {
      * @param id source ID (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void v1beta1SourcesIdStopPost(String id) throws ApiException {
-        v1beta1SourcesIdStopPostWithHttpInfo(id);
+    public void v1beta2SourcesIdStopPost(String id) throws ApiException {
+        v1beta2SourcesIdStopPostWithHttpInfo(id);
     }
 
     /**
@@ -1238,8 +1241,8 @@ public class SourcesV1beta1Api {
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> v1beta1SourcesIdStopPostWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = v1beta1SourcesIdStopPostValidateBeforeCall(id, null, null);
+    public ApiResponse<Void> v1beta2SourcesIdStopPostWithHttpInfo(String id) throws ApiException {
+        com.squareup.okhttp.Call call = v1beta2SourcesIdStopPostValidateBeforeCall(id, null, null);
         return apiClient.execute(call);
     }
 
@@ -1251,7 +1254,7 @@ public class SourcesV1beta1Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call v1beta1SourcesIdStopPostAsync(String id, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2SourcesIdStopPostAsync(String id, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1272,23 +1275,23 @@ public class SourcesV1beta1Api {
             };
         }
 
-        com.squareup.okhttp.Call call = v1beta1SourcesIdStopPostValidateBeforeCall(id, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2SourcesIdStopPostValidateBeforeCall(id, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }
     /**
-     * Build call for v1beta1SourcesPost
+     * Build call for v1beta2SourcesPost
      * @param source create source request parameters (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call v1beta1SourcesPostCall(CreateSourceRequest source, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2SourcesPostCall(CreateSourceRequest source, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = source;
 
         // create path and map variables
-        String localVarPath = "/v1beta1/sources";
+        String localVarPath = "/v1beta2/sources";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1326,15 +1329,15 @@ public class SourcesV1beta1Api {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call v1beta1SourcesPostValidateBeforeCall(CreateSourceRequest source, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call v1beta2SourcesPostValidateBeforeCall(CreateSourceRequest source, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'source' is set
         if (source == null) {
-            throw new ApiException("Missing the required parameter 'source' when calling v1beta1SourcesPost(Async)");
+            throw new ApiException("Missing the required parameter 'source' when calling v1beta2SourcesPost(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = v1beta1SourcesPostCall(source, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2SourcesPostCall(source, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1346,8 +1349,8 @@ public class SourcesV1beta1Api {
      * @return Source
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Source v1beta1SourcesPost(CreateSourceRequest source) throws ApiException {
-        ApiResponse<Source> resp = v1beta1SourcesPostWithHttpInfo(source);
+    public Source v1beta2SourcesPost(CreateSourceRequest source) throws ApiException {
+        ApiResponse<Source> resp = v1beta2SourcesPostWithHttpInfo(source);
         return resp.getData();
     }
 
@@ -1358,8 +1361,8 @@ public class SourcesV1beta1Api {
      * @return ApiResponse&lt;Source&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Source> v1beta1SourcesPostWithHttpInfo(CreateSourceRequest source) throws ApiException {
-        com.squareup.okhttp.Call call = v1beta1SourcesPostValidateBeforeCall(source, null, null);
+    public ApiResponse<Source> v1beta2SourcesPostWithHttpInfo(CreateSourceRequest source) throws ApiException {
+        com.squareup.okhttp.Call call = v1beta2SourcesPostValidateBeforeCall(source, null, null);
         Type localVarReturnType = new TypeToken<Source>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1372,7 +1375,7 @@ public class SourcesV1beta1Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call v1beta1SourcesPostAsync(CreateSourceRequest source, final ApiCallback<Source> callback) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2SourcesPostAsync(CreateSourceRequest source, final ApiCallback<Source> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1393,7 +1396,7 @@ public class SourcesV1beta1Api {
             };
         }
 
-        com.squareup.okhttp.Call call = v1beta1SourcesPostValidateBeforeCall(source, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2SourcesPostValidateBeforeCall(source, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Source>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

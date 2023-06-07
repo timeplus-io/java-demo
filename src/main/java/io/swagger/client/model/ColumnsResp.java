@@ -27,14 +27,8 @@ import java.io.IOException;
 /**
  * ColumnsResp
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-02-05T18:48:55.783Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-06-06T23:45:14.171Z")
 public class ColumnsResp {
-  @SerializedName("alias")
-  private String alias = null;
-
-  @SerializedName("comment")
-  private String comment = null;
-
   @SerializedName("default")
   private String _default = null;
 
@@ -46,42 +40,6 @@ public class ColumnsResp {
 
   @SerializedName("type")
   private String type = null;
-
-  public ColumnsResp alias(String alias) {
-    this.alias = alias;
-    return this;
-  }
-
-   /**
-   * Get alias
-   * @return alias
-  **/
-  @ApiModelProperty(value = "")
-  public String getAlias() {
-    return alias;
-  }
-
-  public void setAlias(String alias) {
-    this.alias = alias;
-  }
-
-  public ColumnsResp comment(String comment) {
-    this.comment = comment;
-    return this;
-  }
-
-   /**
-   * Get comment
-   * @return comment
-  **/
-  @ApiModelProperty(value = "")
-  public String getComment() {
-    return comment;
-  }
-
-  public void setComment(String comment) {
-    this.comment = comment;
-  }
 
   public ColumnsResp _default(String _default) {
     this._default = _default;
@@ -110,7 +68,7 @@ public class ColumnsResp {
    * Get name
    * @return name
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "my_col", value = "")
   public String getName() {
     return name;
   }
@@ -146,7 +104,7 @@ public class ColumnsResp {
    * Get type
    * @return type
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "int64", value = "")
   public String getType() {
     return type;
   }
@@ -165,9 +123,7 @@ public class ColumnsResp {
       return false;
     }
     ColumnsResp columnsResp = (ColumnsResp) o;
-    return Objects.equals(this.alias, columnsResp.alias) &&
-        Objects.equals(this.comment, columnsResp.comment) &&
-        Objects.equals(this._default, columnsResp._default) &&
+    return Objects.equals(this._default, columnsResp._default) &&
         Objects.equals(this.name, columnsResp.name) &&
         Objects.equals(this.nullable, columnsResp.nullable) &&
         Objects.equals(this.type, columnsResp.type);
@@ -175,7 +131,7 @@ public class ColumnsResp {
 
   @Override
   public int hashCode() {
-    return Objects.hash(alias, comment, _default, name, nullable, type);
+    return Objects.hash(_default, name, nullable, type);
   }
 
 
@@ -184,8 +140,6 @@ public class ColumnsResp {
     StringBuilder sb = new StringBuilder();
     sb.append("class ColumnsResp {\n");
     
-    sb.append("    alias: ").append(toIndentedString(alias)).append("\n");
-    sb.append("    comment: ").append(toIndentedString(comment)).append("\n");
     sb.append("    _default: ").append(toIndentedString(_default)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    nullable: ").append(toIndentedString(nullable)).append("\n");

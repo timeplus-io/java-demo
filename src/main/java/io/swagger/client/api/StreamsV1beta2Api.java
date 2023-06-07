@@ -32,6 +32,8 @@ import io.swagger.client.model.ExternalStreamDef;
 import io.swagger.client.model.IngestData;
 import io.swagger.client.model.Stream;
 import io.swagger.client.model.StreamDef;
+import io.swagger.client.model.StreamStats;
+import io.swagger.client.model.UpdateStreamRequest;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -39,14 +41,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class StreamsV1beta1Api {
+public class StreamsV1beta2Api {
     private ApiClient apiClient;
 
-    public StreamsV1beta1Api() {
+    public StreamsV1beta2Api() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public StreamsV1beta1Api(ApiClient apiClient) {
+    public StreamsV1beta2Api(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -59,18 +61,18 @@ public class StreamsV1beta1Api {
     }
 
     /**
-     * Build call for v1beta1StreamsExternalPost
+     * Build call for v1beta2StreamsExternalPost
      * @param stream create external stream request parameters (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call v1beta1StreamsExternalPostCall(ExternalStreamDef stream, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2StreamsExternalPostCall(ExternalStreamDef stream, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = stream;
 
         // create path and map variables
-        String localVarPath = "/v1beta1/streams/external";
+        String localVarPath = "/v1beta2/streams/external";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -108,15 +110,15 @@ public class StreamsV1beta1Api {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call v1beta1StreamsExternalPostValidateBeforeCall(ExternalStreamDef stream, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call v1beta2StreamsExternalPostValidateBeforeCall(ExternalStreamDef stream, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'stream' is set
         if (stream == null) {
-            throw new ApiException("Missing the required parameter 'stream' when calling v1beta1StreamsExternalPost(Async)");
+            throw new ApiException("Missing the required parameter 'stream' when calling v1beta2StreamsExternalPost(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = v1beta1StreamsExternalPostCall(stream, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2StreamsExternalPostCall(stream, progressListener, progressRequestListener);
         return call;
 
     }
@@ -128,8 +130,8 @@ public class StreamsV1beta1Api {
      * @return ExternalStreamDef
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ExternalStreamDef v1beta1StreamsExternalPost(ExternalStreamDef stream) throws ApiException {
-        ApiResponse<ExternalStreamDef> resp = v1beta1StreamsExternalPostWithHttpInfo(stream);
+    public ExternalStreamDef v1beta2StreamsExternalPost(ExternalStreamDef stream) throws ApiException {
+        ApiResponse<ExternalStreamDef> resp = v1beta2StreamsExternalPostWithHttpInfo(stream);
         return resp.getData();
     }
 
@@ -140,8 +142,8 @@ public class StreamsV1beta1Api {
      * @return ApiResponse&lt;ExternalStreamDef&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ExternalStreamDef> v1beta1StreamsExternalPostWithHttpInfo(ExternalStreamDef stream) throws ApiException {
-        com.squareup.okhttp.Call call = v1beta1StreamsExternalPostValidateBeforeCall(stream, null, null);
+    public ApiResponse<ExternalStreamDef> v1beta2StreamsExternalPostWithHttpInfo(ExternalStreamDef stream) throws ApiException {
+        com.squareup.okhttp.Call call = v1beta2StreamsExternalPostValidateBeforeCall(stream, null, null);
         Type localVarReturnType = new TypeToken<ExternalStreamDef>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -154,7 +156,7 @@ public class StreamsV1beta1Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call v1beta1StreamsExternalPostAsync(ExternalStreamDef stream, final ApiCallback<ExternalStreamDef> callback) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2StreamsExternalPostAsync(ExternalStreamDef stream, final ApiCallback<ExternalStreamDef> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -175,23 +177,23 @@ public class StreamsV1beta1Api {
             };
         }
 
-        com.squareup.okhttp.Call call = v1beta1StreamsExternalPostValidateBeforeCall(stream, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2StreamsExternalPostValidateBeforeCall(stream, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<ExternalStreamDef>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for v1beta1StreamsGet
+     * Build call for v1beta2StreamsGet
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call v1beta1StreamsGetCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2StreamsGetCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v1beta1/streams";
+        String localVarPath = "/v1beta2/streams";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -229,10 +231,10 @@ public class StreamsV1beta1Api {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call v1beta1StreamsGetValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call v1beta2StreamsGetValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = v1beta1StreamsGetCall(progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2StreamsGetCall(progressListener, progressRequestListener);
         return call;
 
     }
@@ -243,8 +245,8 @@ public class StreamsV1beta1Api {
      * @return List&lt;Stream&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Stream> v1beta1StreamsGet() throws ApiException {
-        ApiResponse<List<Stream>> resp = v1beta1StreamsGetWithHttpInfo();
+    public List<Stream> v1beta2StreamsGet() throws ApiException {
+        ApiResponse<List<Stream>> resp = v1beta2StreamsGetWithHttpInfo();
         return resp.getData();
     }
 
@@ -254,8 +256,8 @@ public class StreamsV1beta1Api {
      * @return ApiResponse&lt;List&lt;Stream&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Stream>> v1beta1StreamsGetWithHttpInfo() throws ApiException {
-        com.squareup.okhttp.Call call = v1beta1StreamsGetValidateBeforeCall(null, null);
+    public ApiResponse<List<Stream>> v1beta2StreamsGetWithHttpInfo() throws ApiException {
+        com.squareup.okhttp.Call call = v1beta2StreamsGetValidateBeforeCall(null, null);
         Type localVarReturnType = new TypeToken<List<Stream>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -267,7 +269,7 @@ public class StreamsV1beta1Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call v1beta1StreamsGetAsync(final ApiCallback<List<Stream>> callback) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2StreamsGetAsync(final ApiCallback<List<Stream>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -288,24 +290,24 @@ public class StreamsV1beta1Api {
             };
         }
 
-        com.squareup.okhttp.Call call = v1beta1StreamsGetValidateBeforeCall(progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2StreamsGetValidateBeforeCall(progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<Stream>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for v1beta1StreamsNameDelete
+     * Build call for v1beta2StreamsNameDelete
      * @param name stream name (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call v1beta1StreamsNameDeleteCall(String name, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2StreamsNameDeleteCall(String name, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v1beta1/streams/{name}"
+        String localVarPath = "/v1beta2/streams/{name}"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -344,15 +346,15 @@ public class StreamsV1beta1Api {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call v1beta1StreamsNameDeleteValidateBeforeCall(String name, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call v1beta2StreamsNameDeleteValidateBeforeCall(String name, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException("Missing the required parameter 'name' when calling v1beta1StreamsNameDelete(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling v1beta2StreamsNameDelete(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = v1beta1StreamsNameDeleteCall(name, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2StreamsNameDeleteCall(name, progressListener, progressRequestListener);
         return call;
 
     }
@@ -363,8 +365,8 @@ public class StreamsV1beta1Api {
      * @param name stream name (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void v1beta1StreamsNameDelete(String name) throws ApiException {
-        v1beta1StreamsNameDeleteWithHttpInfo(name);
+    public void v1beta2StreamsNameDelete(String name) throws ApiException {
+        v1beta2StreamsNameDeleteWithHttpInfo(name);
     }
 
     /**
@@ -374,8 +376,8 @@ public class StreamsV1beta1Api {
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> v1beta1StreamsNameDeleteWithHttpInfo(String name) throws ApiException {
-        com.squareup.okhttp.Call call = v1beta1StreamsNameDeleteValidateBeforeCall(name, null, null);
+    public ApiResponse<Void> v1beta2StreamsNameDeleteWithHttpInfo(String name) throws ApiException {
+        com.squareup.okhttp.Call call = v1beta2StreamsNameDeleteValidateBeforeCall(name, null, null);
         return apiClient.execute(call);
     }
 
@@ -387,7 +389,7 @@ public class StreamsV1beta1Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call v1beta1StreamsNameDeleteAsync(String name, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2StreamsNameDeleteAsync(String name, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -408,12 +410,12 @@ public class StreamsV1beta1Api {
             };
         }
 
-        com.squareup.okhttp.Call call = v1beta1StreamsNameDeleteValidateBeforeCall(name, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2StreamsNameDeleteValidateBeforeCall(name, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }
     /**
-     * Build call for v1beta1StreamsNameIngestPost
+     * Build call for v1beta2StreamsNameIngestPost
      * @param name stream name (required)
      * @param query ingest data (required)
      * @param format enfoce payload format, if it is set, it overwrite the Content-Type header (optional)
@@ -422,11 +424,11 @@ public class StreamsV1beta1Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call v1beta1StreamsNameIngestPostCall(String name, IngestData query, String format, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2StreamsNameIngestPostCall(String name, IngestData query, String format, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = query;
 
         // create path and map variables
-        String localVarPath = "/v1beta1/streams/{name}/ingest"
+        String localVarPath = "/v1beta2/streams/{name}/ingest"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -467,53 +469,53 @@ public class StreamsV1beta1Api {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call v1beta1StreamsNameIngestPostValidateBeforeCall(String name, IngestData query, String format, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call v1beta2StreamsNameIngestPostValidateBeforeCall(String name, IngestData query, String format, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException("Missing the required parameter 'name' when calling v1beta1StreamsNameIngestPost(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling v1beta2StreamsNameIngestPost(Async)");
         }
         
         // verify the required parameter 'query' is set
         if (query == null) {
-            throw new ApiException("Missing the required parameter 'query' when calling v1beta1StreamsNameIngestPost(Async)");
+            throw new ApiException("Missing the required parameter 'query' when calling v1beta2StreamsNameIngestPost(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = v1beta1StreamsNameIngestPostCall(name, query, format, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2StreamsNameIngestPostCall(name, query, format, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
      * ingest data.
-     * Ingest data to a stream with the given name. For formats are supported: * compact JSON: when &#x60;Content-Type&#x60; is set to one of &#x60;application/json&#x60;, &#x60;application/json;format&#x3D;compact&#x60;, &#x60;application/vnd.timeplus+json&#x60;, &#x60;application/vnd.timeplus+json;format&#x3D;compat&#x60;, or set &#x60;format&#x60; query parameter with value &#x60;compact&#x60;. And this is the API&#39;s default format. * JSON stream: when &#x60;Content-Type&#x60; is set to one of &#x60;application/json;format&#x3D;streaming&#x60;, &#x60;application/vnd.timeplus+json;format&#x3D;streaming&#x60;, or set &#x60;format&#x60; query parameter with value &#x60;streaming&#x60;. * raw string: when &#x60;Content-Type&#x60; is set to one of &#x60;text/plain&#x60;, &#x60;text/plain;format&#x3D;raw&#x60;, or set &#x60;format&#x60; query parameter with value &#x60;raw&#x60;. * string lines: when &#x60;Content-Type&#x60; is set to &#x60;text/plain;format&#x3D;lines&#x60;, or set &#x60;format&#x60; query parameter with value &#x60;lines&#x60;. 
+     * Ingest data to a stream with the given name. For formats are supported: * compact JSON: when &#x60;Content-Type&#x60; is set to one of &#x60;application/json&#x60;, &#x60;application/json;format&#x3D;compact&#x60;, &#x60;application/vnd.timeplus+json&#x60;, &#x60;application/vnd.timeplus+json;format&#x3D;compat&#x60;, or set &#x60;format&#x60; query parameter with value &#x60;compact&#x60;. And this is the API&#39;s default format. * JSON stream: when &#x60;Content-Type&#x60; is set to one of &#x60;application/json;format&#x3D;streaming&#x60;, &#x60;application/vnd.timeplus+json;format&#x3D;streaming&#x60;, or set &#x60;format&#x60; query parameter with value &#x60;streaming&#x60;. * raw string: when &#x60;Content-Type&#x60; is set to one of &#x60;text/plain&#x60;, &#x60;text/plain;format&#x3D;raw&#x60;, or set &#x60;format&#x60; query parameter with value &#x60;raw&#x60;. * string lines: when &#x60;Content-Type&#x60; is set to &#x60;text/plain;format&#x3D;lines&#x60;, or set &#x60;format&#x60; query parameter with value &#x60;lines&#x60;. * refer to https://docs.timeplus.com/docs/ingest-api for more information * 
      * @param name stream name (required)
      * @param query ingest data (required)
      * @param format enfoce payload format, if it is set, it overwrite the Content-Type header (optional)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void v1beta1StreamsNameIngestPost(String name, IngestData query, String format) throws ApiException {
-        v1beta1StreamsNameIngestPostWithHttpInfo(name, query, format);
+    public void v1beta2StreamsNameIngestPost(String name, IngestData query, String format) throws ApiException {
+        v1beta2StreamsNameIngestPostWithHttpInfo(name, query, format);
     }
 
     /**
      * ingest data.
-     * Ingest data to a stream with the given name. For formats are supported: * compact JSON: when &#x60;Content-Type&#x60; is set to one of &#x60;application/json&#x60;, &#x60;application/json;format&#x3D;compact&#x60;, &#x60;application/vnd.timeplus+json&#x60;, &#x60;application/vnd.timeplus+json;format&#x3D;compat&#x60;, or set &#x60;format&#x60; query parameter with value &#x60;compact&#x60;. And this is the API&#39;s default format. * JSON stream: when &#x60;Content-Type&#x60; is set to one of &#x60;application/json;format&#x3D;streaming&#x60;, &#x60;application/vnd.timeplus+json;format&#x3D;streaming&#x60;, or set &#x60;format&#x60; query parameter with value &#x60;streaming&#x60;. * raw string: when &#x60;Content-Type&#x60; is set to one of &#x60;text/plain&#x60;, &#x60;text/plain;format&#x3D;raw&#x60;, or set &#x60;format&#x60; query parameter with value &#x60;raw&#x60;. * string lines: when &#x60;Content-Type&#x60; is set to &#x60;text/plain;format&#x3D;lines&#x60;, or set &#x60;format&#x60; query parameter with value &#x60;lines&#x60;. 
+     * Ingest data to a stream with the given name. For formats are supported: * compact JSON: when &#x60;Content-Type&#x60; is set to one of &#x60;application/json&#x60;, &#x60;application/json;format&#x3D;compact&#x60;, &#x60;application/vnd.timeplus+json&#x60;, &#x60;application/vnd.timeplus+json;format&#x3D;compat&#x60;, or set &#x60;format&#x60; query parameter with value &#x60;compact&#x60;. And this is the API&#39;s default format. * JSON stream: when &#x60;Content-Type&#x60; is set to one of &#x60;application/json;format&#x3D;streaming&#x60;, &#x60;application/vnd.timeplus+json;format&#x3D;streaming&#x60;, or set &#x60;format&#x60; query parameter with value &#x60;streaming&#x60;. * raw string: when &#x60;Content-Type&#x60; is set to one of &#x60;text/plain&#x60;, &#x60;text/plain;format&#x3D;raw&#x60;, or set &#x60;format&#x60; query parameter with value &#x60;raw&#x60;. * string lines: when &#x60;Content-Type&#x60; is set to &#x60;text/plain;format&#x3D;lines&#x60;, or set &#x60;format&#x60; query parameter with value &#x60;lines&#x60;. * refer to https://docs.timeplus.com/docs/ingest-api for more information * 
      * @param name stream name (required)
      * @param query ingest data (required)
      * @param format enfoce payload format, if it is set, it overwrite the Content-Type header (optional)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> v1beta1StreamsNameIngestPostWithHttpInfo(String name, IngestData query, String format) throws ApiException {
-        com.squareup.okhttp.Call call = v1beta1StreamsNameIngestPostValidateBeforeCall(name, query, format, null, null);
+    public ApiResponse<Void> v1beta2StreamsNameIngestPostWithHttpInfo(String name, IngestData query, String format) throws ApiException {
+        com.squareup.okhttp.Call call = v1beta2StreamsNameIngestPostValidateBeforeCall(name, query, format, null, null);
         return apiClient.execute(call);
     }
 
     /**
      * ingest data. (asynchronously)
-     * Ingest data to a stream with the given name. For formats are supported: * compact JSON: when &#x60;Content-Type&#x60; is set to one of &#x60;application/json&#x60;, &#x60;application/json;format&#x3D;compact&#x60;, &#x60;application/vnd.timeplus+json&#x60;, &#x60;application/vnd.timeplus+json;format&#x3D;compat&#x60;, or set &#x60;format&#x60; query parameter with value &#x60;compact&#x60;. And this is the API&#39;s default format. * JSON stream: when &#x60;Content-Type&#x60; is set to one of &#x60;application/json;format&#x3D;streaming&#x60;, &#x60;application/vnd.timeplus+json;format&#x3D;streaming&#x60;, or set &#x60;format&#x60; query parameter with value &#x60;streaming&#x60;. * raw string: when &#x60;Content-Type&#x60; is set to one of &#x60;text/plain&#x60;, &#x60;text/plain;format&#x3D;raw&#x60;, or set &#x60;format&#x60; query parameter with value &#x60;raw&#x60;. * string lines: when &#x60;Content-Type&#x60; is set to &#x60;text/plain;format&#x3D;lines&#x60;, or set &#x60;format&#x60; query parameter with value &#x60;lines&#x60;. 
+     * Ingest data to a stream with the given name. For formats are supported: * compact JSON: when &#x60;Content-Type&#x60; is set to one of &#x60;application/json&#x60;, &#x60;application/json;format&#x3D;compact&#x60;, &#x60;application/vnd.timeplus+json&#x60;, &#x60;application/vnd.timeplus+json;format&#x3D;compat&#x60;, or set &#x60;format&#x60; query parameter with value &#x60;compact&#x60;. And this is the API&#39;s default format. * JSON stream: when &#x60;Content-Type&#x60; is set to one of &#x60;application/json;format&#x3D;streaming&#x60;, &#x60;application/vnd.timeplus+json;format&#x3D;streaming&#x60;, or set &#x60;format&#x60; query parameter with value &#x60;streaming&#x60;. * raw string: when &#x60;Content-Type&#x60; is set to one of &#x60;text/plain&#x60;, &#x60;text/plain;format&#x3D;raw&#x60;, or set &#x60;format&#x60; query parameter with value &#x60;raw&#x60;. * string lines: when &#x60;Content-Type&#x60; is set to &#x60;text/plain;format&#x3D;lines&#x60;, or set &#x60;format&#x60; query parameter with value &#x60;lines&#x60;. * refer to https://docs.timeplus.com/docs/ingest-api for more information * 
      * @param name stream name (required)
      * @param query ingest data (required)
      * @param format enfoce payload format, if it is set, it overwrite the Content-Type header (optional)
@@ -521,7 +523,7 @@ public class StreamsV1beta1Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call v1beta1StreamsNameIngestPostAsync(String name, IngestData query, String format, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2StreamsNameIngestPostAsync(String name, IngestData query, String format, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -542,12 +544,12 @@ public class StreamsV1beta1Api {
             };
         }
 
-        com.squareup.okhttp.Call call = v1beta1StreamsNameIngestPostValidateBeforeCall(name, query, format, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2StreamsNameIngestPostValidateBeforeCall(name, query, format, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }
     /**
-     * Build call for v1beta1StreamsNamePut
+     * Build call for v1beta2StreamsNamePatch
      * @param name name of the stream (required)
      * @param stream update stream request parameters (required)
      * @param progressListener Progress listener
@@ -555,11 +557,11 @@ public class StreamsV1beta1Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call v1beta1StreamsNamePutCall(String name, StreamDef stream, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2StreamsNamePatchCall(String name, UpdateStreamRequest stream, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = stream;
 
         // create path and map variables
-        String localVarPath = "/v1beta1/streams/{name}"
+        String localVarPath = "/v1beta2/streams/{name}"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -594,62 +596,62 @@ public class StreamsV1beta1Api {
         }
 
         String[] localVarAuthNames = new String[] { "ApiKeyAuth" };
-        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        return apiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call v1beta1StreamsNamePutValidateBeforeCall(String name, StreamDef stream, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call v1beta2StreamsNamePatchValidateBeforeCall(String name, UpdateStreamRequest stream, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException("Missing the required parameter 'name' when calling v1beta1StreamsNamePut(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling v1beta2StreamsNamePatch(Async)");
         }
         
         // verify the required parameter 'stream' is set
         if (stream == null) {
-            throw new ApiException("Missing the required parameter 'stream' when calling v1beta1StreamsNamePut(Async)");
+            throw new ApiException("Missing the required parameter 'stream' when calling v1beta2StreamsNamePatch(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = v1beta1StreamsNamePutCall(name, stream, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2StreamsNamePatchCall(name, stream, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
      * Update a stream.
-     * Update the specific stream with the given name. Currently only retention policy and TTL are supported.
+     * Update the specific stream with the given name.
      * @param name name of the stream (required)
      * @param stream update stream request parameters (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void v1beta1StreamsNamePut(String name, StreamDef stream) throws ApiException {
-        v1beta1StreamsNamePutWithHttpInfo(name, stream);
+    public void v1beta2StreamsNamePatch(String name, UpdateStreamRequest stream) throws ApiException {
+        v1beta2StreamsNamePatchWithHttpInfo(name, stream);
     }
 
     /**
      * Update a stream.
-     * Update the specific stream with the given name. Currently only retention policy and TTL are supported.
+     * Update the specific stream with the given name.
      * @param name name of the stream (required)
      * @param stream update stream request parameters (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> v1beta1StreamsNamePutWithHttpInfo(String name, StreamDef stream) throws ApiException {
-        com.squareup.okhttp.Call call = v1beta1StreamsNamePutValidateBeforeCall(name, stream, null, null);
+    public ApiResponse<Void> v1beta2StreamsNamePatchWithHttpInfo(String name, UpdateStreamRequest stream) throws ApiException {
+        com.squareup.okhttp.Call call = v1beta2StreamsNamePatchValidateBeforeCall(name, stream, null, null);
         return apiClient.execute(call);
     }
 
     /**
      * Update a stream. (asynchronously)
-     * Update the specific stream with the given name. Currently only retention policy and TTL are supported.
+     * Update the specific stream with the given name.
      * @param name name of the stream (required)
      * @param stream update stream request parameters (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call v1beta1StreamsNamePutAsync(String name, StreamDef stream, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2StreamsNamePatchAsync(String name, UpdateStreamRequest stream, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -670,23 +672,23 @@ public class StreamsV1beta1Api {
             };
         }
 
-        com.squareup.okhttp.Call call = v1beta1StreamsNamePutValidateBeforeCall(name, stream, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2StreamsNamePatchValidateBeforeCall(name, stream, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }
     /**
-     * Build call for v1beta1StreamsPost
+     * Build call for v1beta2StreamsPost
      * @param stream create stream request parameters (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call v1beta1StreamsPostCall(StreamDef stream, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2StreamsPostCall(StreamDef stream, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = stream;
 
         // create path and map variables
-        String localVarPath = "/v1beta1/streams";
+        String localVarPath = "/v1beta2/streams";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -724,15 +726,15 @@ public class StreamsV1beta1Api {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call v1beta1StreamsPostValidateBeforeCall(StreamDef stream, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call v1beta2StreamsPostValidateBeforeCall(StreamDef stream, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'stream' is set
         if (stream == null) {
-            throw new ApiException("Missing the required parameter 'stream' when calling v1beta1StreamsPost(Async)");
+            throw new ApiException("Missing the required parameter 'stream' when calling v1beta2StreamsPost(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = v1beta1StreamsPostCall(stream, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2StreamsPostCall(stream, progressListener, progressRequestListener);
         return call;
 
     }
@@ -744,8 +746,8 @@ public class StreamsV1beta1Api {
      * @return StreamDef
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public StreamDef v1beta1StreamsPost(StreamDef stream) throws ApiException {
-        ApiResponse<StreamDef> resp = v1beta1StreamsPostWithHttpInfo(stream);
+    public StreamDef v1beta2StreamsPost(StreamDef stream) throws ApiException {
+        ApiResponse<StreamDef> resp = v1beta2StreamsPostWithHttpInfo(stream);
         return resp.getData();
     }
 
@@ -756,8 +758,8 @@ public class StreamsV1beta1Api {
      * @return ApiResponse&lt;StreamDef&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<StreamDef> v1beta1StreamsPostWithHttpInfo(StreamDef stream) throws ApiException {
-        com.squareup.okhttp.Call call = v1beta1StreamsPostValidateBeforeCall(stream, null, null);
+    public ApiResponse<StreamDef> v1beta2StreamsPostWithHttpInfo(StreamDef stream) throws ApiException {
+        com.squareup.okhttp.Call call = v1beta2StreamsPostValidateBeforeCall(stream, null, null);
         Type localVarReturnType = new TypeToken<StreamDef>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -770,7 +772,7 @@ public class StreamsV1beta1Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call v1beta1StreamsPostAsync(StreamDef stream, final ApiCallback<StreamDef> callback) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2StreamsPostAsync(StreamDef stream, final ApiCallback<StreamDef> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -791,8 +793,254 @@ public class StreamsV1beta1Api {
             };
         }
 
-        com.squareup.okhttp.Call call = v1beta1StreamsPostValidateBeforeCall(stream, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2StreamsPostValidateBeforeCall(stream, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<StreamDef>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for v1beta2StreamsnameGet
+     * @param name stream name (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call v1beta2StreamsnameGetCall(String name, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/v1beta2/streams/:name"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(name.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKeyAuth" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call v1beta2StreamsnameGetValidateBeforeCall(String name, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling v1beta2StreamsnameGet(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = v1beta2StreamsnameGetCall(name, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * get a stream.
+     * Get a stream with the given name.
+     * @param name stream name (required)
+     * @return Stream
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Stream v1beta2StreamsnameGet(String name) throws ApiException {
+        ApiResponse<Stream> resp = v1beta2StreamsnameGetWithHttpInfo(name);
+        return resp.getData();
+    }
+
+    /**
+     * get a stream.
+     * Get a stream with the given name.
+     * @param name stream name (required)
+     * @return ApiResponse&lt;Stream&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Stream> v1beta2StreamsnameGetWithHttpInfo(String name) throws ApiException {
+        com.squareup.okhttp.Call call = v1beta2StreamsnameGetValidateBeforeCall(name, null, null);
+        Type localVarReturnType = new TypeToken<Stream>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * get a stream. (asynchronously)
+     * Get a stream with the given name.
+     * @param name stream name (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call v1beta2StreamsnameGetAsync(String name, final ApiCallback<Stream> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = v1beta2StreamsnameGetValidateBeforeCall(name, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<Stream>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for v1beta2StreamsnameStatsGet
+     * @param name stream name (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call v1beta2StreamsnameStatsGetCall(String name, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/v1beta2/streams/:name/stats"
+            .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(name.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "ApiKeyAuth" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call v1beta2StreamsnameStatsGetValidateBeforeCall(String name, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling v1beta2StreamsnameStatsGet(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = v1beta2StreamsnameStatsGetCall(name, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * get the stats of a stream.
+     * Get the stats of a stream with the given name.
+     * @param name stream name (required)
+     * @return StreamStats
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public StreamStats v1beta2StreamsnameStatsGet(String name) throws ApiException {
+        ApiResponse<StreamStats> resp = v1beta2StreamsnameStatsGetWithHttpInfo(name);
+        return resp.getData();
+    }
+
+    /**
+     * get the stats of a stream.
+     * Get the stats of a stream with the given name.
+     * @param name stream name (required)
+     * @return ApiResponse&lt;StreamStats&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<StreamStats> v1beta2StreamsnameStatsGetWithHttpInfo(String name) throws ApiException {
+        com.squareup.okhttp.Call call = v1beta2StreamsnameStatsGetValidateBeforeCall(name, null, null);
+        Type localVarReturnType = new TypeToken<StreamStats>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * get the stats of a stream. (asynchronously)
+     * Get the stats of a stream with the given name.
+     * @param name stream name (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call v1beta2StreamsnameStatsGetAsync(String name, final ApiCallback<StreamStats> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = v1beta2StreamsnameStatsGetValidateBeforeCall(name, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<StreamStats>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

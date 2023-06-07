@@ -23,53 +23,52 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 
 /**
- * Throughput
+ * BatchingPolicy
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-02-05T18:48:55.783Z")
-public class Throughput {
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-06-06T23:45:14.171Z")
+public class BatchingPolicy {
   @SerializedName("count")
-  private BigDecimal count = null;
+  private Integer count = null;
 
-  @SerializedName("value")
-  private BigDecimal value = null;
+  @SerializedName("time_ms")
+  private Integer timeMs = null;
 
-  public Throughput count(BigDecimal count) {
+  public BatchingPolicy count(Integer count) {
     this.count = count;
     return this;
   }
 
    /**
-   * EPS
+   * The max result count per batch
    * @return count
   **/
-  @ApiModelProperty(value = "EPS")
-  public BigDecimal getCount() {
+  @ApiModelProperty(value = "The max result count per batch")
+  public Integer getCount() {
     return count;
   }
 
-  public void setCount(BigDecimal count) {
+  public void setCount(Integer count) {
     this.count = count;
   }
 
-  public Throughput value(BigDecimal value) {
-    this.value = value;
+  public BatchingPolicy timeMs(Integer timeMs) {
+    this.timeMs = timeMs;
     return this;
   }
 
    /**
-   * Throughput
-   * @return value
+   * The max interval per batch in milliseconds
+   * @return timeMs
   **/
-  @ApiModelProperty(value = "Throughput")
-  public BigDecimal getValue() {
-    return value;
+  @ApiModelProperty(value = "The max interval per batch in milliseconds")
+  public Integer getTimeMs() {
+    return timeMs;
   }
 
-  public void setValue(BigDecimal value) {
-    this.value = value;
+  public void setTimeMs(Integer timeMs) {
+    this.timeMs = timeMs;
   }
 
 
@@ -81,24 +80,24 @@ public class Throughput {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Throughput throughput = (Throughput) o;
-    return Objects.equals(this.count, throughput.count) &&
-        Objects.equals(this.value, throughput.value);
+    BatchingPolicy batchingPolicy = (BatchingPolicy) o;
+    return Objects.equals(this.count, batchingPolicy.count) &&
+        Objects.equals(this.timeMs, batchingPolicy.timeMs);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(count, value);
+    return Objects.hash(count, timeMs);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Throughput {\n");
+    sb.append("class BatchingPolicy {\n");
     
     sb.append("    count: ").append(toIndentedString(count)).append("\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("    timeMs: ").append(toIndentedString(timeMs)).append("\n");
     sb.append("}");
     return sb.toString();
   }

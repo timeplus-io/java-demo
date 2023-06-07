@@ -22,7 +22,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.client.model.ConnectionConfig;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -31,11 +30,8 @@ import java.util.Map;
 /**
  * CreateSourceRequest
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-02-05T18:48:55.783Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-06-06T23:45:14.171Z")
 public class CreateSourceRequest {
-  @SerializedName("connection_config")
-  private ConnectionConfig connectionConfig = null;
-
   @SerializedName("description")
   private String description = null;
 
@@ -45,26 +41,11 @@ public class CreateSourceRequest {
   @SerializedName("properties")
   private Map<String, Object> properties = null;
 
+  @SerializedName("stream")
+  private String stream = null;
+
   @SerializedName("type")
   private String type = null;
-
-  public CreateSourceRequest connectionConfig(ConnectionConfig connectionConfig) {
-    this.connectionConfig = connectionConfig;
-    return this;
-  }
-
-   /**
-   * Get connectionConfig
-   * @return connectionConfig
-  **/
-  @ApiModelProperty(value = "")
-  public ConnectionConfig getConnectionConfig() {
-    return connectionConfig;
-  }
-
-  public void setConnectionConfig(ConnectionConfig connectionConfig) {
-    this.connectionConfig = connectionConfig;
-  }
 
   public CreateSourceRequest description(String description) {
     this.description = description;
@@ -75,7 +56,7 @@ public class CreateSourceRequest {
    * Get description
    * @return description
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "read from my kafka topic", value = "")
   public String getDescription() {
     return description;
   }
@@ -90,10 +71,10 @@ public class CreateSourceRequest {
   }
 
    /**
-   * Get name
+   * Source name should only contain a maximum of 64 letters, numbers, or _, and start with a letter
    * @return name
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "my_kafka_source", required = true, value = "Source name should only contain a maximum of 64 letters, numbers, or _, and start with a letter")
   public String getName() {
     return name;
   }
@@ -116,10 +97,10 @@ public class CreateSourceRequest {
   }
 
    /**
-   * Get properties
+   * Additional properties that required to read the data from source. Please refer to the documentation for this source type
    * @return properties
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Additional properties that required to read the data from source. Please refer to the documentation for this source type")
   public Map<String, Object> getProperties() {
     return properties;
   }
@@ -128,16 +109,34 @@ public class CreateSourceRequest {
     this.properties = properties;
   }
 
+  public CreateSourceRequest stream(String stream) {
+    this.stream = stream;
+    return this;
+  }
+
+   /**
+   * The name of the target stream that this source writes to. The stream needs to be created first.
+   * @return stream
+  **/
+  @ApiModelProperty(example = "kafak_stream", required = true, value = "The name of the target stream that this source writes to. The stream needs to be created first.")
+  public String getStream() {
+    return stream;
+  }
+
+  public void setStream(String stream) {
+    this.stream = stream;
+  }
+
   public CreateSourceRequest type(String type) {
     this.type = type;
     return this;
   }
 
    /**
-   * Get type
+   * Type of the source
    * @return type
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "kafka", required = true, value = "Type of the source")
   public String getType() {
     return type;
   }
@@ -156,16 +155,16 @@ public class CreateSourceRequest {
       return false;
     }
     CreateSourceRequest createSourceRequest = (CreateSourceRequest) o;
-    return Objects.equals(this.connectionConfig, createSourceRequest.connectionConfig) &&
-        Objects.equals(this.description, createSourceRequest.description) &&
+    return Objects.equals(this.description, createSourceRequest.description) &&
         Objects.equals(this.name, createSourceRequest.name) &&
         Objects.equals(this.properties, createSourceRequest.properties) &&
+        Objects.equals(this.stream, createSourceRequest.stream) &&
         Objects.equals(this.type, createSourceRequest.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(connectionConfig, description, name, properties, type);
+    return Objects.hash(description, name, properties, stream, type);
   }
 
 
@@ -174,10 +173,10 @@ public class CreateSourceRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateSourceRequest {\n");
     
-    sb.append("    connectionConfig: ").append(toIndentedString(connectionConfig)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    properties: ").append(toIndentedString(properties)).append("\n");
+    sb.append("    stream: ").append(toIndentedString(stream)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();

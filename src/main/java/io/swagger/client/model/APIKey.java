@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * APIKey
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-02-05T18:48:55.783Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-06-06T23:45:14.171Z")
 public class APIKey {
   @SerializedName("created_at")
   private Integer createdAt = null;

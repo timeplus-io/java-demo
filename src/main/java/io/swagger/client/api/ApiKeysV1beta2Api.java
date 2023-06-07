@@ -38,14 +38,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ApiKeysV1beta1Api {
+public class ApiKeysV1beta2Api {
     private ApiClient apiClient;
 
-    public ApiKeysV1beta1Api() {
+    public ApiKeysV1beta2Api() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public ApiKeysV1beta1Api(ApiClient apiClient) {
+    public ApiKeysV1beta2Api(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -58,17 +58,17 @@ public class ApiKeysV1beta1Api {
     }
 
     /**
-     * Build call for v1beta1AuthApiKeysGet
+     * Build call for v1beta2AuthApiKeysGet
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call v1beta1AuthApiKeysGetCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2AuthApiKeysGetCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v1beta1/auth/api_keys";
+        String localVarPath = "/v1beta2/auth/api_keys";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -106,10 +106,10 @@ public class ApiKeysV1beta1Api {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call v1beta1AuthApiKeysGetValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call v1beta2AuthApiKeysGetValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = v1beta1AuthApiKeysGetCall(progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2AuthApiKeysGetCall(progressListener, progressRequestListener);
         return call;
 
     }
@@ -120,8 +120,8 @@ public class ApiKeysV1beta1Api {
      * @return List&lt;APIKey&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<APIKey> v1beta1AuthApiKeysGet() throws ApiException {
-        ApiResponse<List<APIKey>> resp = v1beta1AuthApiKeysGetWithHttpInfo();
+    public List<APIKey> v1beta2AuthApiKeysGet() throws ApiException {
+        ApiResponse<List<APIKey>> resp = v1beta2AuthApiKeysGetWithHttpInfo();
         return resp.getData();
     }
 
@@ -131,8 +131,8 @@ public class ApiKeysV1beta1Api {
      * @return ApiResponse&lt;List&lt;APIKey&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<APIKey>> v1beta1AuthApiKeysGetWithHttpInfo() throws ApiException {
-        com.squareup.okhttp.Call call = v1beta1AuthApiKeysGetValidateBeforeCall(null, null);
+    public ApiResponse<List<APIKey>> v1beta2AuthApiKeysGetWithHttpInfo() throws ApiException {
+        com.squareup.okhttp.Call call = v1beta2AuthApiKeysGetValidateBeforeCall(null, null);
         Type localVarReturnType = new TypeToken<List<APIKey>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -144,7 +144,7 @@ public class ApiKeysV1beta1Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call v1beta1AuthApiKeysGetAsync(final ApiCallback<List<APIKey>> callback) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2AuthApiKeysGetAsync(final ApiCallback<List<APIKey>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -165,24 +165,24 @@ public class ApiKeysV1beta1Api {
             };
         }
 
-        com.squareup.okhttp.Call call = v1beta1AuthApiKeysGetValidateBeforeCall(progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2AuthApiKeysGetValidateBeforeCall(progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<APIKey>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for v1beta1AuthApiKeysIdDelete
+     * Build call for v1beta2AuthApiKeysIdDelete
      * @param id API key ID (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call v1beta1AuthApiKeysIdDeleteCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2AuthApiKeysIdDeleteCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/v1beta1/auth/api_keys/{id}"
+        String localVarPath = "/v1beta2/auth/api_keys/{id}"
             .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -221,15 +221,15 @@ public class ApiKeysV1beta1Api {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call v1beta1AuthApiKeysIdDeleteValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call v1beta2AuthApiKeysIdDeleteValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling v1beta1AuthApiKeysIdDelete(Async)");
+            throw new ApiException("Missing the required parameter 'id' when calling v1beta2AuthApiKeysIdDelete(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = v1beta1AuthApiKeysIdDeleteCall(id, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2AuthApiKeysIdDeleteCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -240,8 +240,8 @@ public class ApiKeysV1beta1Api {
      * @param id API key ID (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void v1beta1AuthApiKeysIdDelete(String id) throws ApiException {
-        v1beta1AuthApiKeysIdDeleteWithHttpInfo(id);
+    public void v1beta2AuthApiKeysIdDelete(String id) throws ApiException {
+        v1beta2AuthApiKeysIdDeleteWithHttpInfo(id);
     }
 
     /**
@@ -251,8 +251,8 @@ public class ApiKeysV1beta1Api {
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> v1beta1AuthApiKeysIdDeleteWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = v1beta1AuthApiKeysIdDeleteValidateBeforeCall(id, null, null);
+    public ApiResponse<Void> v1beta2AuthApiKeysIdDeleteWithHttpInfo(String id) throws ApiException {
+        com.squareup.okhttp.Call call = v1beta2AuthApiKeysIdDeleteValidateBeforeCall(id, null, null);
         return apiClient.execute(call);
     }
 
@@ -264,7 +264,7 @@ public class ApiKeysV1beta1Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call v1beta1AuthApiKeysIdDeleteAsync(String id, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2AuthApiKeysIdDeleteAsync(String id, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -285,23 +285,23 @@ public class ApiKeysV1beta1Api {
             };
         }
 
-        com.squareup.okhttp.Call call = v1beta1AuthApiKeysIdDeleteValidateBeforeCall(id, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2AuthApiKeysIdDeleteValidateBeforeCall(id, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }
     /**
-     * Build call for v1beta1AuthApiKeysPost
+     * Build call for v1beta2AuthApiKeysPost
      * @param apiKeyParam API Key parameters (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call v1beta1AuthApiKeysPostCall(CreateAPIKeyRequest apiKeyParam, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2AuthApiKeysPostCall(CreateAPIKeyRequest apiKeyParam, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = apiKeyParam;
 
         // create path and map variables
-        String localVarPath = "/v1beta1/auth/api_keys";
+        String localVarPath = "/v1beta2/auth/api_keys";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -339,10 +339,10 @@ public class ApiKeysV1beta1Api {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call v1beta1AuthApiKeysPostValidateBeforeCall(CreateAPIKeyRequest apiKeyParam, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call v1beta2AuthApiKeysPostValidateBeforeCall(CreateAPIKeyRequest apiKeyParam, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = v1beta1AuthApiKeysPostCall(apiKeyParam, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2AuthApiKeysPostCall(apiKeyParam, progressListener, progressRequestListener);
         return call;
 
     }
@@ -354,8 +354,8 @@ public class ApiKeysV1beta1Api {
      * @return CreateAPIKeyResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public CreateAPIKeyResponse v1beta1AuthApiKeysPost(CreateAPIKeyRequest apiKeyParam) throws ApiException {
-        ApiResponse<CreateAPIKeyResponse> resp = v1beta1AuthApiKeysPostWithHttpInfo(apiKeyParam);
+    public CreateAPIKeyResponse v1beta2AuthApiKeysPost(CreateAPIKeyRequest apiKeyParam) throws ApiException {
+        ApiResponse<CreateAPIKeyResponse> resp = v1beta2AuthApiKeysPostWithHttpInfo(apiKeyParam);
         return resp.getData();
     }
 
@@ -366,8 +366,8 @@ public class ApiKeysV1beta1Api {
      * @return ApiResponse&lt;CreateAPIKeyResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<CreateAPIKeyResponse> v1beta1AuthApiKeysPostWithHttpInfo(CreateAPIKeyRequest apiKeyParam) throws ApiException {
-        com.squareup.okhttp.Call call = v1beta1AuthApiKeysPostValidateBeforeCall(apiKeyParam, null, null);
+    public ApiResponse<CreateAPIKeyResponse> v1beta2AuthApiKeysPostWithHttpInfo(CreateAPIKeyRequest apiKeyParam) throws ApiException {
+        com.squareup.okhttp.Call call = v1beta2AuthApiKeysPostValidateBeforeCall(apiKeyParam, null, null);
         Type localVarReturnType = new TypeToken<CreateAPIKeyResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -380,7 +380,7 @@ public class ApiKeysV1beta1Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call v1beta1AuthApiKeysPostAsync(CreateAPIKeyRequest apiKeyParam, final ApiCallback<CreateAPIKeyResponse> callback) throws ApiException {
+    public com.squareup.okhttp.Call v1beta2AuthApiKeysPostAsync(CreateAPIKeyRequest apiKeyParam, final ApiCallback<CreateAPIKeyResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -401,7 +401,7 @@ public class ApiKeysV1beta1Api {
             };
         }
 
-        com.squareup.okhttp.Call call = v1beta1AuthApiKeysPostValidateBeforeCall(apiKeyParam, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = v1beta2AuthApiKeysPostValidateBeforeCall(apiKeyParam, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<CreateAPIKeyResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

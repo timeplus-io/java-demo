@@ -22,6 +22,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.client.model.BatchingPolicy;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +30,11 @@ import java.util.List;
 /**
  * CreateQueryRequestV1Beta2
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-02-05T18:48:55.783Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-06-06T23:45:14.171Z")
 public class CreateQueryRequestV1Beta2 {
+  @SerializedName("batching_policy")
+  private BatchingPolicy batchingPolicy = null;
+
   @SerializedName("description")
   private String description = null;
 
@@ -42,6 +46,24 @@ public class CreateQueryRequestV1Beta2 {
 
   @SerializedName("tags")
   private List<String> tags = null;
+
+  public CreateQueryRequestV1Beta2 batchingPolicy(BatchingPolicy batchingPolicy) {
+    this.batchingPolicy = batchingPolicy;
+    return this;
+  }
+
+   /**
+   * Controls how often a batch of results will be flushed via SSE channel
+   * @return batchingPolicy
+  **/
+  @ApiModelProperty(value = "Controls how often a batch of results will be flushed via SSE channel")
+  public BatchingPolicy getBatchingPolicy() {
+    return batchingPolicy;
+  }
+
+  public void setBatchingPolicy(BatchingPolicy batchingPolicy) {
+    this.batchingPolicy = batchingPolicy;
+  }
 
   public CreateQueryRequestV1Beta2 description(String description) {
     this.description = description;
@@ -88,7 +110,7 @@ public class CreateQueryRequestV1Beta2 {
    * Get sql
    * @return sql
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public String getSql() {
     return sql;
   }
@@ -133,7 +155,8 @@ public class CreateQueryRequestV1Beta2 {
       return false;
     }
     CreateQueryRequestV1Beta2 createQueryRequestV1Beta2 = (CreateQueryRequestV1Beta2) o;
-    return Objects.equals(this.description, createQueryRequestV1Beta2.description) &&
+    return Objects.equals(this.batchingPolicy, createQueryRequestV1Beta2.batchingPolicy) &&
+        Objects.equals(this.description, createQueryRequestV1Beta2.description) &&
         Objects.equals(this.name, createQueryRequestV1Beta2.name) &&
         Objects.equals(this.sql, createQueryRequestV1Beta2.sql) &&
         Objects.equals(this.tags, createQueryRequestV1Beta2.tags);
@@ -141,7 +164,7 @@ public class CreateQueryRequestV1Beta2 {
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, name, sql, tags);
+    return Objects.hash(batchingPolicy, description, name, sql, tags);
   }
 
 
@@ -150,6 +173,7 @@ public class CreateQueryRequestV1Beta2 {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateQueryRequestV1Beta2 {\n");
     
+    sb.append("    batchingPolicy: ").append(toIndentedString(batchingPolicy)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    sql: ").append(toIndentedString(sql)).append("\n");

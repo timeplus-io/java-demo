@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * Owner
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-02-05T18:48:55.783Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-06-06T23:45:14.171Z")
 public class Owner {
   @SerializedName("id")
   private String id = null;
@@ -44,7 +44,7 @@ public class Owner {
    * Get id
    * @return id
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "bob-id", value = "")
   public String getId() {
     return id;
   }
@@ -62,7 +62,7 @@ public class Owner {
    * Get name
    * @return name
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "Bob", value = "")
   public String getName() {
     return name;
   }

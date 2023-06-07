@@ -27,13 +27,10 @@ import java.io.IOException;
 /**
  * TimeColumns
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-02-05T18:48:55.783Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-06-06T23:45:14.171Z")
 public class TimeColumns {
   @SerializedName("eventTime")
   private Integer eventTime = null;
-
-  @SerializedName("indexTime")
-  private Integer indexTime = null;
 
   @SerializedName("windowEnd")
   private Integer windowEnd = null;
@@ -57,24 +54,6 @@ public class TimeColumns {
 
   public void setEventTime(Integer eventTime) {
     this.eventTime = eventTime;
-  }
-
-  public TimeColumns indexTime(Integer indexTime) {
-    this.indexTime = indexTime;
-    return this;
-  }
-
-   /**
-   * Get indexTime
-   * @return indexTime
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public Integer getIndexTime() {
-    return indexTime;
-  }
-
-  public void setIndexTime(Integer indexTime) {
-    this.indexTime = indexTime;
   }
 
   public TimeColumns windowEnd(Integer windowEnd) {
@@ -124,14 +103,13 @@ public class TimeColumns {
     }
     TimeColumns timeColumns = (TimeColumns) o;
     return Objects.equals(this.eventTime, timeColumns.eventTime) &&
-        Objects.equals(this.indexTime, timeColumns.indexTime) &&
         Objects.equals(this.windowEnd, timeColumns.windowEnd) &&
         Objects.equals(this.windowStart, timeColumns.windowStart);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(eventTime, indexTime, windowEnd, windowStart);
+    return Objects.hash(eventTime, windowEnd, windowStart);
   }
 
 
@@ -141,7 +119,6 @@ public class TimeColumns {
     sb.append("class TimeColumns {\n");
     
     sb.append("    eventTime: ").append(toIndentedString(eventTime)).append("\n");
-    sb.append("    indexTime: ").append(toIndentedString(indexTime)).append("\n");
     sb.append("    windowEnd: ").append(toIndentedString(windowEnd)).append("\n");
     sb.append("    windowStart: ").append(toIndentedString(windowStart)).append("\n");
     sb.append("}");

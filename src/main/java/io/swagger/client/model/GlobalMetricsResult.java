@@ -28,69 +28,69 @@ import java.math.BigDecimal;
 /**
  * GlobalMetricsResult
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-02-05T18:48:55.783Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-06-06T23:45:14.171Z")
 public class GlobalMetricsResult {
-  @SerializedName("name")
-  private String name = null;
+  @SerializedName("sink_throughput")
+  private BigDecimal sinkThroughput = null;
 
-  @SerializedName("time")
-  private String time = null;
+  @SerializedName("source_throughput")
+  private BigDecimal sourceThroughput = null;
 
-  @SerializedName("value")
-  private BigDecimal value = null;
+  @SerializedName("storage")
+  private Integer storage = null;
 
-  public GlobalMetricsResult name(String name) {
-    this.name = name;
+  public GlobalMetricsResult sinkThroughput(BigDecimal sinkThroughput) {
+    this.sinkThroughput = sinkThroughput;
     return this;
   }
 
    /**
-   * Get name
-   * @return name
+   * Get sinkThroughput
+   * @return sinkThroughput
   **/
-  @ApiModelProperty(value = "")
-  public String getName() {
-    return name;
+  @ApiModelProperty(required = true, value = "")
+  public BigDecimal getSinkThroughput() {
+    return sinkThroughput;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setSinkThroughput(BigDecimal sinkThroughput) {
+    this.sinkThroughput = sinkThroughput;
   }
 
-  public GlobalMetricsResult time(String time) {
-    this.time = time;
+  public GlobalMetricsResult sourceThroughput(BigDecimal sourceThroughput) {
+    this.sourceThroughput = sourceThroughput;
     return this;
   }
 
    /**
-   * Get time
-   * @return time
+   * Get sourceThroughput
+   * @return sourceThroughput
   **/
-  @ApiModelProperty(value = "")
-  public String getTime() {
-    return time;
+  @ApiModelProperty(required = true, value = "")
+  public BigDecimal getSourceThroughput() {
+    return sourceThroughput;
   }
 
-  public void setTime(String time) {
-    this.time = time;
+  public void setSourceThroughput(BigDecimal sourceThroughput) {
+    this.sourceThroughput = sourceThroughput;
   }
 
-  public GlobalMetricsResult value(BigDecimal value) {
-    this.value = value;
+  public GlobalMetricsResult storage(Integer storage) {
+    this.storage = storage;
     return this;
   }
 
    /**
-   * Get value
-   * @return value
+   * Get storage
+   * @return storage
   **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getValue() {
-    return value;
+  @ApiModelProperty(required = true, value = "")
+  public Integer getStorage() {
+    return storage;
   }
 
-  public void setValue(BigDecimal value) {
-    this.value = value;
+  public void setStorage(Integer storage) {
+    this.storage = storage;
   }
 
 
@@ -103,14 +103,14 @@ public class GlobalMetricsResult {
       return false;
     }
     GlobalMetricsResult globalMetricsResult = (GlobalMetricsResult) o;
-    return Objects.equals(this.name, globalMetricsResult.name) &&
-        Objects.equals(this.time, globalMetricsResult.time) &&
-        Objects.equals(this.value, globalMetricsResult.value);
+    return Objects.equals(this.sinkThroughput, globalMetricsResult.sinkThroughput) &&
+        Objects.equals(this.sourceThroughput, globalMetricsResult.sourceThroughput) &&
+        Objects.equals(this.storage, globalMetricsResult.storage);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, time, value);
+    return Objects.hash(sinkThroughput, sourceThroughput, storage);
   }
 
 
@@ -119,9 +119,9 @@ public class GlobalMetricsResult {
     StringBuilder sb = new StringBuilder();
     sb.append("class GlobalMetricsResult {\n");
     
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    time: ").append(toIndentedString(time)).append("\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("    sinkThroughput: ").append(toIndentedString(sinkThroughput)).append("\n");
+    sb.append("    sourceThroughput: ").append(toIndentedString(sourceThroughput)).append("\n");
+    sb.append("    storage: ").append(toIndentedString(storage)).append("\n");
     sb.append("}");
     return sb.toString();
   }

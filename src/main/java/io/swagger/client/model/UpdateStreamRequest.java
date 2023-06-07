@@ -25,10 +25,10 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * UpdateViewRequest
+ * UpdateStreamRequest
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-06-06T23:45:14.171Z")
-public class UpdateViewRequest {
+public class UpdateStreamRequest {
   @SerializedName("description")
   private String description = null;
 
@@ -38,13 +38,10 @@ public class UpdateViewRequest {
   @SerializedName("logstore_retention_ms")
   private Integer logstoreRetentionMs = null;
 
-  @SerializedName("query")
-  private String query = null;
-
   @SerializedName("ttl_expression")
   private String ttlExpression = null;
 
-  public UpdateViewRequest description(String description) {
+  public UpdateStreamRequest description(String description) {
     this.description = description;
     return this;
   }
@@ -62,7 +59,7 @@ public class UpdateViewRequest {
     this.description = description;
   }
 
-  public UpdateViewRequest logstoreRetentionBytes(Integer logstoreRetentionBytes) {
+  public UpdateStreamRequest logstoreRetentionBytes(Integer logstoreRetentionBytes) {
     this.logstoreRetentionBytes = logstoreRetentionBytes;
     return this;
   }
@@ -80,7 +77,7 @@ public class UpdateViewRequest {
     this.logstoreRetentionBytes = logstoreRetentionBytes;
   }
 
-  public UpdateViewRequest logstoreRetentionMs(Integer logstoreRetentionMs) {
+  public UpdateStreamRequest logstoreRetentionMs(Integer logstoreRetentionMs) {
     this.logstoreRetentionMs = logstoreRetentionMs;
     return this;
   }
@@ -98,25 +95,7 @@ public class UpdateViewRequest {
     this.logstoreRetentionMs = logstoreRetentionMs;
   }
 
-  public UpdateViewRequest query(String query) {
-    this.query = query;
-    return this;
-  }
-
-   /**
-   * Get query
-   * @return query
-  **/
-  @ApiModelProperty(value = "")
-  public String getQuery() {
-    return query;
-  }
-
-  public void setQuery(String query) {
-    this.query = query;
-  }
-
-  public UpdateViewRequest ttlExpression(String ttlExpression) {
+  public UpdateStreamRequest ttlExpression(String ttlExpression) {
     this.ttlExpression = ttlExpression;
     return this;
   }
@@ -143,29 +122,27 @@ public class UpdateViewRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UpdateViewRequest updateViewRequest = (UpdateViewRequest) o;
-    return Objects.equals(this.description, updateViewRequest.description) &&
-        Objects.equals(this.logstoreRetentionBytes, updateViewRequest.logstoreRetentionBytes) &&
-        Objects.equals(this.logstoreRetentionMs, updateViewRequest.logstoreRetentionMs) &&
-        Objects.equals(this.query, updateViewRequest.query) &&
-        Objects.equals(this.ttlExpression, updateViewRequest.ttlExpression);
+    UpdateStreamRequest updateStreamRequest = (UpdateStreamRequest) o;
+    return Objects.equals(this.description, updateStreamRequest.description) &&
+        Objects.equals(this.logstoreRetentionBytes, updateStreamRequest.logstoreRetentionBytes) &&
+        Objects.equals(this.logstoreRetentionMs, updateStreamRequest.logstoreRetentionMs) &&
+        Objects.equals(this.ttlExpression, updateStreamRequest.ttlExpression);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, logstoreRetentionBytes, logstoreRetentionMs, query, ttlExpression);
+    return Objects.hash(description, logstoreRetentionBytes, logstoreRetentionMs, ttlExpression);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UpdateViewRequest {\n");
+    sb.append("class UpdateStreamRequest {\n");
     
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    logstoreRetentionBytes: ").append(toIndentedString(logstoreRetentionBytes)).append("\n");
     sb.append("    logstoreRetentionMs: ").append(toIndentedString(logstoreRetentionMs)).append("\n");
-    sb.append("    query: ").append(toIndentedString(query)).append("\n");
     sb.append("    ttlExpression: ").append(toIndentedString(ttlExpression)).append("\n");
     sb.append("}");
     return sb.toString();

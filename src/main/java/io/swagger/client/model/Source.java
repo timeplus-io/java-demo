@@ -22,7 +22,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.client.model.Connection;
 import io.swagger.client.model.Owner;
 import java.io.IOException;
 import java.util.HashMap;
@@ -32,11 +31,8 @@ import java.util.Map;
 /**
  * Source
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-02-05T18:48:55.783Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-06-06T23:45:14.171Z")
 public class Source {
-  @SerializedName("connection")
-  private Connection connection = null;
-
   @SerializedName("created_at")
   private String createdAt = null;
 
@@ -55,6 +51,9 @@ public class Source {
   @SerializedName("last_updated_by")
   private Owner lastUpdatedBy = null;
 
+  @SerializedName("message")
+  private String message = null;
+
   @SerializedName("name")
   private String name = null;
 
@@ -64,26 +63,14 @@ public class Source {
   @SerializedName("start_time")
   private Integer startTime = null;
 
+  @SerializedName("status")
+  private String status = null;
+
+  @SerializedName("stream")
+  private String stream = null;
+
   @SerializedName("type")
   private String type = null;
-
-  public Source connection(Connection connection) {
-    this.connection = connection;
-    return this;
-  }
-
-   /**
-   * Get connection
-   * @return connection
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public Connection getConnection() {
-    return connection;
-  }
-
-  public void setConnection(Connection connection) {
-    this.connection = connection;
-  }
 
   public Source createdAt(String createdAt) {
     this.createdAt = createdAt;
@@ -94,7 +81,7 @@ public class Source {
    * Get createdAt
    * @return createdAt
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "2023-02-01 23:22:59", value = "")
   public String getCreatedAt() {
     return createdAt;
   }
@@ -130,7 +117,7 @@ public class Source {
    * Get description
    * @return description
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "read data from my kafka topic", required = true, value = "")
   public String getDescription() {
     return description;
   }
@@ -148,7 +135,7 @@ public class Source {
    * Get id
    * @return id
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "source_id", required = true, value = "")
   public String getId() {
     return id;
   }
@@ -166,7 +153,7 @@ public class Source {
    * Get lastUpdatedAt
    * @return lastUpdatedAt
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "2023-02-05 11:12:13", value = "")
   public String getLastUpdatedAt() {
     return lastUpdatedAt;
   }
@@ -193,6 +180,24 @@ public class Source {
     this.lastUpdatedBy = lastUpdatedBy;
   }
 
+  public Source message(String message) {
+    this.message = message;
+    return this;
+  }
+
+   /**
+   * Get message
+   * @return message
+  **/
+  @ApiModelProperty(required = true, value = "")
+  public String getMessage() {
+    return message;
+  }
+
+  public void setMessage(String message) {
+    this.message = message;
+  }
+
   public Source name(String name) {
     this.name = name;
     return this;
@@ -202,7 +207,7 @@ public class Source {
    * Get name
    * @return name
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "my_kafka_source", required = true, value = "")
   public String getName() {
     return name;
   }
@@ -222,10 +227,10 @@ public class Source {
   }
 
    /**
-   * Get properties
+   * Additional properties of the source
    * @return properties
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Additional properties of the source")
   public Map<String, Object> getProperties() {
     return properties;
   }
@@ -240,10 +245,10 @@ public class Source {
   }
 
    /**
-   * Get startTime
+   * Unix timestamp when the source get started
    * @return startTime
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "1680301788", required = true, value = "Unix timestamp when the source get started")
   public Integer getStartTime() {
     return startTime;
   }
@@ -252,16 +257,52 @@ public class Source {
     this.startTime = startTime;
   }
 
+  public Source status(String status) {
+    this.status = status;
+    return this;
+  }
+
+   /**
+   * Get status
+   * @return status
+  **/
+  @ApiModelProperty(example = "running", required = true, value = "")
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
+
+  public Source stream(String stream) {
+    this.stream = stream;
+    return this;
+  }
+
+   /**
+   * The name of the target stream that this source writes to.
+   * @return stream
+  **/
+  @ApiModelProperty(example = "kafka_stream", required = true, value = "The name of the target stream that this source writes to.")
+  public String getStream() {
+    return stream;
+  }
+
+  public void setStream(String stream) {
+    this.stream = stream;
+  }
+
   public Source type(String type) {
     this.type = type;
     return this;
   }
 
    /**
-   * Get type
+   * Type of the source
    * @return type
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "kafka", required = true, value = "Type of the source")
   public String getType() {
     return type;
   }
@@ -280,22 +321,24 @@ public class Source {
       return false;
     }
     Source source = (Source) o;
-    return Objects.equals(this.connection, source.connection) &&
-        Objects.equals(this.createdAt, source.createdAt) &&
+    return Objects.equals(this.createdAt, source.createdAt) &&
         Objects.equals(this.createdBy, source.createdBy) &&
         Objects.equals(this.description, source.description) &&
         Objects.equals(this.id, source.id) &&
         Objects.equals(this.lastUpdatedAt, source.lastUpdatedAt) &&
         Objects.equals(this.lastUpdatedBy, source.lastUpdatedBy) &&
+        Objects.equals(this.message, source.message) &&
         Objects.equals(this.name, source.name) &&
         Objects.equals(this.properties, source.properties) &&
         Objects.equals(this.startTime, source.startTime) &&
+        Objects.equals(this.status, source.status) &&
+        Objects.equals(this.stream, source.stream) &&
         Objects.equals(this.type, source.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(connection, createdAt, createdBy, description, id, lastUpdatedAt, lastUpdatedBy, name, properties, startTime, type);
+    return Objects.hash(createdAt, createdBy, description, id, lastUpdatedAt, lastUpdatedBy, message, name, properties, startTime, status, stream, type);
   }
 
 
@@ -304,16 +347,18 @@ public class Source {
     StringBuilder sb = new StringBuilder();
     sb.append("class Source {\n");
     
-    sb.append("    connection: ").append(toIndentedString(connection)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    createdBy: ").append(toIndentedString(createdBy)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    lastUpdatedAt: ").append(toIndentedString(lastUpdatedAt)).append("\n");
     sb.append("    lastUpdatedBy: ").append(toIndentedString(lastUpdatedBy)).append("\n");
+    sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    properties: ").append(toIndentedString(properties)).append("\n");
     sb.append("    startTime: ").append(toIndentedString(startTime)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    stream: ").append(toIndentedString(stream)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -31,10 +31,13 @@ import java.util.List;
 /**
  * ExternalStreamDef
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-02-05T18:48:55.783Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-06-06T23:45:14.171Z")
 public class ExternalStreamDef {
   @SerializedName("column")
   private ColumnDef column = null;
+
+  @SerializedName("description")
+  private String description = null;
 
   @SerializedName("name")
   private String name = null;
@@ -58,6 +61,24 @@ public class ExternalStreamDef {
 
   public void setColumn(ColumnDef column) {
     this.column = column;
+  }
+
+  public ExternalStreamDef description(String description) {
+    this.description = description;
+    return this;
+  }
+
+   /**
+   * Get description
+   * @return description
+  **/
+  @ApiModelProperty(value = "")
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
   }
 
   public ExternalStreamDef name(String name) {
@@ -115,13 +136,14 @@ public class ExternalStreamDef {
     }
     ExternalStreamDef externalStreamDef = (ExternalStreamDef) o;
     return Objects.equals(this.column, externalStreamDef.column) &&
+        Objects.equals(this.description, externalStreamDef.description) &&
         Objects.equals(this.name, externalStreamDef.name) &&
         Objects.equals(this.settings, externalStreamDef.settings);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(column, name, settings);
+    return Objects.hash(column, description, name, settings);
   }
 
 
@@ -131,6 +153,7 @@ public class ExternalStreamDef {
     sb.append("class ExternalStreamDef {\n");
     
     sb.append("    column: ").append(toIndentedString(column)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    settings: ").append(toIndentedString(settings)).append("\n");
     sb.append("}");

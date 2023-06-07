@@ -24,7 +24,6 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.client.model.ColumnsResp;
 import io.swagger.client.model.Owner;
-import io.swagger.client.model.StreamStats;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +31,7 @@ import java.util.List;
 /**
  * View
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-02-05T18:48:55.783Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-06-06T23:45:14.171Z")
 public class View {
   @SerializedName("columns")
   private List<ColumnsResp> columns = new ArrayList<ColumnsResp>();
@@ -42,6 +41,9 @@ public class View {
 
   @SerializedName("created_by")
   private Owner createdBy = null;
+
+  @SerializedName("description")
+  private String description = null;
 
   @SerializedName("last_updated_at")
   private String lastUpdatedAt = null;
@@ -64,8 +66,8 @@ public class View {
   @SerializedName("query")
   private String query = null;
 
-  @SerializedName("stats")
-  private StreamStats stats = null;
+  @SerializedName("target_stream")
+  private String targetStream = null;
 
   @SerializedName("ttl")
   private String ttl = null;
@@ -102,7 +104,7 @@ public class View {
    * Get createdAt
    * @return createdAt
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "2023-02-01 23:22:59", value = "")
   public String getCreatedAt() {
     return createdAt;
   }
@@ -129,6 +131,24 @@ public class View {
     this.createdBy = createdBy;
   }
 
+  public View description(String description) {
+    this.description = description;
+    return this;
+  }
+
+   /**
+   * Get description
+   * @return description
+  **/
+  @ApiModelProperty(value = "")
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
   public View lastUpdatedAt(String lastUpdatedAt) {
     this.lastUpdatedAt = lastUpdatedAt;
     return this;
@@ -138,7 +158,7 @@ public class View {
    * Get lastUpdatedAt
    * @return lastUpdatedAt
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "2023-02-05 11:12:13", value = "")
   public String getLastUpdatedAt() {
     return lastUpdatedAt;
   }
@@ -255,22 +275,22 @@ public class View {
     this.query = query;
   }
 
-  public View stats(StreamStats stats) {
-    this.stats = stats;
+  public View targetStream(String targetStream) {
+    this.targetStream = targetStream;
     return this;
   }
 
    /**
-   * Get stats
-   * @return stats
+   * Get targetStream
+   * @return targetStream
   **/
-  @ApiModelProperty(required = true, value = "")
-  public StreamStats getStats() {
-    return stats;
+  @ApiModelProperty(value = "")
+  public String getTargetStream() {
+    return targetStream;
   }
 
-  public void setStats(StreamStats stats) {
-    this.stats = stats;
+  public void setTargetStream(String targetStream) {
+    this.targetStream = targetStream;
   }
 
   public View ttl(String ttl) {
@@ -304,6 +324,7 @@ public class View {
     return Objects.equals(this.columns, view.columns) &&
         Objects.equals(this.createdAt, view.createdAt) &&
         Objects.equals(this.createdBy, view.createdBy) &&
+        Objects.equals(this.description, view.description) &&
         Objects.equals(this.lastUpdatedAt, view.lastUpdatedAt) &&
         Objects.equals(this.lastUpdatedBy, view.lastUpdatedBy) &&
         Objects.equals(this.logstoreRetentionBytes, view.logstoreRetentionBytes) &&
@@ -311,13 +332,13 @@ public class View {
         Objects.equals(this.materialized, view.materialized) &&
         Objects.equals(this.name, view.name) &&
         Objects.equals(this.query, view.query) &&
-        Objects.equals(this.stats, view.stats) &&
+        Objects.equals(this.targetStream, view.targetStream) &&
         Objects.equals(this.ttl, view.ttl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(columns, createdAt, createdBy, lastUpdatedAt, lastUpdatedBy, logstoreRetentionBytes, logstoreRetentionMs, materialized, name, query, stats, ttl);
+    return Objects.hash(columns, createdAt, createdBy, description, lastUpdatedAt, lastUpdatedBy, logstoreRetentionBytes, logstoreRetentionMs, materialized, name, query, targetStream, ttl);
   }
 
 
@@ -329,6 +350,7 @@ public class View {
     sb.append("    columns: ").append(toIndentedString(columns)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    createdBy: ").append(toIndentedString(createdBy)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    lastUpdatedAt: ").append(toIndentedString(lastUpdatedAt)).append("\n");
     sb.append("    lastUpdatedBy: ").append(toIndentedString(lastUpdatedBy)).append("\n");
     sb.append("    logstoreRetentionBytes: ").append(toIndentedString(logstoreRetentionBytes)).append("\n");
@@ -336,7 +358,7 @@ public class View {
     sb.append("    materialized: ").append(toIndentedString(materialized)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    query: ").append(toIndentedString(query)).append("\n");
-    sb.append("    stats: ").append(toIndentedString(stats)).append("\n");
+    sb.append("    targetStream: ").append(toIndentedString(targetStream)).append("\n");
     sb.append("    ttl: ").append(toIndentedString(ttl)).append("\n");
     sb.append("}");
     return sb.toString();

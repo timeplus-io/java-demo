@@ -24,7 +24,6 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.client.model.ColumnsResp;
 import io.swagger.client.model.Owner;
-import io.swagger.client.model.StreamStats;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +31,7 @@ import java.util.List;
 /**
  * Stream
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-02-05T18:48:55.783Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-06-06T23:45:14.171Z")
 public class Stream {
   @SerializedName("columns")
   private List<ColumnsResp> columns = new ArrayList<ColumnsResp>();
@@ -42,6 +41,9 @@ public class Stream {
 
   @SerializedName("created_by")
   private Owner createdBy = null;
+
+  @SerializedName("description")
+  private String description = null;
 
   @SerializedName("engine")
   private String engine = null;
@@ -61,11 +63,14 @@ public class Stream {
   @SerializedName("logstore_retention_ms")
   private Integer logstoreRetentionMs = null;
 
+  @SerializedName("mode")
+  private String mode = null;
+
   @SerializedName("name")
   private String name = null;
 
-  @SerializedName("stats")
-  private StreamStats stats = null;
+  @SerializedName("primary_key")
+  private String primaryKey = null;
 
   @SerializedName("ttl")
   private String ttl = null;
@@ -102,7 +107,7 @@ public class Stream {
    * Get createdAt
    * @return createdAt
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "2023-02-01 23:22:59", value = "")
   public String getCreatedAt() {
     return createdAt;
   }
@@ -129,6 +134,24 @@ public class Stream {
     this.createdBy = createdBy;
   }
 
+  public Stream description(String description) {
+    this.description = description;
+    return this;
+  }
+
+   /**
+   * Get description
+   * @return description
+  **/
+  @ApiModelProperty(example = "my test stream", required = true, value = "")
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
   public Stream engine(String engine) {
     this.engine = engine;
     return this;
@@ -138,7 +161,7 @@ public class Stream {
    * Get engine
    * @return engine
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "Stream", required = true, value = "")
   public String getEngine() {
     return engine;
   }
@@ -156,7 +179,7 @@ public class Stream {
    * Get isExternal
    * @return isExternal
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "false", required = true, value = "")
   public Boolean isIsExternal() {
     return isExternal;
   }
@@ -174,7 +197,7 @@ public class Stream {
    * Get lastUpdatedAt
    * @return lastUpdatedAt
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "2023-02-05 11:12:13", value = "")
   public String getLastUpdatedAt() {
     return lastUpdatedAt;
   }
@@ -210,7 +233,7 @@ public class Stream {
    * Get logstoreRetentionBytes
    * @return logstoreRetentionBytes
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "1073741824", required = true, value = "")
   public Integer getLogstoreRetentionBytes() {
     return logstoreRetentionBytes;
   }
@@ -228,13 +251,31 @@ public class Stream {
    * Get logstoreRetentionMs
    * @return logstoreRetentionMs
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "86400000", required = true, value = "")
   public Integer getLogstoreRetentionMs() {
     return logstoreRetentionMs;
   }
 
   public void setLogstoreRetentionMs(Integer logstoreRetentionMs) {
     this.logstoreRetentionMs = logstoreRetentionMs;
+  }
+
+  public Stream mode(String mode) {
+    this.mode = mode;
+    return this;
+  }
+
+   /**
+   * Storage mode of stream. Possible values: &#x60;append&#x60;, &#x60;changelog&#x60;, &#x60;changelog_kv&#x60;, &#x60;versioned_kv&#x60;
+   * @return mode
+  **/
+  @ApiModelProperty(example = "append", required = true, value = "Storage mode of stream. Possible values: `append`, `changelog`, `changelog_kv`, `versioned_kv`")
+  public String getMode() {
+    return mode;
+  }
+
+  public void setMode(String mode) {
+    this.mode = mode;
   }
 
   public Stream name(String name) {
@@ -246,7 +287,7 @@ public class Stream {
    * Get name
    * @return name
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "test_stream", required = true, value = "")
   public String getName() {
     return name;
   }
@@ -255,22 +296,22 @@ public class Stream {
     this.name = name;
   }
 
-  public Stream stats(StreamStats stats) {
-    this.stats = stats;
+  public Stream primaryKey(String primaryKey) {
+    this.primaryKey = primaryKey;
     return this;
   }
 
    /**
-   * Get stats
-   * @return stats
+   * Expression of primary key, required in &#x60;changelog_kv&#x60;&#x60; and &#x60;versioned_kv&#x60;&#x60; mode
+   * @return primaryKey
   **/
-  @ApiModelProperty(value = "")
-  public StreamStats getStats() {
-    return stats;
+  @ApiModelProperty(value = "Expression of primary key, required in `changelog_kv`` and `versioned_kv`` mode")
+  public String getPrimaryKey() {
+    return primaryKey;
   }
 
-  public void setStats(StreamStats stats) {
-    this.stats = stats;
+  public void setPrimaryKey(String primaryKey) {
+    this.primaryKey = primaryKey;
   }
 
   public Stream ttl(String ttl) {
@@ -282,7 +323,7 @@ public class Stream {
    * ORDER_BY     string        &#x60;json:\&quot;order_by_expression\&quot;&#x60; PATTITION_BY string        &#x60;json:\&quot;partition_by_expression\&quot;&#x60;
    * @return ttl
   **/
-  @ApiModelProperty(required = true, value = "ORDER_BY     string        `json:\"order_by_expression\"` PATTITION_BY string        `json:\"partition_by_expression\"`")
+  @ApiModelProperty(example = "to_datetime(_tp_time) + INTERVAL 7 DAY", required = true, value = "ORDER_BY     string        `json:\"order_by_expression\"` PATTITION_BY string        `json:\"partition_by_expression\"`")
   public String getTtl() {
     return ttl;
   }
@@ -304,20 +345,22 @@ public class Stream {
     return Objects.equals(this.columns, stream.columns) &&
         Objects.equals(this.createdAt, stream.createdAt) &&
         Objects.equals(this.createdBy, stream.createdBy) &&
+        Objects.equals(this.description, stream.description) &&
         Objects.equals(this.engine, stream.engine) &&
         Objects.equals(this.isExternal, stream.isExternal) &&
         Objects.equals(this.lastUpdatedAt, stream.lastUpdatedAt) &&
         Objects.equals(this.lastUpdatedBy, stream.lastUpdatedBy) &&
         Objects.equals(this.logstoreRetentionBytes, stream.logstoreRetentionBytes) &&
         Objects.equals(this.logstoreRetentionMs, stream.logstoreRetentionMs) &&
+        Objects.equals(this.mode, stream.mode) &&
         Objects.equals(this.name, stream.name) &&
-        Objects.equals(this.stats, stream.stats) &&
+        Objects.equals(this.primaryKey, stream.primaryKey) &&
         Objects.equals(this.ttl, stream.ttl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(columns, createdAt, createdBy, engine, isExternal, lastUpdatedAt, lastUpdatedBy, logstoreRetentionBytes, logstoreRetentionMs, name, stats, ttl);
+    return Objects.hash(columns, createdAt, createdBy, description, engine, isExternal, lastUpdatedAt, lastUpdatedBy, logstoreRetentionBytes, logstoreRetentionMs, mode, name, primaryKey, ttl);
   }
 
 
@@ -329,14 +372,16 @@ public class Stream {
     sb.append("    columns: ").append(toIndentedString(columns)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    createdBy: ").append(toIndentedString(createdBy)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    engine: ").append(toIndentedString(engine)).append("\n");
     sb.append("    isExternal: ").append(toIndentedString(isExternal)).append("\n");
     sb.append("    lastUpdatedAt: ").append(toIndentedString(lastUpdatedAt)).append("\n");
     sb.append("    lastUpdatedBy: ").append(toIndentedString(lastUpdatedBy)).append("\n");
     sb.append("    logstoreRetentionBytes: ").append(toIndentedString(logstoreRetentionBytes)).append("\n");
     sb.append("    logstoreRetentionMs: ").append(toIndentedString(logstoreRetentionMs)).append("\n");
+    sb.append("    mode: ").append(toIndentedString(mode)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    stats: ").append(toIndentedString(stats)).append("\n");
+    sb.append("    primaryKey: ").append(toIndentedString(primaryKey)).append("\n");
     sb.append("    ttl: ").append(toIndentedString(ttl)).append("\n");
     sb.append("}");
     return sb.toString();

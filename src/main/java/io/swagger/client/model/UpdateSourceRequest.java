@@ -22,7 +22,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.client.model.ConnectionConfig;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -31,11 +30,8 @@ import java.util.Map;
 /**
  * UpdateSourceRequest
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-02-05T18:48:55.783Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-06-06T23:45:14.171Z")
 public class UpdateSourceRequest {
-  @SerializedName("connection_config")
-  private ConnectionConfig connectionConfig = null;
-
   @SerializedName("description")
   private String description = null;
 
@@ -45,23 +41,8 @@ public class UpdateSourceRequest {
   @SerializedName("properties")
   private Map<String, Object> properties = null;
 
-  public UpdateSourceRequest connectionConfig(ConnectionConfig connectionConfig) {
-    this.connectionConfig = connectionConfig;
-    return this;
-  }
-
-   /**
-   * Get connectionConfig
-   * @return connectionConfig
-  **/
-  @ApiModelProperty(value = "")
-  public ConnectionConfig getConnectionConfig() {
-    return connectionConfig;
-  }
-
-  public void setConnectionConfig(ConnectionConfig connectionConfig) {
-    this.connectionConfig = connectionConfig;
-  }
+  @SerializedName("stream")
+  private String stream = null;
 
   public UpdateSourceRequest description(String description) {
     this.description = description;
@@ -72,7 +53,7 @@ public class UpdateSourceRequest {
    * Get description
    * @return description
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "new description for the source", value = "")
   public String getDescription() {
     return description;
   }
@@ -87,10 +68,10 @@ public class UpdateSourceRequest {
   }
 
    /**
-   * Get name
+   * Source name should only contain a maximum of 64 letters, numbers, or _, and start with a letter
    * @return name
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(example = "new_source_name", value = "Source name should only contain a maximum of 64 letters, numbers, or _, and start with a letter")
   public String getName() {
     return name;
   }
@@ -113,16 +94,34 @@ public class UpdateSourceRequest {
   }
 
    /**
-   * Get properties
+   * Additional properties that required to read the data from source. Please refer to the documentation for this source type
    * @return properties
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Additional properties that required to read the data from source. Please refer to the documentation for this source type")
   public Map<String, Object> getProperties() {
     return properties;
   }
 
   public void setProperties(Map<String, Object> properties) {
     this.properties = properties;
+  }
+
+  public UpdateSourceRequest stream(String stream) {
+    this.stream = stream;
+    return this;
+  }
+
+   /**
+   * The name of the target stream that this source writes to. The stream needs to be created first.
+   * @return stream
+  **/
+  @ApiModelProperty(example = "new_stream", value = "The name of the target stream that this source writes to. The stream needs to be created first.")
+  public String getStream() {
+    return stream;
+  }
+
+  public void setStream(String stream) {
+    this.stream = stream;
   }
 
 
@@ -135,15 +134,15 @@ public class UpdateSourceRequest {
       return false;
     }
     UpdateSourceRequest updateSourceRequest = (UpdateSourceRequest) o;
-    return Objects.equals(this.connectionConfig, updateSourceRequest.connectionConfig) &&
-        Objects.equals(this.description, updateSourceRequest.description) &&
+    return Objects.equals(this.description, updateSourceRequest.description) &&
         Objects.equals(this.name, updateSourceRequest.name) &&
-        Objects.equals(this.properties, updateSourceRequest.properties);
+        Objects.equals(this.properties, updateSourceRequest.properties) &&
+        Objects.equals(this.stream, updateSourceRequest.stream);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(connectionConfig, description, name, properties);
+    return Objects.hash(description, name, properties, stream);
   }
 
 
@@ -152,10 +151,10 @@ public class UpdateSourceRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateSourceRequest {\n");
     
-    sb.append("    connectionConfig: ").append(toIndentedString(connectionConfig)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    properties: ").append(toIndentedString(properties)).append("\n");
+    sb.append("    stream: ").append(toIndentedString(stream)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -22,28 +22,46 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.client.model.MetricsQueryThroughput;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * ResourceMetricsResult
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-02-05T18:48:55.783Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2023-06-06T23:45:14.171Z")
 public class ResourceMetricsResult {
+  @SerializedName("failure_count")
+  private BigDecimal failureCount = null;
+
   @SerializedName("id")
   private String id = null;
 
-  @SerializedName("metrics_name")
-  private String metricsName = null;
+  @SerializedName("success_count")
+  private BigDecimal successCount = null;
 
-  @SerializedName("metrics_type")
-  private String metricsType = null;
+  @SerializedName("throughput")
+  private List<MetricsQueryThroughput> throughput = new ArrayList<MetricsQueryThroughput>();
 
-  @SerializedName("time")
-  private String time = null;
+  public ResourceMetricsResult failureCount(BigDecimal failureCount) {
+    this.failureCount = failureCount;
+    return this;
+  }
 
-  @SerializedName("value")
-  private BigDecimal value = null;
+   /**
+   * Get failureCount
+   * @return failureCount
+  **/
+  @ApiModelProperty(required = true, value = "")
+  public BigDecimal getFailureCount() {
+    return failureCount;
+  }
+
+  public void setFailureCount(BigDecimal failureCount) {
+    this.failureCount = failureCount;
+  }
 
   public ResourceMetricsResult id(String id) {
     this.id = id;
@@ -54,7 +72,7 @@ public class ResourceMetricsResult {
    * Get id
    * @return id
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public String getId() {
     return id;
   }
@@ -63,76 +81,45 @@ public class ResourceMetricsResult {
     this.id = id;
   }
 
-  public ResourceMetricsResult metricsName(String metricsName) {
-    this.metricsName = metricsName;
+  public ResourceMetricsResult successCount(BigDecimal successCount) {
+    this.successCount = successCount;
     return this;
   }
 
    /**
-   * Get metricsName
-   * @return metricsName
+   * Get successCount
+   * @return successCount
   **/
-  @ApiModelProperty(value = "")
-  public String getMetricsName() {
-    return metricsName;
+  @ApiModelProperty(required = true, value = "")
+  public BigDecimal getSuccessCount() {
+    return successCount;
   }
 
-  public void setMetricsName(String metricsName) {
-    this.metricsName = metricsName;
+  public void setSuccessCount(BigDecimal successCount) {
+    this.successCount = successCount;
   }
 
-  public ResourceMetricsResult metricsType(String metricsType) {
-    this.metricsType = metricsType;
+  public ResourceMetricsResult throughput(List<MetricsQueryThroughput> throughput) {
+    this.throughput = throughput;
+    return this;
+  }
+
+  public ResourceMetricsResult addThroughputItem(MetricsQueryThroughput throughputItem) {
+    this.throughput.add(throughputItem);
     return this;
   }
 
    /**
-   * Get metricsType
-   * @return metricsType
+   * Get throughput
+   * @return throughput
   **/
-  @ApiModelProperty(value = "")
-  public String getMetricsType() {
-    return metricsType;
+  @ApiModelProperty(required = true, value = "")
+  public List<MetricsQueryThroughput> getThroughput() {
+    return throughput;
   }
 
-  public void setMetricsType(String metricsType) {
-    this.metricsType = metricsType;
-  }
-
-  public ResourceMetricsResult time(String time) {
-    this.time = time;
-    return this;
-  }
-
-   /**
-   * Get time
-   * @return time
-  **/
-  @ApiModelProperty(value = "")
-  public String getTime() {
-    return time;
-  }
-
-  public void setTime(String time) {
-    this.time = time;
-  }
-
-  public ResourceMetricsResult value(BigDecimal value) {
-    this.value = value;
-    return this;
-  }
-
-   /**
-   * Get value
-   * @return value
-  **/
-  @ApiModelProperty(value = "")
-  public BigDecimal getValue() {
-    return value;
-  }
-
-  public void setValue(BigDecimal value) {
-    this.value = value;
+  public void setThroughput(List<MetricsQueryThroughput> throughput) {
+    this.throughput = throughput;
   }
 
 
@@ -145,16 +132,15 @@ public class ResourceMetricsResult {
       return false;
     }
     ResourceMetricsResult resourceMetricsResult = (ResourceMetricsResult) o;
-    return Objects.equals(this.id, resourceMetricsResult.id) &&
-        Objects.equals(this.metricsName, resourceMetricsResult.metricsName) &&
-        Objects.equals(this.metricsType, resourceMetricsResult.metricsType) &&
-        Objects.equals(this.time, resourceMetricsResult.time) &&
-        Objects.equals(this.value, resourceMetricsResult.value);
+    return Objects.equals(this.failureCount, resourceMetricsResult.failureCount) &&
+        Objects.equals(this.id, resourceMetricsResult.id) &&
+        Objects.equals(this.successCount, resourceMetricsResult.successCount) &&
+        Objects.equals(this.throughput, resourceMetricsResult.throughput);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, metricsName, metricsType, time, value);
+    return Objects.hash(failureCount, id, successCount, throughput);
   }
 
 
@@ -163,11 +149,10 @@ public class ResourceMetricsResult {
     StringBuilder sb = new StringBuilder();
     sb.append("class ResourceMetricsResult {\n");
     
+    sb.append("    failureCount: ").append(toIndentedString(failureCount)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    metricsName: ").append(toIndentedString(metricsName)).append("\n");
-    sb.append("    metricsType: ").append(toIndentedString(metricsType)).append("\n");
-    sb.append("    time: ").append(toIndentedString(time)).append("\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("    successCount: ").append(toIndentedString(successCount)).append("\n");
+    sb.append("    throughput: ").append(toIndentedString(throughput)).append("\n");
     sb.append("}");
     return sb.toString();
   }
