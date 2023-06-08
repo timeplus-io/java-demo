@@ -14,10 +14,8 @@ import com.squareup.okhttp.Response;
 import com.squareup.okhttp.RequestBody;
 
 public class Query {
-    private TimeplusClient client = null;
-
-    private String host = null;
-    private String scheme = null;
+    private String apiKey = null;
+    private URL url = null;
 
     private String sql = null;
     private String name = null;
@@ -25,12 +23,10 @@ public class Query {
 
     private QueryObserver ob = null;
 
-    public Query(TimeplusClient client, String sql, String name, String desciption, QueryObserver ob)
+    public Query(String host, String tenant, String apiKey, String sql, String name, String desciption, QueryObserver ob)
             throws MalformedURLException {
-        this.client = client;
-        URL url = new URL(this.client.address());
-        this.host = url.getHost();
-        this.scheme = url.getProtocol();
+        this.apiKey = apiKey;
+        this.url = new URL(host + "/" + tenant + "/api/v1beta2/queries");
 
         this.sql = sql;
         this.name = name;
@@ -42,19 +38,13 @@ public class Query {
     public void run() throws IOException {
         OkHttpClient client = new OkHttpClient();
 
-        HttpUrl url = new HttpUrl.Builder()
-                .scheme(this.scheme)
-                .host(this.host)
-                .addPathSegment(this.client.tenant() + "/api/v1beta2/queries")
-                .build();
-
         String json = getCreatePayload(sql, name, desciption);
         RequestBody body = RequestBody.create(
                 MediaType.parse("application/json"), json);
 
         Request request = new Request.Builder()
-                .url(url)
-                .addHeader("X-API-KEY", this.client.apiKey())
+                .url(this.url)
+                .addHeader("X-API-KEY", this.apiKey)
                 .addHeader("Accept", "text/event-stream")
                 .addHeader("Connection", "keep-alive")
                 .post(body)

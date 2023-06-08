@@ -2,18 +2,21 @@ package samples;
 
 import java.io.IOException;
 import java.util.*;
+import java.net.URL;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.timeplus.QueryObserver;
-import com.timeplus.TimeplusClient;
 import com.timeplus.Query;
 
-import io.swagger.client.*;
-import io.swagger.client.api.ApiKeysV1beta1Api;
-import io.swagger.client.api.QueriesV1beta1Api;
-import io.swagger.client.model.*;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.HttpUrl;
+import com.squareup.okhttp.MediaType;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
+import com.squareup.okhttp.RequestBody;
+
 
 class MyQueryResultHandler implements QueryObserver {
     private JSONArray header = null;
@@ -43,64 +46,59 @@ class MyQueryResultHandler implements QueryObserver {
 public class ApplicationSample {
     public static void main(String[] args) {
         System.out.println("Hello Timeplus!");
+        OkHttpClient client = new OkHttpClient();
 
-        // initialize Timeplus Client with address, apikey and tenant
         String apiKey = System.getenv("TIMEPLUS_API_KEY");
         String address = System.getenv("TIMEPLUS_ADDRESS");
         String tenant = System.getenv("TIMEPLUS_TENANT");
-        TimeplusClient client = new TimeplusClient(address, tenant, apiKey);
 
-        // sample 1: list existing api keys
-        listApiKeys(client);
+        // sample 1: list all streams
+        try {
+            URL streamsURL = new URL(address + "/" + tenant + "/api/v1beta2/streams");
+            Request request = new Request.Builder()
+                .url(streamsURL)
+                .addHeader("X-API-KEY", apiKey)
+                .addHeader("Accept", "application/json")
+                .build();
 
-        // sample 2: list all queries
-        listQueries(client);
+            Response response = client.newCall(request).execute();
+            JSONArray streams = new JSONArray(response.body().string());
+            for (int i = 0; i < streams.length(); i++) {
+                JSONObject stream = streams.getJSONObject(i);
 
-        AnalyzeSQL(client);
+                // Please refer to the REST API documentation for more fields
+                System.out.format("Stream #%d: %s\n", i + 1, stream.get("name"));
+            }
+        } catch (Exception e) {
+            System.out.println("failed to list stream " + e.getMessage());
+        }
+
+        // sample 2: list 10 queries
+        try {
+            URL streamsURL = new URL(address + "/" + tenant + "/api/v1beta2/queries");
+            Request request = new Request.Builder()
+                .url(streamsURL)
+                .addHeader("X-API-KEY", apiKey)
+                .addHeader("Accept", "application/json")
+                .build();
+
+            Response response = client.newCall(request).execute();
+            JSONArray queries = new JSONArray(response.body().string());
+            for (int i = 0; i < queries.length() && i < 10; i++) {
+                JSONObject query = queries.getJSONObject(i);
+
+                // Please refer to the REST API documentation for more fields
+                System.out.format("Query #%d: %s\n", i + 1, query.get("sql"));
+            }
+        } catch (Exception e) {
+            System.out.println("failed to list queries " + e.getMessage());
+        }
 
         // sample 3: run a query and handle query result
-        runQuery(client);
-    }
+        MyQueryResultHandler ob = new MyQueryResultHandler();
 
-    public static void listApiKeys(TimeplusClient client) {
-        // List current API Key
-        ApiKeysV1beta1Api apiInstance = client.apikeysAPI();
         try {
-            List<APIKey> result = apiInstance.v1beta1AuthApiKeysGet();
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ApiKeysApi#authApiKeysGet");
-            e.printStackTrace();
-        }
-    }
-
-    public static void listQueries(TimeplusClient client) {
-        QueriesV1beta1Api queryApiInstance = client.queryAPI();
-        // List all current queries
-        try {
-            List<io.swagger.client.model.Query> result = queryApiInstance.v1beta1QueriesGet();
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling QueriesApi#queriesGet");
-            e.printStackTrace();
-        }
-    }
-
-    public static void AnalyzeSQL(TimeplusClient client) {
-        try {
-            AnalyzeSQLRequest request = new AnalyzeSQLRequest().sql("show streams");
-            SQLAnalyzeResult result = client.queryAPI().v1beta1SqlanalyzePost(request);
-            System.out.println(result.getQueryType());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling AnalyzeSQL");
-            e.printStackTrace();
-        }
-    }
-
-    public static void runQuery(TimeplusClient client) {
-        try {
-            MyQueryResultHandler ob = new MyQueryResultHandler();
-            Query query = new Query(client, "select * from car_live_data", "", "", ob);
+            Query query = new Query(address, tenant, apiKey, "select * from iot", "", "", ob);
             query.run();
         } catch (IOException e) {
             System.out.println("failed to run query " + e.getMessage());
