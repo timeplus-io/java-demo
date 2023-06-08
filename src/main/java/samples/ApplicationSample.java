@@ -17,6 +17,7 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 import com.squareup.okhttp.RequestBody;
 
+const API_VERSION = "v1beta2";
 
 class MyQueryResultHandler implements QueryObserver {
     private JSONArray header = null;
@@ -52,11 +53,13 @@ public class ApplicationSample {
         String address = System.getenv("TIMEPLUS_ADDRESS");
         String tenant = System.getenv("TIMEPLUS_TENANT");
 
+        String baseURL = address + "/" + tenant + "/api/" + API_VERSION + "/"
+
         // sample 1: list all streams
         try {
-            URL streamsURL = new URL(address + "/" + tenant + "/api/v1beta2/streams");
+            URL url = new URL(baseURL + "streams");
             Request request = new Request.Builder()
-                .url(streamsURL)
+                .url(url)
                 .addHeader("X-API-KEY", apiKey)
                 .addHeader("Accept", "application/json")
                 .build();
@@ -75,9 +78,9 @@ public class ApplicationSample {
 
         // sample 2: list 10 queries
         try {
-            URL streamsURL = new URL(address + "/" + tenant + "/api/v1beta2/queries");
+            URL url = new URL(baseURL + "queries");
             Request request = new Request.Builder()
-                .url(streamsURL)
+                .url(url)
                 .addHeader("X-API-KEY", apiKey)
                 .addHeader("Accept", "application/json")
                 .build();
