@@ -26,7 +26,8 @@ public class ApplicationSample {
 
         String baseURL = address + "/" + tenant + "/api/" + API_VERSION + "/";
 
-        // sample 1: list all streams
+        // Sample 1: list all streams
+        System.out.println("\nSample 1: list all streams");
         try {
             URL url = new URL(baseURL + "streams");
             Request request = new Request.Builder()
@@ -47,7 +48,8 @@ public class ApplicationSample {
             System.out.println("failed to list stream " + e.getMessage());
         }
 
-        // sample 2: list 10 queries
+        // Sample 2: list 10 queries
+        System.out.println("\nSample 2: list 10 queries");
         try {
             URL url = new URL(baseURL + "queries");
             Request request = new Request.Builder()
@@ -68,20 +70,32 @@ public class ApplicationSample {
             System.out.println("failed to list queries " + e.getMessage());
         }
 
-        // sample 3: run a query and handle query result
-
+        // Sample 3: run a streaming query and get first 10 results
+        System.out.println("\nSample 3: run a streaming query and get first 10 results");
         try {
-            Query query = new Query(address, tenant, apiKey, "select * from iot", "", "");
+            Query query = new Query(baseURL, apiKey, "select * from iot", "", "");
             JSONObject metadata = query.start();
             
             JSONObject result = (JSONObject)metadata.get("result");
             JSONArray header = (JSONArray)result.get("header");
-            System.out.println("query header " + header);
+            System.out.println("Query header " + header);
             
             QueryResultIterator it = query.iterator();
+            
+            // We will stop the streaming query after receiving 10 results.
+            final int resultCount = 10;
+            int current = 0;
+            
             while (it.hasNext()) {
-            	System.out.println("received data " + it.next());
+            	if (current >= resultCount) {
+            		break;
+            	}
+            	current++;
+            	
+            	System.out.format("Received result #%d: %s\n", current, it.next());
             }
+            
+            query.stop();
             
         } catch (IOException e) {
             System.out.println("failed to run query " + e.getMessage());

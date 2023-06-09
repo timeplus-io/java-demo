@@ -24,15 +24,14 @@ public class Query {
 	private BufferedReader br = null;
 	private QueryResultIterator it = null;
 
-	public Query(String host, String tenant, String apiKey, String sql, String name, String desciption)
+	public Query(String baseURL, String apiKey, String sql, String name, String desciption)
 			throws MalformedURLException {
 		this.apiKey = apiKey;
-		this.url = new URL(host + "/" + tenant + "/api/v1beta2/queries");
+		this.url = new URL(baseURL + "queries");
 
 		this.sql = sql;
 		this.name = name;
 		this.desciption = desciption;
-
 	}
 
 	public JSONObject start() throws IOException {
@@ -90,6 +89,7 @@ public class Query {
 		return payload.toString();
 	}
 	
-	public void stop() {
+	public void stop() throws IOException {
+		this.br.close();
 	}
 }
