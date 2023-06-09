@@ -6,11 +6,8 @@ build:
 one_jar:
 	mvn clean compile assembly:single
 
-run_app:
+run:
 	mvn compile exec:java -Dexec.mainClass="samples.ApplicationSample"
-
-run_jdbc:
-	mvn compile exec:java -Dexec.mainClass="samples.JDBCSample"
 
 dep:
 	mvn dependency:copy-dependencies

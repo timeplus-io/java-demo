@@ -1,6 +1,5 @@
 package samples;
 
-import java.io.IOException;
 import java.net.URL;
 
 import org.json.JSONArray;
@@ -74,6 +73,9 @@ public class ApplicationSample {
         System.out.println("\nSample 3: run a streaming query and get first 10 results");
         try {
             Query query = new Query(baseURL, apiKey, "select * from iot", "", "");
+            
+            // Exception will be throw if we fail to start query.
+            // e.g. The stream doesn't exist
             JSONObject metadata = query.start();
             
             JSONObject result = (JSONObject)metadata.get("result");
@@ -97,7 +99,7 @@ public class ApplicationSample {
             
             query.stop();
             
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.out.println("failed to run query " + e.getMessage());
         }
     }

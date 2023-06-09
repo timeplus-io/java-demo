@@ -34,7 +34,7 @@ public class Query {
 		this.desciption = desciption;
 	}
 
-	public JSONObject start() throws IOException {
+	public JSONObject start() throws Exception {
 		OkHttpClient client = new OkHttpClient();
 
 		String json = getCreatePayload(sql, name, desciption);
@@ -44,16 +44,16 @@ public class Query {
 				.addHeader("Accept", "text/event-stream").addHeader("Connection", "keep-alive").post(body).build();
 
 		Response response = client.newCall(request).execute();
-
-		// TODO: Handle query failure
+		
+		if (response.code() > 299) {
+			throw new Exception(response.body().string());
+		}
 
 		this.br = new BufferedReader(response.body().charStream());
 		String line = this.br.readLine();
 
 		if (line == null) {
-			// TODO: Throw exception
-
-			return null;
+			throw new Exception("failed to read response body");
 		}
 
 		// The first event MUST be query
@@ -62,7 +62,7 @@ public class Query {
 		String eventData = line.substring(colonIndex + 1).trim();
 
 		if (!(eventField.equals("event") && eventData.equals("query"))) {
-			// Something must be wrong
+			throw new Exception("expected messsage");
 		}
 
 		String dataLine = br.readLine();
