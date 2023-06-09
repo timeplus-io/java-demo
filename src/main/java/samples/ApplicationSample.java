@@ -1,50 +1,21 @@
 package samples;
 
 import java.io.IOException;
-import java.util.*;
 import java.net.URL;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.timeplus.QueryObserver;
+import com.timeplus.QueryResultIterator;
 import com.timeplus.Query;
 
 import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.HttpUrl;
-import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
-import com.squareup.okhttp.RequestBody;
-
-const API_VERSION = "v1beta2";
-
-class MyQueryResultHandler implements QueryObserver {
-    private JSONArray header = null;
-
-    public MyQueryResultHandler() {
-    }
-
-    @Override
-    public void handleQuery(JSONObject query) {
-        JSONObject result = (JSONObject) query.get("result");
-        JSONArray header = (JSONArray) result.get("header");
-        System.out.println("In MyQueryResultHandler , query result header : " + header);
-        this.header = header;
-    }
-
-    @Override
-    public void handleData(JSONArray event) {
-        System.out.println("In MyQueryResultHandler , handle data : " + event);
-    }
-
-    @Override
-    public void handleMetric(JSONObject metric) {
-        System.out.println("In MyQueryResultHandler , handle metric : " + metric);
-    }
-}
 
 public class ApplicationSample {
+	public static final String API_VERSION = "v1beta2";
+
     public static void main(String[] args) {
         System.out.println("Hello Timeplus!");
         OkHttpClient client = new OkHttpClient();
@@ -53,7 +24,7 @@ public class ApplicationSample {
         String address = System.getenv("TIMEPLUS_ADDRESS");
         String tenant = System.getenv("TIMEPLUS_TENANT");
 
-        String baseURL = address + "/" + tenant + "/api/" + API_VERSION + "/"
+        String baseURL = address + "/" + tenant + "/api/" + API_VERSION + "/";
 
         // sample 1: list all streams
         try {
@@ -98,11 +69,20 @@ public class ApplicationSample {
         }
 
         // sample 3: run a query and handle query result
-        MyQueryResultHandler ob = new MyQueryResultHandler();
 
         try {
-            Query query = new Query(address, tenant, apiKey, "select * from iot", "", "", ob);
-            query.run();
+            Query query = new Query(address, tenant, apiKey, "select * from iot", "", "");
+            JSONObject metadata = query.start();
+            
+            JSONObject result = (JSONObject)metadata.get("result");
+            JSONArray header = (JSONArray)result.get("header");
+            System.out.println("query header " + header);
+            
+            QueryResultIterator it = query.iterator();
+            while (it.hasNext()) {
+            	System.out.println("received data " + it.next());
+            }
+            
         } catch (IOException e) {
             System.out.println("failed to run query " + e.getMessage());
         }
