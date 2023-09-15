@@ -1,6 +1,6 @@
 # Timeplus Java API demo
 
-`ApplicationSample.java` contains three basic samples to demonstrate how to interacting with Timeplus Rest API.
+[ApplicationSample.java](https://github.com/timeplus-io/java-demo/blob/main/src/main/java/samples/ApplicationSample.java) contains three basic samples to demonstrate how to interacting with Timeplus Rest API.
 
 1. List streams ([doc](https://docs.timeplus.com/rest.html#tag/Streams-v1beta2/paths/~1v1beta2~1streams/get))
 2. List 10 queries ([doc](https://docs.timeplus.com/rest.html#tag/Queries-v1beta2/paths/~1v1beta2~1queries/get))
